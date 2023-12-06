@@ -1,0 +1,112 @@
+/* Main page */
+*              
+{
+    margin:0;
+    padding:0;
+}
+.head
+{
+    height:10rem;
+    width:100%;
+    background-color:#1a1aff;
+    color:white;
+}
+h1
+{
+    margin-left:85%;
+    margin-bottom:5px;
+
+}
+h2
+{
+    display:flex;
+    flex-direction:column;
+}
+h3
+{
+    font-size:40px; 
+    margin-bottom: 20px;
+}
+.nav
+{
+    height:3rem;
+    width:100%;
+    background-color:#99ccff;
+}
+.main
+{
+    display:flex;
+    flex-direction:row;
+}
+.list
+{
+    flex:0.7;
+    float:left;
+    background-color:#663300;
+    margin:5px;
+    padding:5px;
+    font-size:90%;
+    height:25rem;
+}
+a
+{
+    margin:5px;
+    padding:5px;
+    color:white;
+    text-decoration:none;
+    font-family: sans-serif;
+    font-size:90%;
+}
+a:hover
+{
+    background-color:#cc6600;
+    width:fit-content;
+    border-radius:5px;
+}
+a:active 
+{
+    color:blue;
+}
+.view
+{
+    flex:4;
+    float:right;
+    /* background-color:#666699; */
+    margin:5px;
+    padding:5px;
+    border:1px black solid;
+    font-size:90%;
+    height:25rem;
+}
+
+/* department */
+.dpt_creation
+{
+margin:3rem;
+padding: 30px;
+border-radius: 5px;
+background-color: #e7e4e4;
+width: 50%;
+height: auto;
+
+}
+#dpt
+{
+    margin:10px;
+    width:50%;
+    height: 4%;
+    font-family: monospace;
+}
+#dpt_smt
+{
+    padding:5px;
+    background-color: #1a1aff;
+    color:white;
+    border:0px;
+    border-radius: 5px;
+}
+.phpdepartment
+{
+    color:green;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}

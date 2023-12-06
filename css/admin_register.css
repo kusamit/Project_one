@@ -1,0 +1,57 @@
+*{
+    margin:0px;
+    padding:0px;
+}
+body{
+    background-color:#DFD7D7; 
+}
+form{
+    width:100%;
+    width:60%;
+    font-size:40px;
+    font-family:serif;
+   border-radius:5px;
+    margin-left:20%;
+}
+h1{
+    text-align:center;
+    color:darkblue;
+    margin:20px;
+    font-size:60px;
+    padding:1px;
+}
+span{
+    display:flex;
+    margin-top:0px;
+    margin:5px;
+    
+}
+p{
+    width: 50%;
+    font-size:25px;
+    margin-bottom:2px;
+    margin-left:10px;
+    font-family:sans-serif;
+}
+input{
+    width:100%;
+    border-radius:5px;
+    border:0px;
+    height:50px;
+    font-size:20px;
+    text-align:center;
+    margin-bottom:20px;
+}
+h6
+{
+    text-align:center;
+    font-size:20px;
+    margin-bottom:20px;
+}
+.php{
+    text-align:center;
+    background-color:blue;
+    color:white;
+    margin-bottom:20px;
+    border-radius:10px;
+}
