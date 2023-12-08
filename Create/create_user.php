@@ -16,18 +16,20 @@ include 'session_create.php';
 
         </div>
         <center>
-            <div class="dpt_creation">
+            <div class="user_creation">
                 <form action="" method="POST">
                     <h3>Create User</h3>
-                    Full Name<span><input type="text" name="name" id="" required></span><br>
-                    Email<span><input type="email" name="email" id=""></span><br>
+                    <span>Full Name</span><span><input type="text" name="name" id="" required></span><br>
+                    <span>Email</span><span><input type="email" name="email" id=""></span><br>
                     Phone No.<span><input type="number" name="phone" id=""></span><br>
                     Address<span><input type="text" name="address" id=""></span><br>
                     Username<span><input type="username" name="username" id=""></span><br>
                     Password<span><input type="password" name="password" id=""></span><br>
                     Department<span> 
                         <select name="dept_id" id="">
-                            <option value="">Select..</option><?php
+                            <option value="">Select..</option>
+                            <?php
+                            include '../dbconnect/dbconnect.php';
                                 $sql="SELECT * from department";
                                 $result=mysqli_query($conn,$sql);
                                 if($result)
@@ -37,11 +39,16 @@ include 'session_create.php';
                                 {
                                     echo "error to get department";
                                 }
-                                if ($result->num_rows > 0) 
+                                $num=mysqli_num_rows($result);
+                                if ($num>0) 
                                 {
-                                    while ($row = $result->fetch_assoc()) 
+                                    while ($row = mysqli_fetch_assoc($result)) 
                                     {
-                                        echo "<option value='" . $row["id"] . "'>" . $row["department_name"] .  "</option>";
+                                        ?>
+
+
+                                        <option value="<?php echo $row['id']?>"><?php echo $row['department_name']?></option>;
+                                        <?php
                                     }
                                 } 
                                 else 

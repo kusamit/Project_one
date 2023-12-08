@@ -110,3 +110,60 @@ height: auto;
     color:green;
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
+/* user */
+.user_creation
+{
+margin:3rem;
+padding: 30px;
+border-radius: 5px;
+background-color: #e7e4e4;
+width: 50%;
+height: auto;
+float: left;
+
+}
+
+/* Project Creation */
+.project_creation
+{
+margin:3rem;
+padding: 30px;
+border-radius: 5px;
+background-color: #e7e4e4;
+width: 30%;
+height: auto;
+
+}
+#formp
+{
+    margin-left: 2rem;
+}
+#project
+{
+    margin:10px;
+    width:70%;
+    height: 4%;
+    font-family: monospace;
+}
+#project_file
+{
+    margin:10px;
+    width:70%;
+    height: 4%;
+    font-size: 15px;
+    font-family: monospace;
+}
+#project_smt
+{
+    padding:5px;
+    background-color: #1a1aff;
+    color:white;
+    border:0px;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+.phpproject
+{
+    color:green;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
