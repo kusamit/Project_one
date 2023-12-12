@@ -75,6 +75,30 @@ else
 {
     echo 'error to create user database';
 }
+
+//Create Manager
+$managerquery="CREATE TABLE manager (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    fullname VARCHAR(255) NOT NULL,
+    email VARCHAR(255) UNIQUE,
+    phone INT,
+    address VARCHAR(255) NOT NULL,
+    username VARCHAR(255) UNIQUE,
+    password VARCHAR(25),
+    -- department_id int, FOREIGN KEY(department_id) REFERENCES department(id),
+    project_id int,
+    assigned_id int,
+    created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+)";
+$usertable=mysqli_query($conn,$userquery);
+if($usertable)
+{
+    echo 'User database Created.';
+}
+else
+{
+    echo 'error to create user database';
+}
 //create Assingment of work.
 $workquery="CREATE TABLE assigned (
     id INT AUTO_INCREMENT PRIMARY KEY,

@@ -59,7 +59,11 @@ include 'session_create.php';
                                     ?>
                         </select>
                         
-                    </span>
+                    </span><br>
+                    <Span><select name="authentication" id="">
+                        <option value="1">User</option>
+                        <option value="2">Manager</option>
+                    </select></Span>
                     <span><input type="submit" value="Create" name="submit" id="dpt_smt"></span> 
                     <br><br><br>
                     <div class="phpdepartment">
@@ -75,7 +79,10 @@ include 'session_create.php';
                             $username=$_POST["username"];
                             $password=$_POST["password"];
                             $department=$_POST["dept_id"];
-                            $create_user="INSERT INTO user (fullname,email,phone,address,username,password,department_id)
+                            $authentication=$_POST["authentication"];
+                            if($authentication==1)
+                            {
+                                $create_user="INSERT INTO user (fullname,email,phone,address,username,password,department_id)
                             VALUES ('$name','$email','$phone','$address','$username','$password','$department')";
                             $result=mysqli_query($conn,$create_user);
                             if($result)
@@ -86,6 +93,23 @@ include 'session_create.php';
                             {
                                 echo "Error to create the user, Please try again later...!";
                             }
+                            }
+                            if($authentication==2)
+                            {
+                                echo "manager";
+                                $create_user="INSERT INTO manager (fullname,email,phone,address,username,password)
+                            VALUES ('$name','$email','$phone','$address','$username','$password')";
+                            $result=mysqli_query($conn,$create_user);
+                            if($result)
+                            {
+                               echo "Manager Created Sucessfully...!!";
+                            }
+                            else
+                            {
+                                echo "Error to create the Manager, Please try again later...!";
+                            }
+                            }
+                            
                         }
                         ?>
                     </div>
