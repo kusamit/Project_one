@@ -16,14 +16,20 @@ include '../dbconnect/dbconnect.php';
         {
             align-items:center;
         }
+        /* table */
         tr,th
         {
             text-align:left;
             background-color:grey;
             color:White;
             border-radius:5px;
+            text-align:center;
+            gap:10px;
             
-            
+        }
+        th{
+            padding: 10px;
+            margin-bottom:50px;
         }
         table
         {
@@ -62,21 +68,19 @@ include '../dbconnect/dbconnect.php';
             margin-left:40%;
             margin-top:50%;
         }
-        .outer
+        /* outerlayer */
+        .outer_m
         {
             margin:10px;
             background-color:lightgrey;
             width:40%;
             border-radius:5px;
+            height:60%;
         }
         a{
             text-decoration:none;
             color:white;
             float:right;
-            /* height:1px;
-            width:1px; */
-            style-type:inline;
-            
         }
         img
         {
@@ -84,10 +88,15 @@ include '../dbconnect/dbconnect.php';
             width:20px;
             margin-right:5px;
         }
+        p
+        {
+            text-align:center;
+            font-size:25px;
+        }
     </style>
 </head>
 <body>
-    <div class="outer">
+    <div class="outer_m">
     <form action="" method="POST">
         <table>
             <?php
@@ -102,9 +111,28 @@ include '../dbconnect/dbconnect.php';
                         $user_details = mysqli_fetch_assoc($result);
 
                         // show user details
-                        echo "<h2>User Details</h2>";
-                        echo "<tr><th>id: " . $user_details['id'] . "</th>
-                        <th>fullame: " . $user_details['fullname'] . "</th></tr>";
+                        echo "<p>User Details<hr></p>";
+                        echo "<tr><th>ID: " . $user_details['id'] . "</th>
+                        <th>Full Name : " . $user_details['fullname'] . "</th></tr>",
+                        "<tr><th>Phone No. : " . $user_details['phone'] . "</th>
+                        <th>Address : " . $user_details['address'] . "</th>
+                        </tr>",
+                        "<tr><th>Email: " . $user_details['email'] . "</th>";?>
+                        <!-- fetched department name from the department table using the 
+                        foreign key department_id from the user table. -->
+                        <?php
+                                    $dpt="select * from department where id=". $user_details['department_id'] ."";
+                                    $result2 = mysqli_query($conn, $dpt);
+
+                                if (mysqli_num_rows($result2) > 0) 
+                                {
+                                    $department_details = mysqli_fetch_assoc($result2);
+                                }
+                        ?>
+
+                       <?php echo "<th> Department: " . $department_details['department_name'] . "</th></tr>",
+                        "<tr><th>Username: " . $user_details['username'] . "</th></tr>",
+                        "<tr><th>Password: " . $user_details['password'] . "</th></tr>";
                         
                         echo "<p><a href='your_user_list_page.php'>Back to User List</a></p>";
                     } 
@@ -118,6 +146,10 @@ include '../dbconnect/dbconnect.php';
                     echo "Invalid request. User ID not provided.";
                 }
             ?>
+
+            <!-- foreign key -->
+          
+
         </table>
     </form>
     </div>

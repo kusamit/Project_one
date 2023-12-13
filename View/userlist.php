@@ -20,6 +20,7 @@ include '../dbconnect/dbconnect.php';
             text-align:left;
             background-color:grey;
             color:White;
+            margin:10px;
             border-radius:5px;
             
             
