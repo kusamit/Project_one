@@ -28,16 +28,18 @@ include 'session_create.php';
                     Department<span> 
                         <select name="dept_id" id="">
                             <option value="">Select..</option>
+                            <!-- //php for select option department -->
                             <?php
-                            include '../dbconnect/dbconnect.php';
-                                $sql="SELECT * from department";
+                                include '../dbconnect/dbconnect.php';
+                                $log_id=$login_id;
+                                $sql="SELECT * from department  where log_id= '$log_id'";
                                 $result=mysqli_query($conn,$sql);
                                 if($result)
                                 {
                                     echo "";
                                 }else
                                 {
-                                    echo "error to get department";
+                                    echo "error to Create department";
                                 }
                                 $num=mysqli_num_rows($result);
                                 if ($num>0) 
@@ -45,8 +47,6 @@ include 'session_create.php';
                                     while ($row = mysqli_fetch_assoc($result)) 
                                     {
                                         ?>
-
-
                                         <option value="<?php echo $row['id']?>"><?php echo $row['department_name']?></option>;
                                         <?php
                                     }
@@ -55,11 +55,11 @@ include 'session_create.php';
                                 {
                                     echo "<option value=''>Create a department first</option>";
                                 }
-                                    
-                                    ?>
+                            ?>
                         </select>
                         
                     </span><br>
+                    <!-- for choose the user of manager -->
                     <Span><select name="authentication" id="">
                         <option value="1">User</option>
                         <option value="2">Manager</option>
@@ -72,18 +72,21 @@ include 'session_create.php';
                         
                         if(isset($_POST["submit"]))
                         {
+                            $log_id=$login_id;         //login_id
                             $name=$_POST["name"];
                             $email=$_POST["email"];
                             $phone=$_POST["phone"];
                             $address=$_POST["address"];
                             $username=$_POST["username"];
-                            $password=$_POST["password"];
+                            //encryption password_hash, Password_bcrypt
+                            $password = password_hash($_POST['password'],PASSWORD_BCRYPT);  
                             $department=$_POST["dept_id"];
                             $authentication=$_POST["authentication"];
+                            //for user
                             if($authentication==1)
                             {
-                                $create_user="INSERT INTO user (fullname,email,phone,address,username,password,department_id)
-                            VALUES ('$name','$email','$phone','$address','$username','$password','$department')";
+                                $create_user="INSERT INTO user (fullname,email,phone,address,username,password,department_id,log_id)
+                            VALUES ('$name','$email','$phone','$address','$username','$password','$department','$log_id')";
                             $result=mysqli_query($conn,$create_user);
                             if($result)
                             {
@@ -94,11 +97,11 @@ include 'session_create.php';
                                 echo "Error to create the user, Please try again later...!";
                             }
                             }
+                            //for manager
                             if($authentication==2)
                             {
-                                echo "manager";
-                                $create_user="INSERT INTO manager (fullname,email,phone,address,username,password)
-                            VALUES ('$name','$email','$phone','$address','$username','$password')";
+                                $create_user="INSERT INTO manager (fullname,email,phone,address,username,password,log_id)
+                            VALUES ('$name','$email','$phone','$address','$username','$password','log_id')";
                             $result=mysqli_query($conn,$create_user);
                             if($result)
                             {

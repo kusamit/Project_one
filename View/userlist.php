@@ -91,7 +91,8 @@ include '../dbconnect/dbconnect.php';
     <form action="" method="POST">
         <table>
         <?php
-               $sql = "SELECT * FROM user"; 
+        $log_id=$login_id;
+               $sql = "SELECT * FROM user where log_id= '$log_id'"; 
             //    where username='$username_email'";
                $result = mysqli_query($conn, $sql);
                if (mysqli_num_rows($result) > 0) {
@@ -101,7 +102,8 @@ include '../dbconnect/dbconnect.php';
                while ($row = mysqli_fetch_assoc($result)) 
                {
                 echo "<tr><th><h4>" . $row['id'] . "</h4></th>
-                <th><h2>". $row['fullname'] . "</h2><a href='user_details_view.php?id=" . $row['id'] . "'><img src='eye.png'></a></th> </tr>";}
+                <th><h2>". $row['fullname'] . "</h2><a href='user_details_view.php?id=" . $row['id'] . "'>
+                <img src='eye.png'></a></th> </tr>";}
                echo "</table>";
                } else {
                echo "No records found.";}

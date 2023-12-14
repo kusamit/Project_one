@@ -13,10 +13,10 @@
     <div class="main">
         <form action="" method="POST">
             <h1><b>Admin Registration</b></h1> <hr> <br>
-            <p>Name</p> <span><input type="text" name="fullname" required placeholder="Enter Your Full Name"></span>
-            <p>Address</p> <span><input type="text" name="address" required placeholder="Enter Your Address"></span>
-            <p>Phone No.</p> <span><input type="number" name="phone" required placeholder="Enter Phone Number"></span>
-            <p>Email</p> <span><input type="email" name="email" required placeholder="Enter Phone Number"></span>
+            <p>Name</p> <span><input type="text" name="fullname"  placeholder="Enter Your Full Name"></span>
+            <p>Address</p> <span><input type="text" name="address"  placeholder="Enter Your Address"></span>
+            <p>Phone No.</p> <span><input type="number" name="phone" placeholder="Enter Phone Number"></span>
+            <p>Email</p> <span><input type="email" name="email"  placeholder="Enter Phone Number"></span>
             <p>Username</p> <span><input type="text" name="u_name" placeholder="Enter Your Username" required></span>
             <p>Password</p><span><input type="password" name="password" placeholder="Enter Your Password"required></span>
             <input type="submit" value="Submit" name="submit" style="background-color:blue; color:white; font-size:25px;
@@ -33,7 +33,8 @@ if(isset($_POST["submit"]))
     $phone=$_POST['phone'];
     $email=$_POST['email'];
     $username=$_POST['u_name'];
-    $password=$_POST['password'];
+    //encryption password_hash, Password_bcrypt
+    $password = password_hash($_POST['password'],PASSWORD_BCRYPT);    
 
 
 

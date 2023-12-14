@@ -28,9 +28,10 @@ include 'session_create.php';
                         include '../dbconnect/dbconnect.php';
                         if(isset($_POST["submit"]))
                         {
+                            $log_id=$login_id;
                             $dpt_name=$_POST["department"];
-                            $department_query="INSERT INTO department (department_name)
-                            VALUES ('$dpt_name')";
+                            $department_query="INSERT INTO department (department_name,log_id)
+                            VALUES ('$dpt_name','$log_id')";
                             $result=mysqli_query($conn,$department_query);
                             if($result)
                             {

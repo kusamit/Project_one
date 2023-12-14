@@ -84,14 +84,27 @@ include '../dbconnect/dbconnect.php';
         }
         img
         {
-            height:20px;
-            width:20px;
+            height:40px;
+            width:40px;
             margin-right:5px;
         }
-        p
+        img:hover
+        {
+            background-color:white;
+            margin:10px;
+        }
+        h5
         {
             text-align:center;
             font-size:25px;
+        }
+        p
+        {
+            float:left;
+        }
+        #back
+        {
+            float:left;
         }
     </style>
 </head>
@@ -111,7 +124,7 @@ include '../dbconnect/dbconnect.php';
                         $user_details = mysqli_fetch_assoc($result);
 
                         // show user details
-                        echo "<p>User Details<hr></p>";
+                        echo "<h5>User Details<hr></h5>";
                         echo "<tr><th>ID: " . $user_details['id'] . "</th>
                         <th>Full Name : " . $user_details['fullname'] . "</th></tr>",
                         "<tr><th>Phone No. : " . $user_details['phone'] . "</th>
@@ -134,7 +147,7 @@ include '../dbconnect/dbconnect.php';
                         "<tr><th>Username: " . $user_details['username'] . "</th></tr>",
                         "<tr><th>Password: " . $user_details['password'] . "</th></tr>";
                         
-                        echo "<p><a href='your_user_list_page.php'>Back to User List</a></p>";
+                        echo "<p><a href='userlist.php'><img src='back_button.png'></a></p>";
                     } 
                     else 
                     {
