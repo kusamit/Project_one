@@ -101,7 +101,7 @@ include 'session_create.php';
                             if($authentication==2)
                             {
                                 $create_user="INSERT INTO manager (fullname,email,phone,address,username,password,log_id)
-                            VALUES ('$name','$email','$phone','$address','$username','$password','log_id')";
+                            VALUES ('$name','$email','$phone','$address','$username','$password','$log_id')";
                             $result=mysqli_query($conn,$create_user);
                             if($result)
                             {

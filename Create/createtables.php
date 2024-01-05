@@ -24,6 +24,7 @@ else
 $departmentquery="CREATE TABLE department (
     id INT AUTO_INCREMENT PRIMARY KEY,
     department_name VARCHAR(255) NOT NULL,
+    log_id INT(),
     created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
 $department_table=mysqli_query($conn,$departmentquery);
@@ -41,6 +42,7 @@ $projectquery="CREATE TABLE project (
     project_name VARCHAR(255) NOT NULL,
     file VARCHAR(255),
     message VARCHAR(255),
+    log_id INT(),
     created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
 $projecttable=mysqli_query($conn,$projectquery);
@@ -64,6 +66,7 @@ $userquery="CREATE TABLE user (
     department_id int, FOREIGN KEY(department_id) REFERENCES department(id),
     project_id int,
     assigned_id int,
+    log_id INT(),
     created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
 $usertable=mysqli_query($conn,$userquery);
@@ -88,6 +91,7 @@ $managerquery="CREATE TABLE manager (
     -- department_id int, FOREIGN KEY(department_id) REFERENCES department(id),
     project_id int,
     assigned_id int,
+    log_id INT(),
     created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
 $usertable=mysqli_query($conn,$userquery);
@@ -108,6 +112,7 @@ $workquery="CREATE TABLE assigned (
     assigned_department INT, FOREIGN KEY(assigned_department) REFERENCES department(id),
     assigned_user INT, FOREIGN KEY(assigned_user) REFERENCES user(id),
     Completed_file varchar(255),
+    log_id INT(),
     created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
 $worktable=mysqli_query($conn,$workquery);
@@ -125,6 +130,7 @@ $notequery="CREATE TABLE note (
     notes VARCHAR(255),
     user_id INT NOT NULL,
     FOREIGN KEY(user_id) REFERENCES user(id),
+    log_id INT(),
     created_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 )";
 $notetable=mysqli_query($conn,$notequery);

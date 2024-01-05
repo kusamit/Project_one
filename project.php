@@ -1,4 +1,5 @@
-//creating database sql
+
+<?php//creating database sql
 $sql="CREATE DATABASE project_management_system";
 $result=mysqli_query($con,$sql);
 if($result)
@@ -9,3 +10,4 @@ else
 {
     echo "Error to Create Database";
 }
+?>

@@ -1,6 +1,6 @@
 <!-- users_list -->
 <?php
-include '../session.php';
+
 include '../dbconnect/dbconnect.php';
 ?>
 <!DOCTYPE html>
@@ -15,32 +15,32 @@ include '../dbconnect/dbconnect.php';
         {
             align-items:center;
             background-color:lightgrey;
+            margin:10px;
+            margin-left:3rem;
         }
         tr,th
         {
             text-align:left;
             background-color:grey;
             color:White;
-            margin:10px;
             border-radius:5px;
-            height:5px;
-            
+            height:5px;margin-bottom:20px;
             
         }
         table
         {
-            width:93%;
-            margin-left:2rem;
+            width:60%;
+            margin-left:20%;
+            margin-bottom:2rem;
+            margin-top:2px;
             align-items:center;
             text-align:center;
-            margin-bottom:2rem;
             height:5px;
-            
-            
+            box-shadow: inset;
         }
         form
         {
-            background-color:blue:
+            width:100%;
         }
 
         h2{
@@ -62,6 +62,10 @@ include '../dbconnect/dbconnect.php';
             text-align:center;
             font-size:20px;
             color:SlateBlue;
+            margin:0px;
+            background-color:#003399;
+            color:white;
+            font-style:bold;
         }
         h4
         {
@@ -72,9 +76,11 @@ include '../dbconnect/dbconnect.php';
         }
         .outer
         {
-            margin:10px;
-            background-color:lightgrey;
-            width:60%;
+            margin:0px;
+            /* background-color:lightgrey; */
+            background-color:white;
+            width:100%;
+            border-radius:5px;
             border-radius:5px;
         }
         a{
@@ -95,24 +101,22 @@ include '../dbconnect/dbconnect.php';
 <body>
     <div class="outer">
     <form action="" method="POST">
-        <table>
+        <table border="0">
         <?php
-        $log_id=$login_id;
+        // $log_id=$login_id;
         $id=1;   //initializing id as autoincrement.
-               $sql = "SELECT * FROM user where log_id= '$log_id'"; 
+               $sql = "SELECT * FROM project"; 
                $result = mysqli_query($conn, $sql);
                if (mysqli_num_rows($result) > 0) {
+                echo "<h3>Projects <hr><h3>";
                    echo "<table border='0'>
                ";
-               echo "<h3>Users List <hr><h3>";
                while ($row = mysqli_fetch_assoc($result)) 
                {
-                echo "<tr><a style='float:left;' href='../mainsession.php'><img src='back_button.png'></a></tr>
-                <tr><th><h4>" . $id . "</h4></th>
-                <th><h2>". $row['fullname'] . "<a href='user_details_view.php?id=" . $row['id'] . "'>
-                <img src='delete.png' alt='Delete' title='Delete'></a>","<a href='user_details_view.php?id=" . $row['id'] . "'>
-                <img src='update.png' alt='Update' title='Update'></a>","<a href='user_details_view.php?id=" . $row['id'] . "'>
-                <img src='eye.png' alt='View' title='View'></a></h2></th> </tr>";
+                echo "<tr><th><h4>" . $id . "</h4></th>
+                <th><h2>". $row['project_name'] . "<a href='project_details.php?id=" . $row['id'] . "'>
+                <img src='../view/update.png' alt='update' title='Delete'></a>","<a href='project_details.php?id=" . $row['id'] . "'>
+                <img src='../view/eye.png' alt='View' title='View'></a></h2></th> </tr>";
                 $id++;
             }
                echo "</table>";

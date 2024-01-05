@@ -14,6 +14,7 @@ include '../dbconnect/dbconnect.php';
     <style>
         body
         {
+            background-color:lightgrey;
             align-items:center;
         }
         /* table */
@@ -73,7 +74,7 @@ include '../dbconnect/dbconnect.php';
         {
             margin:10px;
             background-color:lightgrey;
-            width:40%;
+            width:50%;
             border-radius:5px;
             height:60%;
         }
@@ -90,7 +91,8 @@ include '../dbconnect/dbconnect.php';
         }
         img:hover
         {
-            background-color:white;
+            background-color:whitesmoke;
+            border-radius:5px;
             margin:10px;
         }
         h5
@@ -144,8 +146,7 @@ include '../dbconnect/dbconnect.php';
                         ?>
 
                        <?php echo "<th> Department: " . $department_details['department_name'] . "</th></tr>",
-                        "<tr><th>Username: " . $user_details['username'] . "</th></tr>",
-                        "<tr><th>Password: " . $user_details['password'] . "</th></tr>";
+                        "<th>Username: " . $user_details['username'] . "</th></tr>";
                         
                         echo "<p><a href='userlist.php'><img src='back_button.png'></a></p>";
                     } 

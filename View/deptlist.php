@@ -88,7 +88,7 @@ include '../dbconnect/dbconnect.php';
         {
             height:20px;
             width:20px;
-            
+            margin-right:5px;
         }
     </style>
 </head>
@@ -99,28 +99,30 @@ include '../dbconnect/dbconnect.php';
         <?php
         $log_id=$login_id;
         $id=1;   //initializing id as autoincrement.
-               $sql = "SELECT * FROM user where log_id= '$log_id'"; 
+               $sql = "SELECT * FROM department where log_id= '$log_id'"; 
                $result = mysqli_query($conn, $sql);
                if (mysqli_num_rows($result) > 0) {
                    echo "<table border='0'>
                ";
-               echo "<h3>Users List <hr><h3>";
+               echo "<h3>Department List <hr><h3>";
                while ($row = mysqli_fetch_assoc($result)) 
                {
                 echo "<tr><a style='float:left;' href='../mainsession.php'><img src='back_button.png'></a></tr>
                 <tr><th><h4>" . $id . "</h4></th>
-                <th><h2>". $row['fullname'] . "<a href='user_details_view.php?id=" . $row['id'] . "'>
+                <th><h2>". $row['department_name'] . "<a href='user_details_view.php?id=" . $row['id'] . "'>
                 <img src='delete.png' alt='Delete' title='Delete'></a>","<a href='user_details_view.php?id=" . $row['id'] . "'>
                 <img src='update.png' alt='Update' title='Update'></a>","<a href='user_details_view.php?id=" . $row['id'] . "'>
-                <img src='eye.png' alt='View' title='View'></a></h2></th> </tr>";
+                </a></h2></th> </tr>";
                 $id++;
             }
                echo "</table>";
                } else {
                echo "No records found.";}
                mysqli_close($conn);
-           
         ?>
+            <tr>
+
+            </tr>
         </table>
     </form>
                </div>
