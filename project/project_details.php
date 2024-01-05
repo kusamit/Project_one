@@ -7,12 +7,15 @@
 </head>
 <body>
     <?php
-    if (isset($_GET['id'])) 
-    {
-        $project_id = $_GET['id'];
-        echo $project_id;
-    }
-    ?>
+  if (isset($_GET['id'])) {
+    $project_id = $_GET['id'];
+    echo $project_id;
+}
+?>
+
+<a href="add_member.php?id=<?php echo $project_id; ?>">
+    <button>+</button>
+</a>
 
     
 </body>

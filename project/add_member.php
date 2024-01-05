@@ -2,6 +2,17 @@
 include '../session.php';
 include '../dbconnect/dbconnect.php';
 ?>
+<?php
+// add_member.php
+
+if (isset($_GET['id'])) {
+    $project_id = $_GET['id'];
+    echo "Project ID: " . $project_id;
+} else {
+    echo "No project ID provided";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
