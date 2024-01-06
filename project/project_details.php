@@ -1,3 +1,7 @@
+<?php
+// include '../session.php';
+include '../dbconnect/dbconnect.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +13,7 @@
     <?php
   if (isset($_GET['id'])) {
     $project_id = $_GET['id'];
+    echo $project_id;
     echo $project_id;
 }
 ?>

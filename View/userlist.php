@@ -102,12 +102,12 @@ include '../dbconnect/dbconnect.php';
                $sql = "SELECT * FROM user where log_id= '$log_id'"; 
                $result = mysqli_query($conn, $sql);
                if (mysqli_num_rows($result) > 0) {
-                   echo "<table border='0'>
+                   echo "<table border='0'><tr><a style='float:left;' href='../mainsession.php'><img src='back_button.png'></a></tr>
                ";
                echo "<h3>Users List <hr><h3>";
                while ($row = mysqli_fetch_assoc($result)) 
                {
-                echo "<tr><a style='float:left;' href='../mainsession.php'><img src='back_button.png'></a></tr>
+                echo "
                 <tr><th><h4>" . $id . "</h4></th>
                 <th><h2>". $row['fullname'] . "<a href='user_details_view.php?id=" . $row['id'] . "'>
                 <img src='delete.png' alt='Delete' title='Delete'></a>","<a href='user_details_view.php?id=" . $row['id'] . "'>
