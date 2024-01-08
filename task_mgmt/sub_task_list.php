@@ -49,8 +49,19 @@
             align-items:left;
             
         }
-        table,tr,td
+        table,tr
         {
+            margin-right:10px;
+            padding:10px;
+            padding-left:50px;
+            padding-top:1px;
+            text-align:center;
+            align-items:center;
+            /* max-width:25rem; */
+        }
+        td
+        {
+            /* max-width:25rem; */
             margin-right:10px;
             padding:10px;
             padding-left:50px;
@@ -60,6 +71,7 @@
         }
         th
         {
+            /* max-width:25rem; */
             padding:10px;
             padding-left:50px;
             padding-top:1px;
@@ -70,7 +82,7 @@
         h4
         {
             float:right;
-            margin-right:20px;
+            margin-right:30px;
         }
         h5{
             color:darkred;
@@ -84,11 +96,55 @@
         {
             text-align:center;
         }
-        img
+        /* img
         {
             height:25px; 
             width:25px;
             padding-left:10px;
+        } */
+        .btn
+        {
+            border:0px;
+            border-radius:5px;
+            padding:2px;
+            font-size:13px;
+        }
+        .btn_p
+        {
+            background-color:#ffdb4d;
+            color:black;
+            border:0px;
+            border-radius:5px;
+            padding:2px;
+        }
+        .btn_s
+        {
+            color:black;
+            background-color:#ff5c33;
+            border:0px;
+            border-radius:5px;
+            padding:2px;
+        }
+        .btn_c
+        {
+            color:black;
+            border:0px;
+            border-radius:5px;
+            padding:2px;
+            background-color:#00e600;
+
+        }
+        .control,img
+        {
+            height:20px;
+            width:20px;
+            margin:1px;
+            padding:3px;
+        }
+        .control_img
+        {
+            height:17px;
+            width:17px;
         }
     </style>
 
@@ -116,17 +172,54 @@
                     echo "</table>";
                     } else {
                     echo "No records found.";}?>
-                    
                     </center></div>
+
             <!-- for view -->
             <div class="view">
+
                 <!-- insert the Tasks -->
             <div class="insert">
             
                 <form action="" method="POST">
                 <input type="text" name=insert placeholder="List the Tasks" required id="insert" >
-                <h4><?php echo '<p>Current Time is: <br> <strong>' . date('Y-m-d H:i:s') . '</strong></p>'; ?></h4><br>
-                EndTime <input type="datetime-local" name="dt" id="">
+                <h4><?php echo '<p><strong>'?>
+
+<!-- For Current Time and Date -->
+<div id="reloadDiv">
+    <p id="timeupdate">
+        <?php
+        date_default_timezone_set("Asia/Kathmandu");
+        $now_timestamp = strtotime(date('Y-m-d H:i:s'));
+        echo date('Y-m-d H:i:s');
+        ?>
+    </p>
+</div>
+
+<!-- java Script for Current time -->
+<script>
+    function reloadDiv() {
+        // Fetching updated time
+        var currentDate = new Date();
+        var hours = currentDate.getHours();
+        var minutes = currentDate.getMinutes();
+        var seconds = currentDate.getSeconds();
+        var ampm = hours >= 12 ? 'PM' : 'AM';
+
+        //12-hour format
+        hours = hours % 12;
+        hours = hours ? hours : 12; 
+        var formattedTime = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds + ' ' + ampm;
+        var updatedDate = new Date().toLocaleDateString();
+        document.getElementById('timeupdate').innerHTML = "Current Date:    " + updatedDate + " <br><br>Current Time:    " + formattedTime;
+    }
+    setInterval(reloadDiv, 1000);    // 1-second reload
+</script>
+
+                <?php '</strong></p>'; ?></h4><br>
+                
+                <!-- deadline date -->
+                Deadline<input type="datetime-local" name="dt" id="" >
+                
                 <input type="submit" value="Add" name="submit" id="add" >
                 <?php
                     include 'dbconnect.php';
@@ -156,7 +249,6 @@
                     
                  ?>
                  </form>
-                 <!-- insert close!!!!!!!! -->
             </div>
 
            <!-- task management open -->
@@ -170,8 +262,7 @@
 <?php
     include 'dbconnect.php';
 
-    // Sanitize user input to prevent SQL injection
-    $cat_id = mysqli_real_escape_string($conn, $_GET['id']);
+    $cat_id = filter_var($_GET['id'], FILTER_VALIDATE_INT);
 
     $sql = "SELECT * FROM list_msg WHERE cat_id = $cat_id";
     $result = mysqli_query($conn, $sql);
@@ -188,9 +279,8 @@
             <th style="padding:0px;">Tasks</th>
             <th>End Time</th>
             <th>Expiry</th>
-            <th>In-Progress</th>
-            <th>Completed</th>
-            <th>In-Review</th>
+            <th>Progress</th>
+            <th>Action</th>
             <th>Controls</th>
         </tr>
     <?php
@@ -199,6 +289,7 @@
     // Check condition function is not already defined the date and time
     if (!function_exists('getDateTimeDiff')) {
         function getDateTimeDiff($end_date_time) {
+            date_default_timezone_set("Asia/Kathmandu");
             $now_timestamp = strtotime(date('Y-m-d H:i:s'));
             $end_timestamp = strtotime($end_date_time);
             $diff_timestamp = $end_timestamp - $now_timestamp;
@@ -221,32 +312,85 @@
         }
     } 
 //fetched from the database
-    while ($row = mysqli_fetch_assoc($result)) {
-        $msg = $row['message'];
-        $end_time = $row['end_date_time'];
-        ?>
-        <tr>
-            <td style='padding: 10px;'><?php echo $count; ?></td>
-            <td style='padding: 10px;'><?php echo $msg; ?></td>
-            <td><?php echo $end_time; ?></td>
-            <td>
-                <?php
-                echo '<p> ' . getDateTimeDiff($end_time) . '</p>';
-                ?>
-            </td>
-            <td>
-                <!-- edit -->
-                <a href='delete_l.php?id=<?php echo $row['Id']; ?>&cat_id=<?php echo $cat_id; ?>'>
-                    <img src='edit.png' alt='image' title='Edit'>
-                </a>
-                <!-- Delete -->
-            </td>
-        </tr>
-        <?php
-        $count++;
-    }
+while ($row = mysqli_fetch_assoc($result)) {
+    $msg = $row['message'];
+    $end_time = $row['end_date_time'];
+    $rowId = $row['Id'];
+    $progress_status = $row['progress'];
+    // $completed = $row['completed'];
+    $completed = $row['review'];
     ?>
+    <tr id="row_<?php echo $rowId; ?>">
+        <td style='padding: 10px;'><?php echo $count; ?></td>
+        <td style='padding: 10px; max-width:15rem;'><?php echo $msg; ?></td>
+        <td><?php echo $end_time; ?></td>
+        <td>
+            <?php
+            echo '<p> ' . getDateTimeDiff($end_time) . '</p>';
+            ?>
+        </td>
+        <td><?php if ($completed==1)
+            {echo "<p style='background-color:#00e600;' class='btn'>Submitted In-Review</p>";}
+            else if($progress_status==1){ echo "<p style='background-color:#ffdb4d;' class='btn'>In-Progress</p>";}
+            else if($completed ==NULL && $progress_status==NULL)
+            {echo "";}
+            else if($suspend=1)
+            {echo "<p style='background-color:#ff5c33;' class='btn'>Progress Suspended</p>";}
+            ?>
+        </td>
+        <td>
+            <?php if(getDateTimeDiff($end_time) !== "expired"): ?>
+                <button class="btn_p" onclick="updateStatus('<?php echo $rowId; ?>', 'progress')">Progress</button>
+                <button class="btn_s" onclick="updateStatus('<?php echo $rowId; ?>', 'suspend')">Suspend</button>
+                <button class="btn_c" onclick="updateStatus('<?php echo $rowId; ?>', 'completed')">Completed</button>
+            <?php endif; ?>
+        <hr>
+        </td>
+        <td>
+            <!-- Edit and Delete Controls -->
+            <a href='update_task.php?id=<?php echo $rowId; ?>&cat_id=<?php echo $cat_id; ?>'class="control">
+            <img src='edit.png' alt='image' title='Edit'></a>
+            <a href='delete.php?id=<?php echo $rowId; ?>&cat_id=<?php echo $cat_id; ?>'>
+            <img src='delete.png' alt='image' title='Delete'class="control_img">
+            </a>
+            <hr>
+        </td>
+    </tr>
+    <?php
+    $count++;
+}
+?>
 </table>
+
+<!-- JavaScript code -->
+<script>
+    
+function updateStatus(rowId, status) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var response = xhr.responseText;
+            console.log(response);
+            location.reload();
+            if (status == 'progress') {
+                var button = document.getElementById('row_' + rowId).querySelector('button');
+                button.style.backgroundColor = 'yellow';
+                button.innerHTML = 'In-Progress';
+            }else if(status=='completed')
+            {
+                var buttonc = document.getElementById('row_' + rowId).querySelector('button');
+                buttonc.style.backgroundColor = 'green';
+                buttonc.innerHTML = 'Completed';
+            }
+            
+        }
+    };
+    xhr.open('POST', "update_status.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send("rowId=" + rowId + "&status=" + status);
+}
+
+</script>
 <?php
 } else {
     echo "No records found.";

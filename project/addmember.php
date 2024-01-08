@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <style>
         table,tr,th
         {
@@ -23,12 +18,11 @@
             padding:1px;
         }
     </style>
-</head>
-<body>
+
 
 
 <div id=""></div>
-    <form action="" method="POST">
+    <form action="assigned_member.php" method="POST">
     <table>
         <tr>
             <th>
@@ -39,7 +33,7 @@
         </tr>
         <?php
         include '../dbconnect/dbconnect.php';
-        $sql="SELECT * FROM user INNER JOIN department ON user.department_id=department.id";
+        $sql="SELECT * FROM user INNER JOIN department ON user.department_id=department.dpt_id";
         $result=mysqli_query($conn,$sql);
         if(mysqli_num_rows($result)>0)
         while($row=mysqli_fetch_assoc($result))
@@ -50,7 +44,18 @@
         <tr>
             <td> <?php echo $row['fullname'] ?></td>
             <td><?php echo $row['department_name'] ?></td>
-            <td onclick="assign_member('<?php echo $row[''] ?>')">Assign<td></tr>
+            <td onclick="assign_member('<?php echo $row['id'] ?>','<?php echo $row['department_name'] ?>','<?php echo $row['dpt_id']?>')">
+            <?php
+
+            $id = $row['id'];
+            $sqls = "select isAssigned from assigned_member where user_id = '$id'";
+            $results = mysqli_query($conn,$sqls);
+
+                if(mysqli_num_rows($results)>0){echo "Assigned";}
+                else{
+                     echo "Unassigned";}
+            ?>
+        </td></tr>
             <?php
     }
         ?>
@@ -58,9 +63,22 @@
 
     </form>
     <script>
-        function assign_member(){
-
+        function assign_member(id,dname,did) {
+    console.log(id);
+    $.ajax({
+        type: 'POST',
+        url: './assigned_member.php',
+        data: { id: id ,
+                dname:dname,
+                did:did
+        },
+        success: function(response) {
+            console.log(response);
+            if(response){
+                location.reload();
+            }
         }
+    });
+}
+
     </script>
-</body>
-</html>
