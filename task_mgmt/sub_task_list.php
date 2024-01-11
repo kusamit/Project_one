@@ -19,7 +19,6 @@
             height:100%;
             background-color: rgba(255, 255, 224, 0.486) ;
             /* overflow: visible; */
-            over
             margin:20px;
             padding:0px;
          }
@@ -47,6 +46,7 @@
             text-align:center;
             width:40%;
             align-items:left;
+            margin-left:10px;
             
         }
         table,tr
@@ -64,7 +64,7 @@
             /* max-width:25rem; */
             margin-right:10px;
             padding:10px;
-            padding-left:50px;
+            padding-left:20px;
             padding-top:1px;
             text-align:center;
             align-items:center;
@@ -73,7 +73,7 @@
         {
             /* max-width:25rem; */
             padding:10px;
-            padding-left:50px;
+            padding-left:20px;
             padding-top:1px;
             text-align:center;
             align-items:center;
@@ -96,12 +96,6 @@
         {
             text-align:center;
         }
-        /* img
-        {
-            height:25px; 
-            width:25px;
-            padding-left:10px;
-        } */
         .btn
         {
             border:0px;
@@ -146,6 +140,14 @@
             height:17px;
             width:17px;
         }
+        #file
+        {
+            width:9rem;
+
+            font-size:10px;
+            height:max-content;
+            border:0px;
+        }
     </style>
 
     </head>
@@ -178,7 +180,7 @@
             <div class="view">
 
                 <!-- insert the Tasks -->
-            <div class="insert">
+            <div class="insert" id="">
             
                 <form action="" method="POST">
                 <input type="text" name=insert placeholder="List the Tasks" required id="insert" >
@@ -229,7 +231,7 @@
                         $insert=$_POST['insert'];
                         $datetime=$_POST['dt'];
                         if(!empty($datetime) && !empty($insert)){
-                        $query="INSERT INTO list_msg (message, cat_id,end_date_time) 
+                        $query="INSERT INTO sub_task_mgmt (message, cat_id,end_date_time) 
                         values ('$insert', '$cat_id','$datetime') ";
                         $result=mysqli_query($conn,$query);
                         if($result)
@@ -252,6 +254,7 @@
             </div>
 
            <!-- task management open -->
+           <form action="" method="POST" enctype="multipart/form-data">
 <p><b>Tasks</b></p>
 <hr>
 <table border="0">
@@ -264,7 +267,7 @@
 
     $cat_id = filter_var($_GET['id'], FILTER_VALIDATE_INT);
 
-    $sql = "SELECT * FROM list_msg WHERE cat_id = $cat_id";
+    $sql = "SELECT * FROM sub_task_mgmt WHERE cat_id = $cat_id";
     $result = mysqli_query($conn, $sql);
 
     // Check for errors in the query
@@ -280,6 +283,7 @@
             <th>End Time</th>
             <th>Expiry</th>
             <th>Progress</th>
+            <th>Progress Report</th>
             <th>Action</th>
             <th>Controls</th>
         </tr>
@@ -338,6 +342,7 @@ while ($row = mysqli_fetch_assoc($result)) {
             {echo "<p style='background-color:#ff5c33;' class='btn'>Progress Suspended</p>";}
             ?>
         </td>
+        <td><input type="file" name="doc" id="file"></td>
         <td>
             <?php if(getDateTimeDiff($end_time) !== "expired"): ?>
                 <button class="btn_p" onclick="updateStatus('<?php echo $rowId; ?>', 'progress')">Progress</button>
@@ -396,5 +401,6 @@ function updateStatus(rowId, status) {
     echo "No records found.";
 }
 ?>
+</form>
     </body>
 </html>

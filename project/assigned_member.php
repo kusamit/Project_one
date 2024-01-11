@@ -8,17 +8,22 @@ if (isset($_POST['id'])) {
 
     // Check if $id is set and not an empty string
     if ($id !== "") {
-        include 'insertFirst.php';
-        $sql = "INSERT INTO assigned_member (user_id, project_id, manager_id,isAssigned) VALUES ('$id', '$did', '$dname','$status')";
-        if($status==1){
-            file_put_contents('insertFirst.php', '<?php $status = 0;?>');
+        
+        $check = "Select * from assigned_member where user_id = '$id'";
+        $resCheck = mysqli_query($conn,$check);
+        $nums = mysqli_num_rows($resCheck);
+        echo $nums;
+        if($nums>0){
+            $sql = "UPDATE assigned_member SET isAssigned = 1  WHERE user_id = $id";
+            echo "user assigned";
         }else{
-            file_put_contents('insertFirst.php', '<?php $status = 1;?>');
-
+            $sql = "INSERT INTO assigned_member (user_id, project_id, manager_id,isAssigned) VALUES ('$id', '$did', '$dname',1)";
+            mysqli_query($conn, $sql);
+            echo "user assigned";
         }
-        mysqli_query($conn, $sql);
-        echo "user assigned";
-        exit();
+
+        
+       
     } else {
         echo "Error: Empty or invalid 'id' parameter";
     }

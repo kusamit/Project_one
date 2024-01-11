@@ -6,14 +6,14 @@
     <title>Document</title>
 </head>
 <body>
-    <form action="update.php" method="POST">
+    <form action="" method="POST">
     <?php
     include 'dbconnect.php';
 
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
         $cat_id = $_GET['cat_id'];
-        $query_select = "SELECT * FROM list_msg WHERE id='$id'";
+        $query_select = "SELECT * FROM sub_task_mgmt WHERE id='$id'";
         $result_select = mysqli_query($conn, $query_select);
 
         if ($result_select) {
@@ -34,29 +34,33 @@
                         <td><input type="datetime-local" name="dt" value="<?php echo $deadline; ?>"></td>
                     </tr>
                 </table>
-                <input type="submit" value="Update" name="submit" id="update">
+                <input type="submit" value="update" name="update" id="update">
                 <?php
             }
+        }
+        else {
+            echo "Error insert";
+        }
+    }
+    ?>
+    </form>
+
+    <?php
+    include 'dbconnect.php';
+    if (isset($_POST['update'])) {
+        $message = $_POST['task'];
+        $date_time = $_POST['dt'];
+        $id = $_GET['id'];
+        $cat_id = $_GET['cat_id'];
+        $update_query = "UPDATE sub_task_mgmt SET message='$message', end_date_time='$date_time' WHERE id='$id'";
+        $result_update = mysqli_query($conn, $update_query);
+        if ($result_update) {
+            echo "Updated";
+            header('Location:sub_task_list.php?id='.$cat_id);
         } else {
             echo "Error";
         }
-    if (isset($_POST['submit']))
-    {
-        $message =$_POST['task'];
-        $date_time =$_POST['dt'];
-        $update_query = "UPDATE list_msg SET message='$message', end_date_time='$date_time' WHERE id='$id'";
-        $result_update = mysqli_query($conn, $update_query);
-        if($result_update)
-        {
-            echo "updated";
-            // header('Location:sub_task_list.php?id='.$cat_id);
-        }
-        else{
-            echo "error";
-        }
-    }
-}
+    } 
     ?>
-    </form>
 </body>
 </html>

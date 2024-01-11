@@ -2,7 +2,7 @@
                     include 'dbconnect.php';
                     $id = $_GET['id'];
                     $cat_id = $_GET['cat_id'];
-                        $query="DELETE FROM list_msg where Id=$id";
+                        $query="DELETE FROM sub_task_mgmt where Id=$id";
                         $result=mysqli_query($conn,$query);
                         if($result)
                         {

@@ -30,6 +30,7 @@
             </th>
             <th>Department</th>
             <th>Assign</th>
+            <th>Status</th>
         </tr>
         <?php
         include '../dbconnect/dbconnect.php';
@@ -44,18 +45,54 @@
         <tr>
             <td> <?php echo $row['fullname'] ?></td>
             <td><?php echo $row['department_name'] ?></td>
-            <td onclick="assign_member('<?php echo $row['id'] ?>','<?php echo $row['department_name'] ?>','<?php echo $row['dpt_id']?>')">
+            <td data-id="<?php echo $row['id']; ?>" onclick="assign_member('<?php echo $row['id'] ?>','<?php echo $row['department_name'] ?>','<?php echo $row['dpt_id']?>')">
+    <?php
+      $id = $row['id'];
+            $sqls = "select Id,isAssigned from assigned_member where user_id = '$id'";
+            $results = mysqli_query($conn,$sqls);
+            $rows= mysqli_fetch_array($results);
+
+            if ($rows['isAssigned'] == 1) {
+                echo "Assigned";
+            } elseif ($rows['isAssigned'] == 0) {
+                echo "Unassigned";
+            }
+    ?>
+</td>
+
+            <!-- <td onclick="
+            
+            assign_member('<?php //echo $row['id'] ?>','<?php //echo $row['department_name'] ?>','<?php //echo $row['dpt_id']?>')"
+            
+            > -->
             <?php
 
-            $id = $row['id'];
-            $sqls = "select isAssigned from assigned_member where user_id = '$id'";
-            $results = mysqli_query($conn,$sqls);
+            // $id = $row['id'];
+            // $sqls = "select Id,isAssigned from assigned_member where user_id = '$id'";
+            // $results = mysqli_query($conn,$sqls);
+            // $rows= mysqli_fetch_array($results);
 
-                if(mysqli_num_rows($results)>0){echo "Assigned";}
-                else{
-                     echo "Unassigned";}
+            // initial its should be unAssignned if isAssigned = 0,
+            // when clicked on this it should say Assigned
+            // When clicked on unAssigned (yes), it convert the it unAssigned
+            // Again when clicked on Unassigned, it convert to Assigned.
+
+
+            // if($rows['isAssigned'] == 1){
+            //     echo "Assigned";
+            // }else if ($rows['isAssigned'] == 0){
+            //     echo "Unassigned";
+
+            // }
+           
+
+                // if($rows['isAssigned'] == 1 ){echo "Assigned";}
+                // elseif($rows['isAssigned'] == 0 ){
+                //      echo "Unassigned";}
             ?>
-        </td></tr>
+        </td>
+            <td onclick="unassign('<?php echo $row['id'] ?>')" style="cursor:pointer">Change</td>
+    </tr>
             <?php
     }
         ?>
@@ -63,8 +100,11 @@
 
     </form>
     <script>
-        function assign_member(id,dname,did) {
+      
+        function assign_member(id,dname,did) {     
     console.log(id);
+    if(isClicked == 0){
+       
     $.ajax({
         type: 'POST',
         url: './assigned_member.php',
@@ -75,10 +115,54 @@
         success: function(response) {
             console.log(response);
             if(response){
+                console.log(response)
                 location.reload();
+            }
+        }
+        
+    });
+    
+
+    }
+} 
+// }
+function unassign(id) {
+    console.log(id);
+    $.ajax({
+        type: 'POST',
+        url: './unassign.php',
+        data: { id: id },
+        success: function (response) {
+            console.log(response);
+            if (response) {
+                console.log(response);
+                // Toggle between "Assigned" and "Unassigned"
+                var cell = $('td[data-id="' + id + '"]');
+                var currentState = cell.text().trim();
+                var newState = currentState === "Assigned" ? "Unassigned" : "Assigned";
+                cell.text(newState);
             }
         }
     });
 }
 
-    </script>
+
+// function unassign(id){
+//     console.log(id)
+//     $.ajax({
+//         type: 'POST',
+//         url: './unassign.php',
+//         data: { id: id},
+//         success: function(response) {
+//             console.log(response);
+//             if(response){
+//                 console.log(response)
+//                 location.reload();
+//             }
+//         }
+//     });
+   
+// }
+
+
+     </script>
