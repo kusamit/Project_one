@@ -17,7 +17,7 @@ include 'session_create.php';
         </div>
             <div class="project_creation">
             <h3>Create New Project</h3>
-                <form action="" method="POST" id="formp">
+                <form action="" method="POST" id="formp" enctype="multipart/form-data">
                     
                     Project Name <br>
                     <span><input type="text" name="project" id="project" required></span><br>
@@ -34,8 +34,13 @@ include 'session_create.php';
                         if(isset($_POST["submit"]))
                         {
                             $project_name=$_POST["project"];
-                            $project_query="INSERT INTO project (project_name)
-                            VALUES ('$project_name')";
+                            // $p_file=$_POST['file'];
+                            $file=$_FILES['file']['name'];
+                            $temp=$_FILES['file']['tmp_name'];
+                            $folder='../project/file/'.$file;
+                            move_uploaded_file($temp,$folder);
+                            $project_query="INSERT INTO project (project_name,file)
+                            VALUES ('$project_name','$folder')";
                             $result=mysqli_query($conn,$project_query);
                             if($result)
                             {
