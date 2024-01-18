@@ -11,8 +11,7 @@
             ?>
 
 <div style="height:100vh;width:100vw;">
-<img style="height:100vh; width:100%;" src="<?php echo $_GET['url'];?>" alt="">
-<embed src="<?php echo $row_view['file']; ?>" type="application/pdf" />
+<embed style="height:100%;width:100%;" src="<?php echo $_GET['url'];?>" type="application/pdf" />
 </div>
 
 
