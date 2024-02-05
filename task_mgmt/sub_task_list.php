@@ -148,6 +148,12 @@
             height:max-content;
             border:0px;
         }
+        .remarks
+        {
+            
+            margin-top:5px;
+            border-radius:3px;
+        }
     </style>
 
     </head>
@@ -280,10 +286,11 @@
         <tr>
         <th style="padding:0px;">Sn.</th>
             <th style="padding:0px;">Tasks</th>
-            <th>End Time</th>
+            <th>Deadline</th>
             <th>Expiry</th>
             <th>Progress</th>
             <th>Progress Report</th>
+            <th>Remarks</th>
             <th>Action</th>
             <th>Controls</th>
         </tr>
@@ -321,6 +328,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $end_time = $row['end_date_time'];
     $rowId = $row['Id'];
     $progress_status = $row['progress'];
+    $fetched_remarks=$row['remarks'];
     // $completed = $row['completed'];
     $completed = $row['review'];
     ?>
@@ -342,12 +350,38 @@ while ($row = mysqli_fetch_assoc($result)) {
             {echo "<p style='background-color:#ff5c33;' class='btn'>Progress Suspended</p>";}
             ?>
         </td>
-        <td><input type="file" name="doc" id="file"></td>
+        <td><input type="file" name="doc" id="file" ></td>
+        <td><?php if($fetched_remarks!=="undefined")
+        {
+            echo $fetched_remarks;
+        }
+        else{
+            echo "None";
+        } ;  ?></td>
         <td>
             <?php if(getDateTimeDiff($end_time) !== "expired"): ?>
-                <button class="btn_p" onclick="updateStatus('<?php echo $rowId; ?>', 'progress')">Progress</button>
-                <button class="btn_s" onclick="updateStatus('<?php echo $rowId; ?>', 'suspend')">Suspend</button>
-                <button class="btn_c" onclick="updateStatus('<?php echo $rowId; ?>', 'completed')">Completed</button>
+                <button name="action_btn_inprogress" class="btn_p" onclick="updateStatus('<?php echo $rowId; ?>', 'progress')">Progress</button>
+                <button name="action_btn"class="btn_s" onclick="updateStatus('<?php echo $rowId; ?>', 'suspend')">Suspend</button>
+                <button name="action_btn" class="btn_c" onclick="updateStatus('<?php echo $rowId; ?>', 'completed')">Completed</button>
+                <textarea type="text" name="remarks" placeholder="Remarks" class="remarks"></textarea>
+                <?php if(isset($_POST['action_btn']))
+                {
+                    $remarks=$_POST['remarks'];
+                    if($remarks!='')
+                    {
+                        echo "Enter Remarks";
+                    // }
+                    // else
+                    // {
+                        $sql_remarks=" UPDATE sub_task_mgmt SET remarks='$remarks' where id='$rowId'";
+                        $remarks_result=mysqli_query($conn,$sql_remarks);
+                        if($remarks_result)
+                        {
+                            echo "sucess";
+                        }
+                        else{ echo "error";}
+                    }
+                } ?>
             <?php endif; ?>
         <hr>
         </td>
@@ -370,29 +404,19 @@ while ($row = mysqli_fetch_assoc($result)) {
 <!-- JavaScript code -->
 <script>
     
-function updateStatus(rowId, status) {
+function updateStatus(rowId, status,remarks) {
     var xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (xhr.readyState == 4 && xhr.status == 200) {
             var response = xhr.responseText;
             console.log(response);
-            location.reload();
-            if (status == 'progress') {
-                var button = document.getElementById('row_' + rowId).querySelector('button');
-                button.style.backgroundColor = 'yellow';
-                button.innerHTML = 'In-Progress';
-            }else if(status=='completed')
-            {
-                var buttonc = document.getElementById('row_' + rowId).querySelector('button');
-                buttonc.style.backgroundColor = 'green';
-                buttonc.innerHTML = 'Completed';
-            }
+            // location.reload();
             
         }
     };
     xhr.open('POST', "update_status.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("rowId=" + rowId + "&status=" + status);
+    xhr.send("rowId=" + rowId + "&status=" + status +"&remarks=" + remarks);
 }
 
 </script>

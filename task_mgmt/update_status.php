@@ -5,12 +5,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
     $rowId = intval(mysqli_real_escape_string($conn, $_POST['rowId']));
     $status = mysqli_real_escape_string($conn, $_POST['status']);
+    $remarks = mysqli_real_escape_string($conn, $_POST['remarks']);
+    echo $remarks;
     echo gettype($rowId);
 
     // Update the database based on the button clicked
     switch ($status) {
         case 'progress':
-            mysqli_query($conn, "UPDATE sub_task_mgmt SET progress = 1, completed=0, review=0,suspend=0 WHERE Id = $rowId");
+            mysqli_query($conn, "UPDATE sub_task_mgmt SET progress = 1, completed=0, review=0,suspend=0, remarks='$remarks' WHERE Id = $rowId");
             break;
         case 'completed':
             mysqli_query($conn, "UPDATE sub_task_mgmt SET progress = 0, completed=0, review=1,suspend=0 WHERE Id = $rowId");
