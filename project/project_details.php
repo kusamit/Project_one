@@ -43,7 +43,7 @@ include '../dbconnect/dbconnect.php';
     #msg
     {
         font-size:15px;
-        justify-content:center;
+        text-align:justify;
     }
     #file
     {
@@ -52,7 +52,6 @@ include '../dbconnect/dbconnect.php';
     }
     .topics
     {
-        margin:5px;
         margin-top:4rem;
         padding:10px;
         font-size:20px;
@@ -115,30 +114,27 @@ include '../dbconnect/dbconnect.php';
         padding:5px;
         font-size:20px;
         text-decoration:none;
-        background-color:lightgrey;
+        background-color:whitesmoke;
         width:fit-content;
         height:fit-content;
         border-radius:5px;
     }
     .topic_box
     {
-        background-color:lightgrey;
-        height:50px;
-        width:50px;
-        margin:50px;
-        padding:50px;
+        background-color:whitesmoke;
+        height:7rem;
+        width:7rem;
+        margin:30px;
+        padding:30px;
         text-align:center;
         color:black;
         font-weight:bold;
-        display:flex;
-        flex-direction:column;
-        flex:inline;
+        border: 1px solid #ccc; 
     }
     .view_topics
     {
-        display:flex;
-        flex-direction:column;
-        flex:inline;
+        display: flex; 
+        flex-wrap: wrap;
     }
 </style>
 <body>
@@ -149,6 +145,7 @@ include '../dbconnect/dbconnect.php';
                 <?php
                 if (isset($_GET['id'])) {
                     $project_id = $_GET['id'];
+                    echo $project_id;
                 ?>
             <?php
             $sql="select * from project where id=$project_id" ;
@@ -165,7 +162,7 @@ include '../dbconnect/dbconnect.php';
             $num_view=mysqli_num_rows($result_view);
             $row_view=mysqli_fetch_assoc($result_view);
             $fetched_id=$row_view['id'];
-            echo $fetched_id;
+            // echo $fetched_id;
             $fetched_file_type=$row_view['file_type'];
             $fetched_file=$row_view['file'];
             $fetched_project_details=$row_view['project_details'];
@@ -189,8 +186,9 @@ include '../dbconnect/dbconnect.php';
             </div>
             <!-- Main tasks or topics -->
             <div class="topics">
-                <a href="../task_mgmt/create_main_task.php?id=<?php $row_view['id']; ?>">Create Main Task | Topics</a>
+                <a href="../task_mgmt/create_main_task.php?project_id=<?php echo $project_id; ?>">Create Main Task | Topics</a>
             </div>
+
         </div>
                 <!-- sub details and files left side -->
     <div class="left">
@@ -202,7 +200,7 @@ include '../dbconnect/dbconnect.php';
                 </a>
                 <?php } elseif($fetched_file_type==2){?>
                 <a href="fullpdf.php?url=<?php echo $row_view['file'] ; ?>?type=<?php echo $fetched_file_type; ?>">
-                <embed style="height:10rem; width:7rem;" src="<?php echo $row_view['file']; ?>" type="application/pdf" /><p id="view_file">View Image</p>
+                <embed style="height:10rem; width:7rem;" src="<?php echo $row_view['file']; ?>" type="application/pdf" /><p id="view_file">View PDF</p>
                 </a>
                 <?php 
                 }?>
@@ -220,46 +218,36 @@ include '../dbconnect/dbconnect.php';
     </table>
 
     <!-- Fetch Topics | Main Tasks -->
-    <div class="taskname"> 
-                <center>
-                    <?php
-                        // include 'dbconnect.php';
-                        // $cat_id = $_GET['id'];
-                        $sql = "SELECT * FROM todo_c";
-                        $result_task = mysqli_query($conn, $sql);
-                        $num_topic=mysqli_num_rows($result_task);
-                        if ($num_topic > 0) 
-                        {
-                            echo "<table border='0'>";
-                            while($row = mysqli_fetch_assoc($result_task))
-                                {
-                                    //View Topics | Main Tasks
-                                    echo "
-                                    
-                                    <div class='view_topics'>
-                                        <a href=''>
-                                        <div class='topic_box'>
-                                            
-                                        <tr>
-                                    <td style='padding: 10px;'>" . $row['name']  ."</td>"
-                                    ?>
-                                
-                                    <?php
-                                    "</td>
-                                    </tr>";
-                                    echo "</table>";
-                                } "
-                                        </div>
-                                        </a>
-                                    </div>"  ;        
-                        }
-                        else 
-                        {
-                            echo "No records found.";
-                        }
-                    ?>
-                        </center>
-            </div>
+    <div class="taskname">
+    <center>
+        <?php
+        // include 'dbconnect.php';
+        // $cat_id = $_GET['id'];
+        $sql = "SELECT * FROM todo_c where project_id=$project_id";
+        $result_task = mysqli_query($conn, $sql);
+        $num_topic = mysqli_num_rows($result_task);
+        
+        if ($num_topic > 0) {
+            
+            while ($row = mysqli_fetch_assoc($result_task)) {
+                $fetched_main_task_id=$row['Id'];
+                $fetched_Topic_name=$row['name'];
+                //Box for choosing the Main Tasks | Topics
+                echo "<a href='../task_mgmt/sub_task_list.php?main_task_id=".$fetched_main_task_id."&project_id=".$project_id."'>
+                <div class='view_topics'>";
+                echo "<div class='topic_box'>";
+                echo "<p>" .$fetched_Topic_name. "</p>";
+                echo "</div>";
+            }
+            
+            echo "</div>";
+        } else {
+            echo "No records found.";
+        }
+        ?>
+    </center>
+</div>
+
 </div>
 </body>
 </html>

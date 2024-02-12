@@ -95,6 +95,7 @@
         .taskname
         {
             text-align:center;
+            font-weight: bold;
         }
         .btn
         {
@@ -110,6 +111,13 @@
             border:0px;
             border-radius:5px;
             padding:2px;
+        }
+        #progress_select
+        {
+            background-color:#ffdb4d;
+            color:black;
+            border:0px;
+            border-right:1px;
         }
         .btn_s
         {
@@ -154,23 +162,36 @@
             margin-top:5px;
             border-radius:3px;
         }
+        .progress_div
+        {
+            background-color:#ffdb4d;
+            width:50%;
+            margin:5px;
+            height:fit-content;
+            border-radius:5px;
+        }
     </style>
 
     </head>
     <body>
-        <div class="header">
-        <div class="taskname"> <center>
+        <!-- getting id of project and main task that has passed -->
         <?php
-                    include 'dbconnect.php';
-                    $cat_id = $_GET['id'];
-                    $sql = "SELECT * FROM todo_c";
+            include 'dbconnect.php';
+            $main_task_id = $_GET['main_task_id'];
+            $project_id = $_GET['project_id'];
+        ?>
+        <div class="header">
+            <!-- fetching the main task | Topics -->
+        <div class="taskname"> <center>
+            <?php
+                    $sql = "SELECT * FROM todo_c where Id='$main_task_id' and project_id='$project_id'";
                     $result_task = mysqli_query($conn, $sql);
                     if (mysqli_num_rows($result_task) > 0) {
                         echo "<table border='0'>
                     ";
                     $row = mysqli_fetch_assoc($result_task); 
                         echo "<tr>
-                        <td style='padding: 10px;'>" . $row['name']  ."</td>
+                        <td style='padding: 10px;' class='taskname'>" . $row['name']  ."</td>
                         "
                         ?>
                        
@@ -229,16 +250,15 @@
                 Deadline<input type="datetime-local" name="dt" id="" >
                 
                 <input type="submit" value="Add" name="submit" id="add" >
+                <!-- php for insertion of task -->
                 <?php
-                    include 'dbconnect.php';
                     if(isset($_POST['submit']))
                     {
-                        $cat_id = $_GET['id'];
                         $insert=$_POST['insert'];
                         $datetime=$_POST['dt'];
                         if(!empty($datetime) && !empty($insert)){
-                        $query="INSERT INTO sub_task_mgmt (message, cat_id,end_date_time) 
-                        values ('$insert', '$cat_id','$datetime') ";
+                        $query="INSERT INTO sub_task_mgmt (message, main_task_id,project_id,end_date_time) 
+                        values ('$insert', '$main_task_id','$project_id','$datetime') ";
                         $result=mysqli_query($conn,$query);
                         if($result)
                         {
@@ -259,7 +279,7 @@
                  </form>
             </div>
 
-           <!-- task management open -->
+           <!-- task management View -->
            <form action="" method="POST" enctype="multipart/form-data">
 <p><b>Tasks</b></p>
 <hr>
@@ -268,14 +288,10 @@
     
 </tr>
 </table>
+<!-- to display the sub task  -->
 <?php
-    include 'dbconnect.php';
-
-    $cat_id = filter_var($_GET['id'], FILTER_VALIDATE_INT);
-
-    $sql = "SELECT * FROM sub_task_mgmt WHERE cat_id = $cat_id";
+    $sql = "SELECT * FROM sub_task_mgmt WHERE main_task_id = '$main_task_id' and project_id='$project_id'";
     $result = mysqli_query($conn, $sql);
-
     // Check for errors in the query
     if (!$result) {
         die("Query failed: " . mysqli_error($conn));
@@ -288,6 +304,7 @@
             <th style="padding:0px;">Tasks</th>
             <th>Deadline</th>
             <th>Expiry</th>
+            <th>Progress Percentage</th>
             <th>Progress</th>
             <th>Progress Report</th>
             <th>Remarks</th>
@@ -298,7 +315,8 @@
     $count = 1; // Initialize the count variable
 
     // Check condition function is not already defined the date and time
-    if (!function_exists('getDateTimeDiff')) {
+    if (!function_exists('getDateTimeDiff')) 
+    {
         function getDateTimeDiff($end_date_time) {
             date_default_timezone_set("Asia/Kathmandu");
             $now_timestamp = strtotime(date('Y-m-d H:i:s'));
@@ -322,67 +340,85 @@
             }
         }
     } 
-//fetched from the database
+//fetch subtask from the database
 while ($row = mysqli_fetch_assoc($result)) {
-    $msg = $row['message'];
-    $end_time = $row['end_date_time'];
-    $rowId = $row['Id'];
-    $progress_status = $row['progress'];
-    $fetched_remarks=$row['remarks'];
-    // $completed = $row['completed'];
-    $completed = $row['review'];
+        $msg = $row['message'];
+        $end_time = $row['end_date_time'];
+        $rowId = $row['Id'];
+        $progress_percentage = $row['progress_percentage'];
+        $progress_status = $row['progress'];
+        $fetched_remarks=$row['remarks'];
+        // $completed = $row['completed'];
+        $completed = $row['review'];
+        $suspend=$row['suspend'];
     ?>
     <tr id="row_<?php echo $rowId; ?>">
         <td style='padding: 10px;'><?php echo $count; ?></td>
+        <!-- subtask display -->
         <td style='padding: 10px; max-width:15rem;'><?php echo $msg; ?></td>
+            <!-- endtime Display -->
         <td><?php echo $end_time; ?></td>
         <td>
             <?php
             echo '<p> ' . getDateTimeDiff($end_time) . '</p>';
             ?>
         </td>
-        <td><?php if ($completed==1)
-            {echo "<p style='background-color:#00e600;' class='btn'>Submitted In-Review</p>";}
-            else if($progress_status==1){ echo "<p style='background-color:#ffdb4d;' class='btn'>In-Progress</p>";}
-            else if($completed ==NULL && $progress_status==NULL)
-            {echo "";}
-            else if($suspend=1)
-            {echo "<p style='background-color:#ff5c33;' class='btn'>Progress Suspended</p>";}
+        <td>
+            <p><?php echo $progress_percentage!=0 ? $progress_percentage:''; ?></p>
+        </td>
+        <!-- progress display -->
+        <td>
+            <?php 
+                if ($completed == 1) {
+                    echo "<p style='background-color:#00e600;' class='btn'>Submitted In-Review</p>";
+                } else if ($progress_status == 1) {
+                    echo "<p style='background-color:#ffdb4d;' class='btn'>In-Progress</p>";
+                } else if ($suspend == 1) {
+                    echo "<p style='background-color:#ff5c33;' class='btn'>Progress Suspended</p>";
+                } else if ($completed == NULL && $progress_status == NULL && $suspend == NULL) {
+                    echo "";
+                }
             ?>
         </td>
-        <td><input type="file" name="doc" id="file" ></td>
-        <td><?php if($fetched_remarks!=="undefined")
-        {
-            echo $fetched_remarks;
-        }
-        else{
-            echo "None";
-        } ;  ?></td>
+        <!-- file display -->
         <td>
-            <?php if(getDateTimeDiff($end_time) !== "expired"): ?>
-                <button name="action_btn_inprogress" class="btn_p" onclick="updateStatus('<?php echo $rowId; ?>', 'progress')">Progress</button>
-                <button name="action_btn"class="btn_s" onclick="updateStatus('<?php echo $rowId; ?>', 'suspend')">Suspend</button>
-                <button name="action_btn" class="btn_c" onclick="updateStatus('<?php echo $rowId; ?>', 'completed')">Completed</button>
-                <textarea type="text" name="remarks" placeholder="Remarks" class="remarks"></textarea>
-                <?php if(isset($_POST['action_btn']))
+            <input type="file" name="doc" id="file" >
+        </td>
+        <!-- display remarks -->
+        <td>
+            <?php if($fetched_remarks!=="undefined")
                 {
-                    $remarks=$_POST['remarks'];
-                    if($remarks!='')
-                    {
-                        echo "Enter Remarks";
-                    // }
-                    // else
-                    // {
-                        $sql_remarks=" UPDATE sub_task_mgmt SET remarks='$remarks' where id='$rowId'";
-                        $remarks_result=mysqli_query($conn,$sql_remarks);
-                        if($remarks_result)
-                        {
-                            echo "sucess";
-                        }
-                        else{ echo "error";}
-                    }
-                } ?>
+                    echo $fetched_remarks;
+                }
+                else
+                {
+                    echo "None";
+                } ;  
+            ?>
+        </td>
+        <!-- to display action -->
+        <td>
+            <form action="" method="POST" class="action_form">
+                <?php if(getDateTimeDiff($end_time) !== "expired"): ?>
+                <select name="" id="progress_select" class="btn_p">
+                    <option value="0">Select</option>
+                    <option value="5">5%</option>
+                    <option value="15">15%</option>
+                    <option value="25">25%</option>
+                    <option value="50">50%</option>
+                    <option value="75">75%</option>
+                    <option value="90">90%</option>
+                    <option value="100">100%</option>
+                </select>
+                <button name="action_btn_inprogress" class="btn_p" onclick="updateStatus('<?php echo $rowId; ?>', 'progress')">
+                    Progress
+                </button>
+                <button name="action_btn"class="btn_s" onclick="updateStatus('<?php echo $rowId; ?>', 'suspend')" >Suspend</button>
+                <button name="action_btn" class="btn_c" onclick="updateStatus('<?php echo $rowId; ?>', 'completed')">Completed</button>
+                <textarea type="text" name="remark" placeholder="Remarks" class="remarks"></textarea>
+            
             <?php endif; ?>
+            </form>
         <hr>
         </td>
         <td>
@@ -400,31 +436,52 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 ?>
 </table>
-
-<!-- JavaScript code -->
-<script>
-    
-function updateStatus(rowId, status,remarks) {
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            var response = xhr.responseText;
-            console.log(response);
-            // location.reload();
-            
-        }
-    };
-    xhr.open('POST', "update_status.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send("rowId=" + rowId + "&status=" + status +"&remarks=" + remarks);
-}
-
-</script>
 <?php
-} else {
+} 
+else {
     echo "No records found.";
 }
 ?>
 </form>
+
+<!-- JavaScript code -->
+<script>
+
+function getValueAsync(selector) {
+    return new Promise(resolve => {
+        var element = document.querySelector(selector);
+        resolve(element ? element.value : '');
+    });
+}
+    
+async function updateStatus(rowId, status) {
+    try{
+        var progress = await getValueAsync("#row_" + rowId + " #progress_select");
+        var remarks = await getValueAsync("#row_" + rowId + " .remarks");
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4 && xhr.status == 200) {
+                var response = xhr.responseText;
+                console.log(response);            
+            }
+        } 
+        xhr.open('POST', "update_status.php", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        
+        if(status === "progress"){
+            xhr.send("rowId=" + rowId + "&status=" + status+"&progress="+progress);
+        }
+        else{
+            xhr.send("rowId=" + rowId + "&status=" + status+"&remarks=" + remarks);
+        }
+    }
+    catch (error) {
+        console.error("An error occurred:", error);
+    }
+    
+}
+
+</script>
     </body>
 </html>

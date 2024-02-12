@@ -1,31 +1,14 @@
 <html>
     <head>
-        <title>Create todo</title>
+        <title>Create Main Task | Topics</title>
         <style>
-            body{
-                background-color:aqua;
-                text-align:center;
-                align-items:center;
-            }
-            form{margin:5rem;
-                text-align:center;
-                background-color:#0043917a;
-                border-radius:20px;
-                width:20%; 
-            }
-            input{
-                margin-top:10px;
-            }
-            p{
-                font-size:20px;
-                color:white;
-            }
+
         </style>
     </head>
     <body>
    
     <form action="" method="POST">
-       <p>Create Tasks</p> 
+       <p>Create Main Task | Topics</p> 
         <input type="text" name="task" placeholder="Name of Tasks" required id="task_name"><br>
         <input type="submit" value="Create" name="create" id="submit">
         <button style="width:10%; margin:10px;">
@@ -33,15 +16,17 @@
         </button>
         </form>
     <?php
+            $project_id = $_GET['project_id'];
             include 'dbconnect.php';
             if(isset($_POST['create']))
             {
                 $create=$_POST['task'];
-                $query="INSERT INTO todo_c (name) values ('$create') ";
+                $query="INSERT INTO todo_c (name,project_id) values ('$create','$project_id') ";
                 $result=mysqli_query($conn,$query);
                 if($conn)
                 {
-                    echo "ToDo is Created! Choose your ToDo";
+                    echo $create;
+                    echo "  as Main Task | Topics is Created!";
                     
                 }
                 else{

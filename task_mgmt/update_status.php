@@ -1,29 +1,38 @@
 <?php
 include 'dbconnect.php';
 
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $rowId = intval(mysqli_real_escape_string($conn, $_POST['rowId']));
     $status = mysqli_real_escape_string($conn, $_POST['status']);
     $remarks = mysqli_real_escape_string($conn, $_POST['remarks']);
+    $progress = mysqli_real_escape_string($conn, $_POST['progress']);
+
+    if($status === "progress"){
+        $update_param = "progress_percentage='".$progress."'";
+    }
+    else{
+        $update_param = "remarks='".$remarks."'";
+    }
     echo $remarks;
     echo gettype($rowId);
 
     // Update the database based on the button clicked
     switch ($status) {
         case 'progress':
-            mysqli_query($conn, "UPDATE sub_task_mgmt SET progress = 1, completed=0, review=0,suspend=0, remarks='$remarks' WHERE Id = $rowId");
+            mysqli_query($conn, "UPDATE sub_task_mgmt SET progress = 1, completed=0, review=0,suspend=0, $update_param WHERE Id = $rowId");
             break;
         case 'completed':
-            mysqli_query($conn, "UPDATE sub_task_mgmt SET progress = 0, completed=0, review=1,suspend=0 WHERE Id = $rowId");
+            mysqli_query($conn, "UPDATE sub_task_mgmt SET progress = 0, completed=0, review=1,suspend=0, $update_param  WHERE Id = $rowId");
             break;
             case 'suspend':
-                mysqli_query($conn, "UPDATE sub_task_mgmt SET progress = 0, completed=0, review=0,suspend=1 WHERE Id = $rowId");
+                mysqli_query($conn, "UPDATE sub_task_mgmt SET progress = 0, completed=0, review=0,suspend=1, $update_param WHERE Id = $rowId");
                 break;
     }
 
     // You can send a response if needed
     echo "Status updated successfully";
+    
 } 
 else {
     // Handle invalid requests
