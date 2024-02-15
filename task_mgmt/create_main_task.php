@@ -9,11 +9,11 @@
    
     <form action="" method="POST">
        <p>Create Main Task | Topics</p> 
-        <input type="text" name="task" placeholder="Name of Tasks" required id="task_name"><br>
-        <input type="submit" value="Create" name="create" id="submit">
-        <button style="width:10%; margin:10px;">
-            <a href="select_main_task.php">Choose ToDo</a>
-        </button>
+        <label for="topic">Name of Topic</label><br>
+        <label for="w_topic"><input type="text" name="task" placeholder="Name of Tasks" required id="task_name"></label><br>
+        <label for="Assign">Assign to User</label>
+        <label for="Assign_user"><?php include '../Assignment/userAssignMainTask.php';?></label><br>
+        <label for="submit"><input type="submit" value="Create" name="create" id="submit"></label>
         </form>
     <?php
             $project_id = $_GET['project_id'];
@@ -22,15 +22,17 @@
             {
                 $create=$_POST['task'];
                 $query="INSERT INTO todo_c (name,project_id) values ('$create','$project_id') ";
-                $result=mysqli_query($conn,$query);
-                if($conn)
+                $check_duplicate_query = "SELECT * FROM todo_c WHERE name='$create'";
+                $check_duplicate_result = mysqli_query($conn, $check_duplicate_query);
+
+                if($check_duplicate_result->num_rows > 0)
                 {
-                    echo $create;
-                    echo "  as Main Task | Topics is Created!";
-                    
+                    echo "This username already exists!";
                 }
                 else{
-                    echo "error";
+                    $result=mysqli_query($conn,$query);
+                    echo $create;
+                    echo "  as Main Task | Topics is Created!";
                 }
             }
     ?>

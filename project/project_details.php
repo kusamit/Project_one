@@ -208,8 +208,8 @@ include '../dbconnect/dbconnect.php';
         </div>
     </div>
         <div class="assign_user">
-            <a href="" id="assign_user">Assign Users</a>
-            <a href="" id="assign_supervisor">Assign Supervisor</a>
+            <a href="../Assignment/userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign Users</a>
+            <a href="../Assignment/foremanAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_supervisor">Assign Supervisor</a>
             <div>
     <!-- closing of project info php -->
     <?php
@@ -237,6 +237,9 @@ include '../dbconnect/dbconnect.php';
                 <div class='view_topics'>";
                 echo "<div class='topic_box'>";
                 echo "<p>" .$fetched_Topic_name. "</p>";
+                ?>
+                <!-- <a href="../Assignment/userAssignMainTask.php?project_id=<?php echo $project_id; ?>" id="assign_users">Assign user</a> -->
+                <?php
                 echo "</div>";
             }
             

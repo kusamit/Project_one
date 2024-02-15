@@ -1,6 +1,6 @@
 <!-- users_list -->
 <?php
-include '../session.php';
+// include '../session.php';
 include '../dbconnect/dbconnect.php';
 ?>
 <!DOCTYPE html>
@@ -97,21 +97,22 @@ include '../dbconnect/dbconnect.php';
     <form action="" method="POST">
         <table>
         <?php
-        $log_id=$login_id;
+        // $log_id=$login_id;
         $id=1;   //initializing id as autoincrement.
-               $sql = "SELECT * FROM department where log_id= '$log_id'"; 
+               $sql = "SELECT * FROM department"; 
                $result = mysqli_query($conn, $sql);
                if (mysqli_num_rows($result) > 0) {
                    echo "<table border='0'>
                ";
+               echo "<a style='float:left;' href='../mainsession.php'><img src='back_button.png'></a>";
                echo "<h3>Department List <hr><h3>";
                while ($row = mysqli_fetch_assoc($result)) 
                {
-                echo "<tr><a style='float:left;' href='../mainsession.php'><img src='back_button.png'></a></tr>
+                echo "<tr></tr>
                 <tr><th><h4>" . $id . "</h4></th>
-                <th><h2>". $row['department_name'] . "<a href='user_details_view.php?id=" . $row['id'] . "'>
-                <img src='delete.png' alt='Delete' title='Delete'></a>","<a href='user_details_view.php?id=" . $row['id'] . "'>
-                <img src='update.png' alt='Update' title='Update'></a>","<a href='user_details_view.php?id=" . $row['id'] . "'>
+                <th><h2>". $row['department_name'] . "<a href='user_details_view.php?id=" . $row['dpt_id'] . "'>
+                <img src='delete.png' alt='Delete' title='Delete'></a>","<a href='user_details_view.php?id=" . $row['dpt_id'] . "'>
+                <img src='update.png' alt='Update' title='Update'></a>","<a href='user_details_view.php?id=" . $row['dpt_id'] . "'>
                 </a></h2></th> </tr>";
                 $id++;
             }

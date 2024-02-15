@@ -20,7 +20,7 @@ include 'session.php';
         <h2><a href="./Create/create_project.php">Create Project</a></h2>
         <h2><a href="./view/userlist.php">Users</a></h2>
         <h2><a href="./view/deptlist.php">Department</a></h2>
-        <h2><a href="./team/createteam.php">Create Team</a></h2>
+        <h2><a href="#1"></a></h2>
         </div>
         <div class="view">
             <iframe src="./project/view_project.php" frameborder="0" id="frame"style="height:100%;

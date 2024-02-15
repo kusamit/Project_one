@@ -97,9 +97,9 @@ include '../dbconnect/dbconnect.php';
     <form action="" method="POST">
         <table>
         <?php
-        $log_id=$login_id;
+        // $log_id=$login_id;
         $id=1;   //initializing id as autoincrement.
-               $sql = "SELECT * FROM user where log_id= '$log_id'"; 
+               $sql = "SELECT * FROM users"; 
                $result = mysqli_query($conn, $sql);
                if (mysqli_num_rows($result) > 0) {
                    echo "<table border='0'><tr><a style='float:left;' href='../mainsession.php'><img src='back_button.png'></a></tr>

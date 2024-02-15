@@ -16,6 +16,7 @@ include 'session_create.php';
 
         </div>
         <center>
+            <a style='float:left;' href='../mainsession.php'><img style=' height:30px; weight:30px;'src='../view/back_button.png'></a>
             <div class="dpt_creation">
                 <form action="" method="POST">
                     <h3>Create New Department</h3>
@@ -28,10 +29,10 @@ include 'session_create.php';
                         include '../dbconnect/dbconnect.php';
                         if(isset($_POST["submit"]))
                         {
-                            $log_id=$login_id;
+                            // $log_id=$login_id;
                             $dpt_name=$_POST["department"];
-                            $department_query="INSERT INTO department (department_name,log_id)
-                            VALUES ('$dpt_name','$log_id')";
+                            $department_query="INSERT INTO department (department_name)
+                            VALUES ('$dpt_name')";
                             $result=mysqli_query($conn,$department_query);
                             if($result)
                             {

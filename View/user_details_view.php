@@ -119,12 +119,13 @@ include '../dbconnect/dbconnect.php';
                 {
                     $user_id = $_GET['id'];
 
-                    $sql = "SELECT * FROM user WHERE id = '$user_id'";
+                    $sql = "SELECT * FROM users WHERE id = '$user_id'";
                     $result = mysqli_query($conn, $sql);
 
                     if (mysqli_num_rows($result) > 0) {
                         $user_details = mysqli_fetch_assoc($result);
-
+                        $user_department=$user_details['department_id'];
+                        echo $user_department;
                         // show user details
                         echo "<h5>User Details<hr></h5>";
                         echo "<tr><th>ID: " . $user_details['id'] . "</th>
@@ -136,7 +137,7 @@ include '../dbconnect/dbconnect.php';
                         <!-- fetched department name from the department table using the 
                         foreign key department_id from the user table. -->
                         <?php
-                                    $dpt="select * from department where id=". $user_details['department_id'] ."";
+                                    $dpt="SELECT * from department where dpt_id ='$user_department'";
                                     $result2 = mysqli_query($conn, $dpt);
 
                                 if (mysqli_num_rows($result2) > 0) 
