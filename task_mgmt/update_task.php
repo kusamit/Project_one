@@ -12,7 +12,8 @@
 
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
-        $cat_id = $_GET['cat_id'];
+        $main_task_id = $_GET['main_task_id'];
+        $project_id = $_GET['project_id'];
         $query_select = "SELECT * FROM sub_task_mgmt WHERE id='$id'";
         $result_select = mysqli_query($conn, $query_select);
 
@@ -51,12 +52,12 @@
         $message = $_POST['task'];
         $date_time = $_POST['dt'];
         $id = $_GET['id'];
-        $cat_id = $_GET['cat_id'];
+        $main_task_id = $_GET['main_task_id'];
         $update_query = "UPDATE sub_task_mgmt SET message='$message', end_date_time='$date_time' WHERE id='$id'";
         $result_update = mysqli_query($conn, $update_query);
         if ($result_update) {
             echo "Updated";
-            header('Location:sub_task_list.php?id='.$cat_id);
+                header('Location: sub_task_list.php?main_task_id='. $main_task_id.'&project_id='.$project_id);
         } else {
             echo "Error";
         }

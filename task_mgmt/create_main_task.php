@@ -25,8 +25,8 @@
                 $create=$_POST['task'];
                 $assigned_id=$_POST['user_name'];
                 $datetime=$_POST['dt'];
-                $query="INSERT INTO todo_c (name,project_id,user_id,deadline) values ('$create','$project_id','$assigned_id','$datetime') ";
-                $check_duplicate_query = "SELECT * FROM todo_c WHERE name='$create'";
+                $query="INSERT INTO main_task (name,project_id,user_id,deadline) values ('$create','$project_id','$assigned_id','$datetime') ";
+                $check_duplicate_query = "SELECT * FROM main_task WHERE name='$create'";
                 $check_duplicate_result = mysqli_query($conn, $check_duplicate_query);
 
                 if($check_duplicate_result->num_rows > 0)

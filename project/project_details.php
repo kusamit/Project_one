@@ -10,19 +10,25 @@ include '../dbconnect/dbconnect.php';
     <title>Document</title>
 </head>
 <style>
+    body
+    {
+        margin:0px;
+        padding:0px;
+    }
     #project_name{
         margin-left:20px;
-        padding:10px;
-        font-size:35px;
+        /* padding:10px; */
+        font-size:25px;
         /* background-color: #664d00; */
-        color:white;
+        color:#191966;
         border-radius:3px;
     }
     #project_details
     {
         width:50%;
         margin-top:10px;
-        background-color:#664d00;
+        /* color:#191966; */
+        background-color: #bbbb77;
         border-radius:2px;
     }
     .project_info
@@ -31,13 +37,12 @@ include '../dbconnect/dbconnect.php';
     }
     #details
     {
-        font-size:25px;
-        margin-bottom:10px;
+        font-size:20px;
+        /* margin-bottom:10px; */
         margin-left:20px;
-        padding:10px;
+        padding:5px;
         font-style:bold;
-        
-        color:white;
+        color:#551A8B;
         border-radius:3px;
     }
     #msg
@@ -50,9 +55,13 @@ include '../dbconnect/dbconnect.php';
         text-align:center;
         align-items:center;
     }
+    #view_file
+    {
+        font-size:12px;
+    }
     .topics
     {
-        margin-top:4rem;
+        /* margin-top:4rem; */
         padding:10px;
         font-size:20px;
         font-weight:bold;
@@ -60,10 +69,19 @@ include '../dbconnect/dbconnect.php';
         background-color:lightgrey;
         width:fit-content;
         border-radius:5px;
-        
+        height:fit-content;
+        color:#551A8B;
+    }
+    .topics_View_nav
+    {
+        background-color:#d1e0e0;
+        width:100%;
+        height:fit-content;
+        text-align:center;
     }
     a
     {
+        color:#551A8B;
         text-decoration:none;
     }
     a:hover
@@ -72,12 +90,14 @@ include '../dbconnect/dbconnect.php';
     }
     .main
     {
+        margin:0px;
         max-width: 100vw;
         border: 1px solid grey;
-        padding: 10px;
-        margin-left:20px;
-        padding:10px;
+        padding: 0px;
+        /* margin-left:20px; */
+        padding:0px;
         border:0px;
+        
     }
     .info_body
     {
@@ -118,28 +138,71 @@ include '../dbconnect/dbconnect.php';
         width:fit-content;
         height:fit-content;
         border-radius:5px;
+        color:#551A8B;
     }
     .topic_box
     {
         background-color:whitesmoke;
-        height:7rem;
-        width:7rem;
-        margin:30px;
-        padding:30px;
+        height:max-content;
+        width:12rem;
+        margin-top:15px;
+        margin:10px;
+        padding-top:15px;
         text-align:center;
-        color:black;
         font-weight:bold;
-        border: 1px solid #ccc; 
+        border: 1px solid #d1d1e0; 
+        border-radius:10px;
+        display: flex; 
+        flex-direction:row;
+        justify-content: space-between;
+        
+    }
+    .topic_box_content
+    {
+      display: flex;
+      flex-direction: column;
+      width:70%,30%;
+      align-items: center;
+      justify-content: center;
+    }
+    .action_UD
+    {
+        margin:5px;
+        /* background-color: #d1e0e0; */
+        color:blue;
+        font-size:10px;
+        padding:5px;
+        border-radius:10px;
+    }
+    td
+    {
+        font-size:10px;
+        color:black;
+        text-align:center;
+    }
+    th
+    {
+        font-size:15px;
+        text-align:center;
     }
     .view_topics
     {
         display: flex; 
         flex-wrap: wrap;
     }
+    h4{
+        margin:0px;
+        padding:0px;
+    }
+    .p_n{
+        font-size:15px;
+        margin-left:25px;
+        padding:5px;
+    }
 </style>
 <body>
 <div class="main">
-    <table border="1">
+    <table border="0">
         <!-- fetching project name and details      -->
         <div class="project_info">
                 <?php
@@ -169,7 +232,8 @@ include '../dbconnect/dbconnect.php';
             ?>
             <!-- View project Name and Details HTML -->
             <div id="project_name">
-                <?php echo $row_view['project_name'] ;?>
+                <h4 class="p">Project Name <br>
+                <h4 class="p_n"><?php echo $row_view['project_name'] ;?></h4></h4>
             </div>
             <!-- Project Details HTML -->
             <div id="project_details">
@@ -184,11 +248,6 @@ include '../dbconnect/dbconnect.php';
             <div id='msg'>
                 <?php echo $fetched_project_details; ?>
             </div>
-            <!-- Main tasks or topics -->
-            <div class="topics">
-                <a href="../task_mgmt/create_main_task.php?project_id=<?php echo $project_id; ?>">Create Main Task | Topics</a>
-            </div>
-
         </div>
                 <!-- sub details and files left side -->
     <div class="left">
@@ -216,38 +275,69 @@ include '../dbconnect/dbconnect.php';
     }
     ?>
     </table>
-
+    <!-- Main tasks or topics -->
+    <div class="topics">
+        <a href="../task_mgmt/create_main_task.php?project_id=<?php echo $project_id; ?>">Create Main Task | Topics</a>
+    </div>
+    <div class="topics_View_nav">
+        <p Class="">Main Task | Topics</p>
+    </div>
     <!-- Fetch Topics | Main Tasks -->
     <div class="taskname">
     <center>
-        <?php
-        // include 'dbconnect.php';
-        // $cat_id = $_GET['id'];
-        $sql = "SELECT * FROM todo_c where project_id=$project_id";
-        $result_task = mysqli_query($conn, $sql);
-        $num_topic = mysqli_num_rows($result_task);
-        
-        if ($num_topic > 0) {
-            
-            while ($row = mysqli_fetch_assoc($result_task)) {
-                $fetched_main_task_id=$row['Id'];
-                $fetched_Topic_name=$row['name'];
-                //Box for choosing the Main Tasks | Topics
-                echo "<a href='../task_mgmt/sub_task_list.php?main_task_id=".$fetched_main_task_id."&project_id=".$project_id."'>
-                <div class='view_topics'>";
-                echo "<div class='topic_box'>";
-                echo "<p>" .$fetched_Topic_name. "</p>";
-                ?>
-                <!-- <a href="../Assignment/userAssignMainTask.php?project_id=<?php echo $project_id; ?>" id="assign_users">Assign user</a> -->
-                <?php
-                echo "</div>";
+    <?php
+    // include 'dbconnect.php';
+    $sql = "SELECT * FROM main_task where project_id=$project_id";
+    $result_task = mysqli_query($conn, $sql);
+    $num_topic = mysqli_num_rows($result_task);
+
+    if ($num_topic > 0) {
+        while ($row_task = mysqli_fetch_assoc($result_task)) {
+            $fetched_main_task_id = $row_task['Id'];
+            $fetched_Topic_name = $row_task['name'];
+            $fetched_topic_deadline = $row_task['deadline'];
+            $fetched_assigned_userId = $row_task['user_id'];
+
+            // to fetch name of the assigned user in the topic
+            $sql_user = "SELECT * FROM users where id=$fetched_assigned_userId";
+            $result_user = mysqli_query($conn, $sql_user);
+            $num_user = mysqli_num_rows($result_user);
+
+            if ($num_user > 0) {
+                while ($row_user = mysqli_fetch_assoc($result_user)) {
+                    $fetched_user_name = $row_user['fullname'];
+                }
             }
-            
+
+            // Box for choosing the Main Tasks | Topics
+            echo "<a href='../task_mgmt/sub_task_list.php?main_task_id=".$fetched_main_task_id."&project_id=".$project_id."'>
+                <div class='view_topics'>";
+            echo "<div class='topic_box'>";
+            ?>
+            <div class='topic_box_content'>
+                <table border=0>
+                    <tr><th><?php echo "Name"; ?></th></tr>
+                    <tr><td><?php echo $fetched_Topic_name; ?></td></tr>
+                    <tr><th><?php echo "Assigned User"; ?></th></tr>
+                    <tr><td><?php echo $fetched_user_name; ?></td></tr>
+                    <tr><th><?php echo "Deadline"; ?></th></tr>
+                    <tr><td><?php echo $fetched_topic_deadline; ?></td></tr>
+                </table>
+            </div>
+            <div class='topic_box_content'>
+                <a href="#1" class="action_UD">Update</a>
+                <a href="#2" class="action_UD">Delete</a>
+                <!-- <a href="#3" class="action_UD">Completed</a> -->
+            </div>
+            <?php
             echo "</div>";
-        } else {
-            echo "No records found.";
         }
-        ?>
+
+        echo "</div>";
+    } else {
+        echo "No records found.";
+    }
+?>
     </center>
 </div>
 

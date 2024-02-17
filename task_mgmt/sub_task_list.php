@@ -184,7 +184,7 @@
             <!-- fetching the main task | Topics -->
         <div class="taskname"> <center>
             <?php
-                    $sql = "SELECT * FROM todo_c where Id='$main_task_id' and project_id='$project_id'";
+                    $sql = "SELECT * FROM main_task where Id='$main_task_id' and project_id='$project_id'";
                     $result_task = mysqli_query($conn, $sql);
                     if (mysqli_num_rows($result_task) > 0) {
                         echo "<table border='0'>
@@ -423,9 +423,9 @@ while ($row = mysqli_fetch_assoc($result)) {
         </td>
         <td>
             <!-- Edit and Delete Controls -->
-            <a href='update_task.php?id=<?php echo $rowId; ?>&cat_id=<?php echo $cat_id; ?>'class="control">
+            <a href='update_task.php?id=<?php echo $rowId;?>&main_task_id=<?php echo $main_task_id;?>&project_id=<?php echo $project_id;?>' class="control">
             <img src='edit.png' alt='image' title='Edit'></a>
-            <a href='delete.php?id=<?php echo $rowId; ?>&cat_id=<?php echo $cat_id; ?>'>
+            <a href='delete.php?id=<?php echo $rowId;?>&main_task_id=<?php echo $main_task_id;?>&project_id=<?php echo $project_id;?>'>
             <img src='delete.png' alt='image' title='Delete'class="control_img">
             </a>
             <hr>
