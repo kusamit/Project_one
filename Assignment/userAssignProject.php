@@ -33,14 +33,6 @@ $project_id = $_GET['p_id'];            //getting project id
                 <?php
                     $query_users_view="SELECT * from users where role='user'";
                     $result_view=mysqli_query($conn,$query_users_view);
-                    // if($result_view)
-                    // {
-                    //     // echo "connection sucess";
-                    // }
-                    // else
-                    // {
-                    //     echo "unsucess to connect";
-                    // }
                     $num_view=mysqli_num_rows($result_view);
                     if($num_view>0)
                     {
@@ -90,6 +82,8 @@ $project_id = $_GET['p_id'];            //getting project id
                     foreach ($_POST['checked_id'] as $checked_row_id) {
                     $sql_assign="INSERT INTO assigned_member (project_id,user_id) 
                     values ('$p_id','$checked_row_id')";
+                    // var_dump($checked_row_id);
+                    // die();
                     $result_query_assigned=mysqli_query($conn,$sql_assign);
                         if($result_query_assigned)
                         {

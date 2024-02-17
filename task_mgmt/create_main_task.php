@@ -13,6 +13,8 @@
         <label for="w_topic"><input type="text" name="task" placeholder="Name of Tasks" required id="task_name"></label><br>
         <label for="Assign">Assign to User</label>
         <label for="Assign_user"><?php include '../Assignment/userAssignMainTask.php';?></label><br>
+        <label for="deadline">Deadline</label> <br>
+        <label for="deadlinetask"><input type="datetime-local" name="dt" id="" ></label>
         <label for="submit"><input type="submit" value="Create" name="create" id="submit"></label>
         </form>
     <?php
@@ -21,7 +23,9 @@
             if(isset($_POST['create']))
             {
                 $create=$_POST['task'];
-                $query="INSERT INTO todo_c (name,project_id) values ('$create','$project_id') ";
+                $assigned_id=$_POST['user_name'];
+                $datetime=$_POST['dt'];
+                $query="INSERT INTO todo_c (name,project_id,user_id,deadline) values ('$create','$project_id','$assigned_id','$datetime') ";
                 $check_duplicate_query = "SELECT * FROM todo_c WHERE name='$create'";
                 $check_duplicate_result = mysqli_query($conn, $check_duplicate_query);
 
