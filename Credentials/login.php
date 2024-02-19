@@ -1,4 +1,8 @@
 
+<?php
+session_start();
+include '../dbconnect/dbconnect.php';
+?>
 <html>
     <head>
         <title>User Login</title>
@@ -32,15 +36,13 @@
                            if(isset($_POST['submit']))
                            {
                                 $name = $_POST['username'];
-                                
                             // $password =  md5($_POST['password']);       //encryption md5
                             $password =($_POST['password']);               //encryption password_hash, Password_bcrypt
                                 $auth = $_POST['auth'];
                                 session_start();
-                                
                                 if($auth == 0)
                                 {
-                                        $query_admin = "select * from admin_registration where username = '$name' ";
+                                        $query_admin = "select * from admin where username = '$name' ";
                                         $result=mysqli_query($conn,$query_admin);
                                        
                                         $num_a=mysqli_num_rows($result);
@@ -51,12 +53,10 @@
                                         }
                                         // if($db_password ==$password && $db_username == $name){
                                         if(password_verify($password, $db_password) && $db_username == $name){
-
-                                        
- 
                                             $_SESSION['Login_session']= $db_id;
-                                            echo "Admin Login Sucess";
-                                            header('location:../mainsession.php');
+                                            // echo "Admin Login Sucess";
+                                            header('location:../Admin_interface.php');
+                                            exit();
                                         }
                                         else{
                                             echo "Invalid Admin Username or Password";
@@ -78,7 +78,7 @@
                                         {
                                             $_SESSION['Login_session']= $db_id;
                                             echo "Admin Login Sucess";
-                                            header('location:../mainsession.php');
+                                            header('location:../Admin_interface.php');
                                         }
                                         else{
                                             echo "Invalid Admin Username or Password";
@@ -124,3 +124,6 @@
         </div>    
     </body>
 </html>
+<?php
+session_abort();
+?>

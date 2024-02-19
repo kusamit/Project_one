@@ -1,5 +1,4 @@
 <?php
-include 'session_create.php';
 ?>
 <html>
     <head>
@@ -15,7 +14,7 @@ include 'session_create.php';
         <div class="nav">
 
         </div>
-        <a style='float:left;' href='../mainsession.php'><img style=' height:30px; weight:30px;'src='../view/back_button.png'></a>
+        <a style='float:left;' href='../Admin_interface.php'><img style=' height:30px; weight:30px;'src='../view/back_button.png'></a>
         <div class="project_creation">
             <h3>Create New Project</h3>
                 <form action="" method="POST" id="formp" enctype="multipart/form-data">

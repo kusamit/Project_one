@@ -12,6 +12,9 @@ $project_id = $_GET['p_id'];            //getting project id
     <title>Document</title>
 </head>
 <body>
+        <a style='float:left;' href='../project/project_details.php?id=<?php echo $project_id; ?>'>
+            <img style=' height:30px; weight:30px;'src='../view/back_button.png'>
+        </a>
     <div class="maindiv">
         <form action="" method="POST">
         <div class="topsubmit">

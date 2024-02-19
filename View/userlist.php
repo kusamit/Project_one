@@ -102,7 +102,7 @@ include '../dbconnect/dbconnect.php';
                $sql = "SELECT * FROM users"; 
                $result = mysqli_query($conn, $sql);
                if (mysqli_num_rows($result) > 0) {
-                   echo "<table border='0'><tr><a style='float:left;' href='../mainsession.php'><img src='back_button.png'></a></tr>
+                   echo "<table border='0'><tr> <a style='float:left;' href='../Admin_interface.php'><img style=' height:30px; weight:30px;'src='../view/back_button.png'></a></tr>
                ";
                echo "<h3>Users List <hr><h3>";
                while ($row = mysqli_fetch_assoc($result)) 

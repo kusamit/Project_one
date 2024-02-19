@@ -104,7 +104,7 @@ include '../dbconnect/dbconnect.php';
                if (mysqli_num_rows($result) > 0) {
                    echo "<table border='0'>
                ";
-               echo "<a style='float:left;' href='../mainsession.php'><img src='back_button.png'></a>";
+               echo " <a style='float:left;' href='../Admin_interface.php'><img style=' height:30px; weight:30px;'src='../view/back_button.png'></a>";
                echo "<h3>Department List <hr><h3>";
                while ($row = mysqli_fetch_assoc($result)) 
                {

@@ -16,7 +16,8 @@ include '../dbconnect/dbconnect.php';
         padding:0px;
     }
     #project_name{
-        margin-left:20px;
+        margin-left:30px;
+        margin-top:15px;
         /* padding:10px; */
         font-size:25px;
         /* background-color: #664d00; */
@@ -25,7 +26,7 @@ include '../dbconnect/dbconnect.php';
     }
     #project_details
     {
-        width:50%;
+        width:100%;
         margin-top:10px;
         /* color:#191966; */
         background-color: #bbbb77;
@@ -33,7 +34,7 @@ include '../dbconnect/dbconnect.php';
     }
     .project_info
     {
-        background-color:#b2b266;  
+        /* background-color:#b2b266;   */
     }
     #details
     {
@@ -104,10 +105,14 @@ include '../dbconnect/dbconnect.php';
         display: flex;
         gap: 10px;
         margin-bottom: 10px;
+        margin-top:0px;
+        background-color:#d9d9d9;
+        padding-bottom:10px;
     }
-    .left
+    .right
     {
         flex: 5;
+        margin-top:1rem;
     }
     .assign_user
     {
@@ -116,7 +121,7 @@ include '../dbconnect/dbconnect.php';
         flex: 4;
         display:flex;
     }
-    .detailed_info_right
+    .detailed_info_left
     {
         flex: 9.5;
         border:0px;
@@ -126,15 +131,16 @@ include '../dbconnect/dbconnect.php';
         padding: 10px;
         margin-left:20px;
         padding:10px;
+        margin-top:1rem;
     }
-    #assign_user,#assign_supervisor
+    #assign_user,#assign_foreman
     {
         margin:5px;
         margin-top:4rem;
         padding:5px;
         font-size:20px;
         text-decoration:none;
-        background-color:whitesmoke;
+        background-color:white;
         width:fit-content;
         height:fit-content;
         border-radius:5px;
@@ -199,6 +205,34 @@ include '../dbconnect/dbconnect.php';
         margin-left:25px;
         padding:5px;
     }
+    .back_btn
+    {
+        float:right;
+        margin-right:30px;
+        color:#191966;
+        font-size:25px;
+        padding:10px;
+    }
+    .back_btn:hover
+    {
+        /* background-color:white; */
+        /* padding:10px; */
+        /* margin:10px; */
+        width:fit-content;
+        border-radius:5px;
+        background-color: #ff8080;
+    }
+    img,embed
+    {
+        background-color:#ffffff; */
+        border:2px ridge #ffffff;
+        shadow:5px 10px #888888;
+        padding:5px;
+    }
+   
+    {
+
+    }
 </style>
 <body>
 <div class="main">
@@ -208,7 +242,6 @@ include '../dbconnect/dbconnect.php';
                 <?php
                 if (isset($_GET['id'])) {
                     $project_id = $_GET['id'];
-                    echo $project_id;
                 ?>
             <?php
             $sql="select * from project where id=$project_id" ;
@@ -232,8 +265,10 @@ include '../dbconnect/dbconnect.php';
             ?>
             <!-- View project Name and Details HTML -->
             <div id="project_name">
-                <h4 class="p">Project Name <br>
-                <h4 class="p_n"><?php echo $row_view['project_name'] ;?></h4></h4>
+                <h4 class="p">Project Name  <a href="../Admin_interface.php" class="back_btn">Back</a><br>
+                <h4 class="p_n">
+                    <?php echo $row_view['project_name'] ;?>
+                </h4>
             </div>
             <!-- Project Details HTML -->
             <div id="project_details">
@@ -243,22 +278,33 @@ include '../dbconnect/dbconnect.php';
             </div>
         </div>  
     <div class="info_body">
-        <div class="detailed_info_right">
+        <div class="detailed_info_left">
                     <!-- details_Info -->
             <div id='msg'>
-                <?php echo $fetched_project_details; ?>
+                
+                <?php 
+                    if(!$fetched_project_details)
+                    {
+                        echo "No Descriptions Available to this Project";
+                    }
+                    else
+                    {
+                        echo $fetched_project_details;
+                    }
+                     
+                ?>
             </div>
         </div>
-                <!-- sub details and files left side -->
-    <div class="left">
+                <!-- sub details and files right side -->
+    <div class="right">
         <div id="file">
             <div id="project_file">
                 <?php if($fetched_file_type==1){ ?>
-                <a href="fullimg.php?url=<?php echo $row_view['file'] ; ?>?type=<?php echo $fetched_file_type; ?>">
+                <a class="imgpdf" href="fullimg.php?url=<?php echo $row_view['file'] ; ?>?type=<?php echo $fetched_file_type; ?>">
                 <img style="height:10rem; width:7rem;" src="<?php echo $row_view['file'] ; ?>"><p id="view_file">View Image</p>
                 </a>
                 <?php } elseif($fetched_file_type==2){?>
-                <a href="fullpdf.php?url=<?php echo $row_view['file'] ; ?>?type=<?php echo $fetched_file_type; ?>">
+                <a class="imgpdf" href="fullpdf.php?url=<?php echo $row_view['file'] ; ?>?type=<?php echo $fetched_file_type; ?>">
                 <embed style="height:10rem; width:7rem;" src="<?php echo $row_view['file']; ?>" type="application/pdf" /><p id="view_file">View PDF</p>
                 </a>
                 <?php 
@@ -268,7 +314,7 @@ include '../dbconnect/dbconnect.php';
     </div>
         <div class="assign_user">
             <a href="../Assignment/userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign Users</a>
-            <a href="../Assignment/foremanAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_supervisor">Assign Supervisor</a>
+            <a href="../Assignment/foremanAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_foreman">Assign Foreman</a>
             <div>
     <!-- closing of project info php -->
     <?php
@@ -325,8 +371,8 @@ include '../dbconnect/dbconnect.php';
                 </table>
             </div>
             <div class='topic_box_content'>
-                <a href="#1" class="action_UD">Update</a>
-                <a href="#2" class="action_UD">Delete</a>
+                <a href="../task_mgmt/update_main_task.php?id=<?php echo $fetched_main_task_id?>&user_id=<?php echo $fetched_assigned_userId;?>&project_id=<?php echo $project_id;?>" class="action_UD">Update</a>
+                <a href="../task_mgmt/delete_main_task.php?id=<?php echo $fetched_main_task_id?>&user_id=<?php echo $fetched_assigned_userId;?>&project_id=<?php echo $project_id;?>" class="action_UD">Delete</a>
                 <!-- <a href="#3" class="action_UD">Completed</a> -->
             </div>
             <?php

@@ -1,5 +1,5 @@
 <?php
-include 'session_create.php';
+// include 'session_create.php';
 ?>
 <html>
     <head>
@@ -16,7 +16,7 @@ include 'session_create.php';
 
         </div>
         <center>
-        <a style='float:left;' href='../mainsession.php'>
+        <a style='float:left;' href='../Admin_interface.php'>
             <img style=' height:30px; weight:30px;'src='../view/back_button.png'>
         </a>
             <div class="user_creation">

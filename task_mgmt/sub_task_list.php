@@ -423,9 +423,9 @@ while ($row = mysqli_fetch_assoc($result)) {
         </td>
         <td>
             <!-- Edit and Delete Controls -->
-            <a href='update_task.php?id=<?php echo $rowId;?>&main_task_id=<?php echo $main_task_id;?>&project_id=<?php echo $project_id;?>' class="control">
+            <a href='update_sub_task.php?id=<?php echo $rowId;?>&main_task_id=<?php echo $main_task_id;?>&project_id=<?php echo $project_id;?>' class="control">
             <img src='edit.png' alt='image' title='Edit'></a>
-            <a href='delete.php?id=<?php echo $rowId;?>&main_task_id=<?php echo $main_task_id;?>&project_id=<?php echo $project_id;?>'>
+            <a href='delete_sub_task.php?id=<?php echo $rowId;?>&main_task_id=<?php echo $main_task_id;?>&project_id=<?php echo $project_id;?>'>
             <img src='delete.png' alt='image' title='Delete'class="control_img">
             </a>
             <hr>

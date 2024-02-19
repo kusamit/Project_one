@@ -1,6 +1,3 @@
-<?php
-include 'session_create.php';
-?>
 <html>
     <head>
         <title>
@@ -16,7 +13,7 @@ include 'session_create.php';
 
         </div>
         <center>
-            <a style='float:left;' href='../mainsession.php'><img style=' height:30px; weight:30px;'src='../view/back_button.png'></a>
+            <a style='float:left;' href='../Admin_interface.php'><img style=' height:30px; weight:30px;'src='../view/back_button.png'></a>
             <div class="dpt_creation">
                 <form action="" method="POST">
                     <h3>Create New Department</h3>
