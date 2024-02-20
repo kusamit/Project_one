@@ -1,0 +1,219 @@
+body
+    {
+        margin:0px;
+        padding:0px;
+    }
+    #project_name{
+        margin-left:30px;
+        margin-top:15px;
+        /* padding:10px; */
+        font-size:25px;
+        /* background-color: #664d00; */
+        color:#191966;
+        border-radius:3px;
+    }
+    #project_details
+    {
+        width:100%;
+        margin-top:10px;
+        /* color:#191966; */
+        background-color: #bbbb77;
+        border-radius:2px;
+    }
+    .project_info
+    {
+        /* background-color:#b2b266;   */
+    }
+    #details
+    {
+        font-size:20px;
+        /* margin-bottom:10px; */
+        margin-left:20px;
+        padding:5px;
+        font-style:bold;
+        color:#551A8B;
+        border-radius:3px;
+    }
+    #msg
+    {
+        font-size:15px;
+        text-align:justify;
+    }
+    #file
+    {
+        text-align:center;
+        align-items:center;
+    }
+    #view_file
+    {
+        font-size:12px;
+    }
+    .topics
+    {
+        /* margin-top:4rem; */
+        padding:10px;
+        font-size:20px;
+        font-weight:bold;
+        text-decoration:none;
+        background-color:lightgrey;
+        width:fit-content;
+        border-radius:5px;
+        height:fit-content;
+        color:#551A8B;
+    }
+    .topics_View_nav
+    {
+        background-color:#d1e0e0;
+        width:100%;
+        height:fit-content;
+        text-align:center;
+    }
+    a
+    {
+        color:#551A8B;
+        text-decoration:none;
+    }
+    a:hover
+    {
+        border-radius:5px;
+    }
+    .main
+    {
+        margin:0px;
+        max-width: 100vw;
+        border: 1px solid grey;
+        padding: 0px;
+        /* margin-left:20px; */
+        padding:0px;
+        border:0px;
+        
+    }
+    .info_body
+    {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 10px;
+        margin-top:0px;
+        background-color:#d9d9d9;
+        padding-bottom:10px;
+    }
+    .right
+    {
+        flex: 5;
+        margin-top:1rem;
+    }
+    .assign_user
+    {
+        padding: 20px;
+        text-align: center;
+        flex: 4;
+        display:flex;
+    }
+    .detailed_info_left
+    {
+        flex: 9.5;
+        border:0px;
+        direction:right;
+        max-width: 100vw;
+        border: 0px;
+        padding: 10px;
+        margin-left:20px;
+        padding:10px;
+        margin-top:1rem;
+    }
+    #assign_user,#assign_foreman
+    {
+        margin:5px;
+        margin-top:4rem;
+        padding:5px;
+        font-size:20px;
+        text-decoration:none;
+        background-color:white;
+        width:fit-content;
+        height:fit-content;
+        border-radius:5px;
+        color:#551A8B;
+    }
+    .topic_box
+    {
+        background-color:whitesmoke;
+        height:max-content;
+        width:12rem;
+        margin-top:15px;
+        margin:10px;
+        padding-top:15px;
+        text-align:center;
+        font-weight:bold;
+        border: 1px solid #d1d1e0; 
+        border-radius:10px;
+        display: flex; 
+        flex-direction:row;
+        justify-content: space-between;
+        
+    }
+    .topic_box_content
+    {
+      display: flex;
+      flex-direction: column;
+      width:70%,30%;
+      align-items: center;
+      justify-content: center;
+    }
+    .action_UD
+    {
+        margin:5px;
+        /* background-color: #d1e0e0; */
+        color:blue;
+        font-size:10px;
+        padding:5px;
+        border-radius:10px;
+    }
+    td
+    {
+        font-size:10px;
+        color:black;
+        text-align:center;
+    }
+    th
+    {
+        font-size:15px;
+        text-align:center;
+    }
+    .view_topics
+    {
+        display: flex; 
+        flex-wrap: wrap;
+    }
+    h4{
+        margin:0px;
+        padding:0px;
+    }
+    .p_n{
+        font-size:15px;
+        margin-left:25px;
+        padding:5px;
+    }
+    .back_btn
+    {
+        float:right;
+        margin-right:30px;
+        color:#191966;
+        font-size:25px;
+        padding:10px;
+    }
+    .back_btn:hover
+    {
+        /* background-color:white; */
+        /* padding:10px; */
+        /* margin:10px; */
+        width:fit-content;
+        border-radius:5px;
+        background-color: #ff8080;
+    }
+    img,embed
+    {
+        background-color:#ffffff;
+        border: 2px ridge #ffffff;
+        shadow:5px 10px #888888;
+        padding:5px;
+    }

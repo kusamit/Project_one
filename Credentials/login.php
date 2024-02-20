@@ -1,129 +1,109 @@
-
 <?php
-session_start();
 include '../dbconnect/dbconnect.php';
 ?>
-<html>
-    <head>
-        <title>User Login</title>
-        <link rel="stylesheet" href="../css/login.css">
-    </head>
-    
-    <body>
-        <div class="outer">
-            <div class="userlogin">
-                <form action="" method="POST">
-                    <h2>LOGIN</h2> 
-                    <hr><br>
-                    <img src="3.png" alt="User">
-                    <br>
-                    Email or Username
-                     <br> <input type="text" name="username" placeholder="Enter your Username">
-                    <br>
-                    Password  <br> <input type="password" name="password" placeholder="Enter your Password">
-                    <select name="auth" id="selection">
-                        <option value="0">Admin</option>
-                        <option value="1" >User</option>
-                        <option value="2" >Manager</option>
-                    </select>
-                    <input type="submit" value="Login" name="submit" id="submit_login">
-                
-                  
-                    
-                </form>
-                <?php
-                include '../dbconnect/dbconnect.php';
-                           if(isset($_POST['submit']))
-                           {
-                                $name = $_POST['username'];
-                            // $password =  md5($_POST['password']);       //encryption md5
-                            $password =($_POST['password']);               //encryption password_hash, Password_bcrypt
-                                $auth = $_POST['auth'];
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" method="POST">
+       <label for="">Username</label><br>
+       <label for=""><input type="text" name="username" id=""></label><br>
+        <label for="">Password</label><br>
+        <label for=""><input type="password" name="password" id=""></label><br>
+        <select name="authentication" id="">
+            <option value="1" >Admin</option>
+            <!-- <option value="2">Foreman</option> -->
+            <option value="2">User</option>
+        </select>
+        <label for=""><input type="submit" value="login" name="login"></label>
+        
+    </form>
+    <?php
+            if(isset($_POST['login']))
+            {
+                $authentication=$_POST['authentication'];
+                $username=$_POST['username'];
+                $password=$_POST['password'];
+                if($authentication==1)
+                {
+                    $admin_name = mysqli_real_escape_string($conn, $_POST['username']);
+                    $query_admin = "SELECT * FROM admin WHERE username = '$admin_name'";
+                    $result_admin = mysqli_query($conn, $query_admin);
+                    $num_admin = mysqli_num_rows($result_admin);
+                        if ($num_admin > 0) {
+                            $data_admin = mysqli_fetch_array($result_admin);
+                            $db_id_admin = $data_admin['id'];
+                            $db_username_admin = $data_admin['username'];
+                            $db_password_admin = $data_admin['password']; // it is in hash form
+                            if (password_verify($password, $db_password_admin) && $db_username_admin == $admin_name)
+                            {
                                 session_start();
-                                if($auth == 0)
-                                {
-                                        $query_admin = "select * from admin where username = '$name' ";
-                                        $result=mysqli_query($conn,$query_admin);
-                                       
-                                        $num_a=mysqli_num_rows($result);
-                                        while($data = mysqli_fetch_array($result)){
-                                            $db_id=$data['id'];
-                                            $db_username = $data['username'];
-                                            $db_password = $data['password']; // it is in hash form
-                                        }
-                                        // if($db_password ==$password && $db_username == $name){
-                                        if(password_verify($password, $db_password) && $db_username == $name){
-                                            $_SESSION['Login_session']= $db_id;
-                                            // echo "Admin Login Sucess";
-                                            header('location:../Admin_interface.php');
-                                            exit();
-                                        }
-                                        else{
-                                            echo "Invalid Admin Username or Password";
-                                        }
-
-                                }
-                                if($auth == 1)
-                                {
-                                        $query_user = "select * from user where username = '$name' ";
-                                        $result=mysqli_query($conn,$query_user);
-                                       
-                                        $num_a=mysqli_num_rows($result);
-                                        while($data = mysqli_fetch_array($result)){
-                                            $db_id=$data('id');
-                                            $db_username = $data['username'];
-                                            $db_password = $data['password']; // it is in hash form
-                                        }
-                                        if(password_verify($password, $db_password) && $db_username == $name)
-                                        {
-                                            $_SESSION['Login_session']= $db_id;
-                                            echo "Admin Login Sucess";
-                                            header('location:../Admin_interface.php');
-                                        }
-                                        else{
-                                            echo "Invalid Admin Username or Password";
-                                        }
-
-                                }
-                                if($auth == 2)
-                                {
-                                        $query_user = "select * from manager where username = '$name' ";
-                                        $result=mysqli_query($conn,$query_user);
-                                       
-                                        $num_a=mysqli_num_rows($result);
-                                        while($data = mysqli_fetch_array($result)){
-                                            $db_id=$data('id');
-                                            $db_username = $data['username'];
-                                            $db_password = $data['password']; // it is in hash form
-                                        }
-                                        if(password_verify($password, $db_password) && $db_username == $name)
-                                        {
-                                            $_SESSION['Login_session']= $db_id;
-                                            echo "Admin Login Sucess";
-                                            header('location:../mainsession.php');
-                                        }
-                                        else{
-                                            echo "Invalid Admin Username or Password";
-                                        }
-
-                                }
+                                $_SESSION['Login_session'] = $db_id_admin;
+                                $_SESSION["user_type"] = "admin";
+                                $_SESSION['login'] = true;
+                                header('location:../interface.php');
+                                exit();
+                            } 
+                            else 
+                            {
+                                echo "Invalid Admin Username or Password";
                             }
-                    ?>
-                <br><br>
-                <h5>Please use your credentials to login.</h5>
-            </div>
-            <div class="usersignup">
-                <br><br><br><br><br><br>
-                <img src="3.png" alt="User">
-                <h3>If You don't have Any Account?</h3>
-                <h4>Register Now</h4>
-                <button>
-                    <a href="AdminRegister.php">Register</a>
-                </button>
-            </div>
-        </div>    
-    </body>
+                        } 
+                        else 
+                        {
+                            echo "Please Enter Your Username and Password";
+                        }
+                }
+                if($authentication==2)
+                {
+                    $username = mysqli_real_escape_string($conn, $_POST['username']);
+                    $query_username = "SELECT * FROM users WHERE username = '$username'";
+                    $result_username = mysqli_query($conn, $query_username);
+                    $num_username = mysqli_num_rows($result_username);
+                        if ($num_username > 0) {
+                            $data_user = mysqli_fetch_assoc($result_username);
+                            $db_user_id = $data_user['id'];
+                            $db_user_role = $data_user['role'];
+                            $db_username_user = $data_user['username'];
+
+
+                            $db_password_user = $data_user['password']; // it is in hash form
+                            if (password_verify($password, $db_password_user))
+                            {
+                                session_start();
+                                $_SESSION['Login_session'] = $db_user_id;
+                                if($db_user_role == "foreman"){
+                                    $_SESSION['user_type'] = $db_user_role;
+                                    $_SESSION['login'] = true;
+                                    echo $db_user_role;
+                                 header('location:../interface.php');
+                                }else if($db_user_role == "user"){
+                                    $_SESSION['user_type'] = $db_user_role;
+                                    echo $db_user_role;
+                                    $_SESSION['login'] = true;
+                                     header('location:../interface.php');
+                                }
+                               
+                                
+                              
+                                exit();
+                            } 
+                            else 
+                            {
+                                echo "Invalid  Username or Password";
+                            }
+                        } 
+                        else 
+                        {
+                            echo "Please Enter Your Username and Password";
+                        }
+                }
+            }
+        ?> 
+    
+</body>
 </html>
-<?php
-session_abort();
-?>

@@ -1,111 +1,44 @@
 <!-- users_list -->
 <?php
-// include '../session.php';
+session_start();
 include '../dbconnect/dbconnect.php';
+$userType= $_SESSION["user_type"];
+echo $userType;
+include '../persistLogin.php';
 ?>
+<!-- back_button -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <!-- <link rel="stylesheet" href="../css/creation.css"> -->
-    <style>
-        body
-        {
-            align-items:center;
-            background-color:lightgrey;
-        }
-        tr,th
-        {
-            text-align:left;
-            background-color:grey;
-            color:White;
-            margin:10px;
-            border-radius:5px;
-            height:5px;
-            
-            
-        }
-        table
-        {
-            width:93%;
-            margin-left:2rem;
-            align-items:center;
-            text-align:center;
-            margin-bottom:2rem;
-            height:5px;
-            
-            
-        }
-        form
-        {
-            background-color:blue:
-        }
-
-        h2{
-            margin-left:30px;
-            margin-top:15px;
-            font-size:20px;
-            margin-bottom:10px;
-        }
-        img:hover
-        {
-            background-color:whitesmoke;
-            font-size:max-content;
-            padding:2px;
-            border-radius:5px;
-            width:Max-content;
-        }
-        h3
-        {
-            text-align:center;
-            font-size:20px;
-            color:SlateBlue;
-        }
-        h4
-        {
-            text-align:center;
-            margin-top:15px;
-            font-size:20px;
-            margin-bottom:10px;
-        }
-        .outer
-        {
-            margin:10px;
-            background-color:lightgrey;
-            width:60%;
-            border-radius:5px;
-        }
-        a{
-            text-decoration:none;
-            color:white;
-            float:right;
-            style-type:inline;
-            
-        }
-        img
-        {
-            height:20px;
-            width:20px;
-            margin-right:5px;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/user_dpt.css">
 </head>
 <body>
     <div class="outer">
     <form action="" method="POST">
         <table>
         <?php
-        // $log_id=$login_id;
         $id=1;   //initializing id as autoincrement.
                $sql = "SELECT * FROM department"; 
                $result = mysqli_query($conn, $sql);
                if (mysqli_num_rows($result) > 0) {
-                   echo "<table border='0'>
-               ";
-               echo " <a style='float:left;' href='../Admin_interface.php'><img style=' height:30px; weight:30px;'src='../view/back_button.png'></a>";
-               echo "<h3>Department List <hr><h3>";
+                   echo "<table border='0'>";
+            //    Check for Back botton
+                if($userType== "admin")
+                {
+                    echo "<a style='float:left;' href='../interface.php'/>";
+                    echo "<img style='height:30px; width:30px;' src='../view/back_button.png'></a>";
+                }
+                else if ($userType == "foreman") {
+                    echo "<a style='float:left;' href='../interface.php'/>";
+                    echo "<img style='height:30px; width:30px;' src='../view/back_button.png'></a>";
+                } else if ($userType == "user") {
+                    echo "<a style='float:left;' href='../interface.php'/>";
+                    echo "<img style='height:30px; width:30px;' src='../view/back_button.png'></a>";
+                }
+                echo "<h3>Department List <hr><h3>";
                while ($row = mysqli_fetch_assoc($result)) 
                {
                 echo "<tr></tr>
