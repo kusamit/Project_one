@@ -165,11 +165,11 @@ include '../persistLogin.php';
                         </div>
                         <div class='topic_box_content'>
                             <?php
-                            if(!($userType=="user"))
-                            {?>
+                            // if(!($userType=="user"))
+                            // {?>
                             <a href="../task_mgmt/update_main_task.php?id=<?php echo $fetched_main_task_id?>&user_id=<?php echo $fetched_assigned_userId;?>&project_id=<?php echo $project_id;?>" class="action_UD">Update</a>
                             <?php
-                            }?>
+                            // }?>
                             <?php
                             if(!($userType=="foreman" || $userType=="user"))
                             {?>

@@ -1,0 +1,169 @@
+.view{
+    background-color:rgba(255, 255, 224, 0.856) ;
+    border-radius:10px;
+    height:100%;
+    overflow: scroll;
+    width:100%;
+    margin:0px;
+    padding:0px;
+    align-items:center;
+ }
+ .header
+ {
+    width:100%;
+    background-color:red ;
+    border-radius:20px;
+    height:100%;
+    background-color: rgba(255, 255, 224, 0.486) ;
+    /* overflow: visible; */
+    margin:20px;
+    padding:0px;
+ }
+
+body{
+    background-color:#018CB6;
+    height:100%;
+}
+input
+{
+    border:3px #8a8a5c solid;
+    border-radius:10px;
+    padding:2px;
+}
+#add{
+    border-radius:20px;
+    background-color:#33ff33;
+    padding:8px;
+    width:5rem;
+    font-style:bold;
+    border:0px;
+    margin-top:10px;
+}
+#insert{
+    text-align:center;
+    width:40%;
+    align-items:left;
+    margin-left:10px;
+    
+}
+table,tr
+{
+    margin-right:10px;
+    padding:10px;
+    padding-left:50px;
+    padding-top:1px;
+    text-align:center;
+    align-items:center;
+    /* max-width:25rem; */
+}
+td
+{
+    /* max-width:25rem; */
+    margin-right:10px;
+    padding:10px;
+    padding-left:20px;
+    padding-top:1px;
+    text-align:center;
+    align-items:center;
+}
+th
+{
+    /* max-width:25rem; */
+    padding:10px;
+    padding-left:20px;
+    padding-top:1px;
+    text-align:center;
+    align-items:center;
+    margin:0px;
+}
+h4
+{
+    float:right;
+    margin-right:30px;
+}
+h5{
+    color:darkred;
+    margin:0px;
+    padding:0px;
+}
+p{
+    text-align:center;
+}
+.taskname
+{
+    text-align:center;
+    font-weight: bold;
+}
+.btn
+{
+    border:0px;
+    border-radius:5px;
+    padding:2px;
+    font-size:13px;
+}
+.btn_p
+{
+    background-color:#ffdb4d;
+    color:black;
+    border:0px;
+    border-radius:5px;
+    padding:2px;
+}
+#progress_select
+{
+    background-color:#ffdb4d;
+    color:black;
+    border:0px;
+    border-right:1px;
+}
+.btn_s
+{
+    color:black;
+    background-color:#ff5c33;
+    border:0px;
+    border-radius:5px;
+    padding:2px;
+}
+.btn_c
+{
+    color:black;
+    border:0px;
+    border-radius:5px;
+    padding:2px;
+    background-color:#00e600;
+
+}
+.control,img
+{
+    height:20px;
+    width:20px;
+    margin:1px;
+    padding:3px;
+}
+.control_img
+{
+    height:17px;
+    width:17px;
+}
+#file
+{
+    width:9rem;
+
+    font-size:10px;
+    height:max-content;
+    border:0px;
+}
+.remarks
+{
+    
+    margin-top:5px;
+    border-radius:3px;
+}
+.progress_div
+{
+    background-color:#ffdb4d;
+    width:50%;
+    margin:5px;
+    height:fit-content;
+    border-radius:5px;
+}

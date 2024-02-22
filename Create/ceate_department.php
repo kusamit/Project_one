@@ -1,3 +1,10 @@
+<?php
+include '../dbconnect/dbconnect.php'; 
+session_start();
+$userType= $_SESSION["user_type"];
+echo $userType;
+include '../persistLogin.php';
+?>
 <html>
     <head>
         <title>
@@ -13,7 +20,7 @@
 
         </div>
         <center>
-            <a style='float:left;' href='../Admin_interface.php'><img style=' height:30px; weight:30px;'src='../view/back_button.png'></a>
+            <a style='float:left;' href='../interface.php'><img style=' height:30px; weight:30px;'src='../view/back_button.png'></a>
             <div class="dpt_creation">
                 <form action="" method="POST">
                     <h3>Create New Department</h3>
@@ -23,10 +30,8 @@
                     <div class="phpdepartment">
                        <!-- php here -->
                        <?php
-                        include '../dbconnect/dbconnect.php';
                         if(isset($_POST["submit"]))
                         {
-                            // $log_id=$login_id;
                             $dpt_name=$_POST["department"];
                             $department_query="INSERT INTO department (department_name)
                             VALUES ('$dpt_name')";

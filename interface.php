@@ -70,8 +70,8 @@ if($userType == "admin")
 
                         echo "<tr><th><h4>" . $id . "</h4></th>
                         <th><h2>". $row['project_name'] . "<a href='./project/project_details.php?id=" . $row['id'] . "'>
-                        <img src='./view/eye.png' alt='View' title='View'></a>","<a href='project_details.php?id=" . $row['id'] . "'>
-                        <img src='./view/update.png' alt='Update' title='Update'></a></h2></th> </tr>";
+                        <img src='./view/eye.png' alt='View' title='View'>
+                        </a></h2></th> </tr>";
                         $id++;
 
                     }
@@ -150,8 +150,7 @@ else if ($userType == "foreman")
                         }
                         echo "<tr><th><h4>" . $id . "</h4></th>
                         <th><h2>". $project_name . "<a href='./project/project_details.php?id=" . $project_id . "'>
-                        <img src='./view/eye.png' alt='View' title='View'></a>","<a href='project_details.php?id=" . $project_id . "'>
-                        <img src='./view/update.png' alt='Update' title='Update'></a></h2></th> </tr>";
+                        <img src='./view/eye.png' alt='View' title='View'></a></h2></th> </tr>";
                         $id++;
                     }
                     echo "</table>";
@@ -227,8 +226,9 @@ else if ($userType == "user")
                         }
                         echo "<tr><th><h4>" . $id . "</h4></th>
                         <th><h2>". $project_name . "<a href='./project/project_details.php?id=" . $project_id . "'>
-                        <img src='./view/eye.png' alt='View' title='View'></a>","<a href='project_details.php?id=" . $project_id . "'>
-                        <img src='./view/update.png' alt='Update' title='Update'></a></h2></th> </tr>";
+                        <img src='./view/eye.png' alt='View' title='View'></a>
+                        
+                        </h2></th> </tr>";
                         $id++;
                     }
                     echo "</table>";

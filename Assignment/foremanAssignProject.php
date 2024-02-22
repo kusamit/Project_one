@@ -1,27 +1,35 @@
 <?php
+session_start();
 include '../dbconnect/dbconnect.php';
+$userType= $_SESSION["user_type"];
+echo $userType;
+include '../persistLogin.php';
 $project_id = $_GET['p_id'];            //getting project id
-
 // echo $project_id;
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .btn_Assign{
+            float:right:
+        }
+    </style>
 </head>
 <body>
+    <?php
+    if($userType=="admin")
+    {?>
         <a style='float:left;' href='../project/project_details.php?id=<?php echo $project_id; ?>'>
             <img style=' height:30px; weight:30px;'src='../view/back_button.png'>
         </a>
     <div class="maindiv">
         <form action="" method="POST">
         <div class="topsubmit">
-            <!-- <button name="submit" class="btn_done"> -->
-                <!-- Done -->
-                <input type="submit" placeholder="Done" name="submit" class="btn_done" style="width='max-content;'">
-            <!-- </button> -->
         </div>
         <div class="usersview">
             <table border="1">
@@ -36,14 +44,6 @@ $project_id = $_GET['p_id'];            //getting project id
                 <?php
                     $query_users_view="SELECT * from users where role='foreman'";
                     $result_view=mysqli_query($conn,$query_users_view);
-                    // if($result_view)
-                    // {
-                    //     // echo "connection sucess";
-                    // }
-                    // else
-                    // {
-                    //     echo "unsucess to connect";
-                    // }
                     $num_view=mysqli_num_rows($result_view);
                     if($num_view>0)
                     {
@@ -83,34 +83,64 @@ $project_id = $_GET['p_id'];            //getting project id
                 ?>
                 
             </table>
+            <!-- Done -->
+            <input type="submit"  value="Assign" name="submit" class="btn_Assign">
         </div>
-        <!-- submit Assigned Button -->
-        <?php
-        if(isset($_POST["submit"]))
-            {
-                $p_id=$project_id;
-                if (isset($_POST['checked_id'])) {
-                    $checked_row_id=$_POST['checked_id'];
-                    // foreach ($_POST['checked_id'] as $checked_row_id) {
-                    $sql_assign="INSERT INTO assigned_member (project_id,foreman_id) 
-                    values ('$p_id','$checked_row_id')";
-                    $result_query_assigned=mysqli_query($conn,$sql_assign);
-                        if($result_query_assigned)
-                        {
-                            echo "Selected Foreman has been assigned.";
-                        }
-                        else
-                        {
-                            echo "error to Assign data";
-                        }
-                    // }
-                }
-                
-                }
-
-            // }
-        ?>
     </form>
     </div>
+    <!-- submit Assigned Button -->
+    <?php
+        if(isset($_POST["submit"]))
+        {
+            // $project_id;
+            
+            if(!(isset($_POST['checked_id'])))
+            {
+                echo "Please Select Any Foreman to Assign.";
+            }
+            if (isset($_POST['checked_id'])) {
+                $checked_row_id=$_POST['checked_id'];
+                $checkAssignedForemanQuery = "select foreman_id from assigned_member where project_id='$project_id'";
+                $checkAssignedForemanResult = mysqli_query($conn, $checkAssignedForemanQuery);
+                $num=mysqli_num_rows($checkAssignedForemanResult);
+                if($num)
+                {
+                    while($row = mysqli_fetch_assoc($checkAssignedForemanResult))
+                    {
+                        $existingForemanId = $row["foreman_id"];
+                    }
+                }
+                
+                if(mysqli_num_rows($checkAssignedForemanResult) == 0)
+                {
+                    $insertForemanIdQuery = "insert into assigned_member (project_id, foreman_id) values('$project_id', '$checked_row_id')";
+                    $insertForemanIdResult = mysqli_query($conn, $insertForemanIdQuery);
+                    if($insertForemanIdQuery)
+                    {
+                        // echo $checked_row_id;
+                        echo "The Selected User as foreman has been assigned.";
+                    }
+                    // echo $insertForemanIdQuery;
+                }
+                else if (mysqli_num_rows($checkAssignedForemanResult) > 0 && $existingForemanId == $checked_row_id)
+                {
+                    echo "This foreman is already assigned";
+                }
+                elseif(mysqli_num_rows($checkAssignedForemanResult) > 0 && $existingForemanId != $checked_row_id)
+                {
+                    $updateForemanIdQuery = "update assigned_member set foreman_id = '$checked_row_id' where project_id = '$project_id'";
+                    $updateForemanIdResult = mysqli_query($conn, $updateForemanIdQuery);
+                    if($updateForemanIdResult)
+                    {
+                        // echo $checked_row_id;
+                        echo "The New Selected User as foreman has been Assigned and Previous has been UnAssigned.";
+                    }
+                    // echo $updateForemanIdResult;
+                }
+            }
+        }
+    ?>
+    <?php
+    }?>
 </body>
 </html>

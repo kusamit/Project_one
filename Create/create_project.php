@@ -1,4 +1,9 @@
 <?php
+include '../dbconnect/dbconnect.php'; 
+session_start();
+$userType= $_SESSION["user_type"];
+echo $userType;
+include '../persistLogin.php';
 ?>
 <html>
     <head>
@@ -14,7 +19,7 @@
         <div class="nav">
 
         </div>
-        <a style='float:left;' href='../Admin_interface.php'><img style=' height:30px; weight:30px;'src='../view/back_button.png'></a>
+        <a style='float:left;' href='../interface.php'><img style=' height:30px; weight:30px;'src='../view/back_button.png'></a>
         <div class="project_creation">
             <h3>Create New Project</h3>
                 <form action="" method="POST" id="formp" enctype="multipart/form-data">
@@ -33,7 +38,8 @@
                     <span><textarea name="p_details" id="project" cols="" rows=""></textarea></span><br><br>
                     <span><input type="submit" value="Create" name="submit" id="project_smt"></span> 
                     <br><br><br>
-                    <div class="phpproject">
+                </form>
+                <div class="phpproject">
                        <!-- php here -->
                        <?php
                         include '../dbconnect/dbconnect.php';
@@ -61,10 +67,7 @@
                             }
                         }
                         ?>
-                    </div>
-                </form>
-                    
-            </div>
-        
+                </div>   
+        </div>
     </body>
 </html>

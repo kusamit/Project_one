@@ -1,5 +1,9 @@
 <?php
-// include 'session_create.php';
+include '../dbconnect/dbconnect.php'; 
+session_start();
+$userType= $_SESSION["user_type"];
+echo $userType;
+include '../persistLogin.php';
 ?>
 <html>
     <head>
@@ -16,7 +20,7 @@
 
         </div>
         <center>
-        <a style='float:left;' href='../Admin_interface.php'>
+        <a style='float:left;' href='../interface.php'>
             <img style=' height:30px; weight:30px;'src='../view/back_button.png'>
         </a>
             <div class="user_creation">
@@ -69,13 +73,13 @@
                     </select></Span>
                     <span><input type="submit" value="Create" name="submit" id="dpt_smt"></span> 
                     <br><br><br>
-                    <div class="phpdepartment">
+                </form>
+                <div class="phpdepartment">
                        <!-- php here -->
                        <?php
                         
                         if(isset($_POST["submit"]))
                         {
-                            // $log_id=$login_id;         //login_id
                             $name=$_POST["name"];
                             $email=$_POST["email"];
                             $phone=$_POST["phone"];
@@ -85,10 +89,7 @@
                             $password = password_hash($_POST['password'],PASSWORD_BCRYPT);  
                             $department=$_POST["dept_id"];
                             $user_role=$_POST["role"];
-                            //for user
-                            // if($authentication==1)
-                            // {
-                                $create_user="INSERT INTO users (fullname,email,phone,address,username,password,department_id,role)
+                            $create_user="INSERT INTO users (fullname,email,phone,address,username,password,department_id,role)
                             VALUES ('$name','$email','$phone','$address','$username','$password','$department','$user_role')";
                             $result=mysqli_query($conn,$create_user);
                             if($result)
@@ -99,30 +100,10 @@
                             {
                                 echo "Error to create the user, Please try again later...!";
                             }
-                            // }
-                            // //for manager
-                            // if($authentication==2)
-                            // {
-                            //     $create_user="INSERT INTO manager (fullname,email,phone,address,username,password,log_id)
-                            // VALUES ('$name','$email','$phone','$address','$username','$password','$log_id')";
-                            // $result=mysqli_query($conn,$create_user);
-                            // if($result)
-                            // {
-                            //    echo "Manager Created Sucessfully...!!";
-                            // }
-                            // else
-                            // {
-                            //     echo "Error to create the Manager, Please try again later...!";
-                            // }
-                            // }
-                            
                         }
-                        ?>
-                    </div>
-                </form>
-                    
+                    ?>
+                </div> 
             </div>
         </center>
-        
     </body>
 </html>
