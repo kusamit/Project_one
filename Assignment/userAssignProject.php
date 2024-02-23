@@ -86,28 +86,29 @@ if ($userType == "admin" || $userType == "foreman" || $userType == "user")
         </div>
         <!-- submit Assigned Button -->
         <?php
-        // if(isset($_POST["submit"]))
-        //     {
-        //         $p_id=$project_id;
-        //         if (isset($_POST['checked_id']) && is_array($_POST['checked_id'])) {
-        //             foreach ($_POST['checked_id'] as $checked_row_id) {
-        //             $sql_assign="INSERT INTO assigned_member (project_id,user_id) 
-        //             values ('$p_id','$checked_row_id')";
-        //             // var_dump($checked_row_id);
-        //             // die();
-        //             $result_query_assigned=mysqli_query($conn,$sql_assign);
-        //                 if($result_query_assigned)
-        //                 {
+        if(isset($_POST["submit"]))
+            {
+                $p_id=$project_id;
+                if (isset($_POST['checked_id']) && is_array($_POST['checked_id'])) {
+                    foreach ($_POST['checked_id'] as $checked_row_id) {
+                    $sql_assign="INSERT INTO assigned_member (project_id,user_id) 
+                    values ('$p_id','$checked_row_id')";
+                    // var_dump($checked_row_id);
+                    // die();
+                    $result_query_assigned=mysqli_query($conn,$sql_assign);
+                        if($result_query_assigned)
+                        {
 
-        //                 }
-        //                 else
-        //                 {
-        //                     echo "error to Assign data";
-        //                 }
-        //             }
-        //         }
-        //         echo "Selected Users has been assigned.";
-        //         }
+                        }
+                        else
+                        {
+                            echo "error to Assign data";
+                        }
+                    }
+                    echo "Selected Users has been assigned.";
+                }
+                
+            }
 
             // }
         ?>

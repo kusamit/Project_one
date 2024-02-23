@@ -25,7 +25,9 @@ body
         }
         form
         {
-            /* width:100%; */
+            /* width:100%;
+            margin:0px;
+            padding:0px; */
         }
 
         h2{
@@ -60,6 +62,7 @@ body
         .outer
         {
             margin:0px;
+            padding:0px;
             /* background-color:lightgrey; */
             background-color:white;
             /* width:100%; */
@@ -169,4 +172,93 @@ body
             margin-top:65px;
             padding:10px;
 
+        }
+        .userlist
+        {
+            text-align:center;
+            /* background-color:#003399;
+            color:white; */
+        }
+        #adduser
+        {
+            background-color: #003399;
+            color:white;
+            /* margin-top:15px; */
+        }
+        #adduser:hover
+        {
+            background-color: lightgrey;
+            color:black;
+        }
+        #project_creation
+        {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: lightgrey;
+            padding:1rem;
+            color:black;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size:larger;
+            /* width:50%; */
+        }
+        .dpt_creation
+        {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: lightgrey;
+            margin: 20rem;
+            margin-top: 80px;
+            padding:1rem 2rem 2rem 2rem;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size:larger;
+            border-radius:3px;
+            height: 30%;
+        }
+        span{
+            display:flex;
+            flex-direction:column;
+            padding: 1px;
+        }
+        .p_create
+        {
+            width:30rem;
+            padding: 4px;
+        }
+        .d_create
+        {
+            padding: 5px;
+            
+        }
+        #submit_project, #submit_department
+        {
+            width:30%;
+            background-color: blue;
+            color:white;
+            border:0px;
+            padding: 10px;
+            border-radius: 5px;
+            float:right;
+            margin-left: 70%;
+        }
+        .padd
+        {
+            padding:10px;
+            margin:10px;
+            margin-bottom:0px;
+        }
+        .phpdepartment
+        {
+            color:black;
+        }
+        .phpproject
+        {
+            background-color:lightgrey;
+            text-align:center;
+            /* margin-bottom:10px; */
+            padding: 10px;
+            font-size:15px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         }

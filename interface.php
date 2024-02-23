@@ -4,6 +4,7 @@ include './dbconnect/dbconnect.php';
 $userType= $_SESSION["user_type"];
 $user_admin_id=$_SESSION['Login_session'];
 echo $userType;
+echo $user_admin_id;
 include './persistLogin.php';
 ?>
 <!DOCTYPE html>
@@ -21,8 +22,9 @@ if($userType == "admin")
     <div class="top_nav">
             <a href="./credentials/logout.php?id=<?php echo $user_admin_id?>" class="top_nav_bar" id="logout">Logout</a>
             <a href="./Create/create_project.php" class="top_nav_bar">Create Project</a>
-            <a href="./Create/create_user.php" class="top_nav_bar">Add Users</a>
-            <a href="./Create/ceate_department.php" class="top_nav_bar">Add Department</a>
+            <a href="./view/userlist.php" class="top_nav_bar">Users</a>
+            <a href="./view/deptlist.php" class="top_nav_bar">Department</a>
+            <a href="./interface.php" class="top_nav_bar">Home</a>
             <h2 class="dashboard">Admin Dashboard</h2>
         </div>
         <div class="head">
@@ -47,8 +49,6 @@ if($userType == "admin")
         ?>
 
         <div class="nav">
-            <a href="./view/userlist.php" class="nav_bar">Users</a>
-            <a href="./view/deptlist.php" class="nav_bar">Department</a>
             <h2 class="admin_name"><?php echo $admin_name;?><br><?php echo "Username"; ?></h2>
         </div>
 
@@ -95,6 +95,10 @@ else if ($userType == "foreman")
 { ?>
     <div class="top_nav">
             <a href="./credentials/logout.php?id=<?php echo $user_admin_id?>" class="top_nav_bar" id="logout">Logout</a>
+            <!-- <a href="./Create/create_project.php" class="top_nav_bar">Create Project</a> -->
+            <a href="./view/userlist.php" class="top_nav_bar">Users</a>
+            <a href="./view/deptlist.php" class="top_nav_bar">Department</a>
+            <a href="./interface.php" class="top_nav_bar">Home</a>
             <h2 class="dashboard">Foreman Dashboard</h2>
         </div>
         <div class="head">
@@ -117,8 +121,6 @@ else if ($userType == "foreman")
         ?>
 
         <div class="nav">
-            <a href="./view/userlist.php" class="nav_bar">Users</a>
-            <a href="./view/deptlist.php" class="nav_bar">Department</a>
             <h2 class="foreman_name"><?php echo $foreman_name;?><br><?php echo "Username"; ?></h2>
         </div>
 
@@ -173,6 +175,10 @@ else if ($userType == "user")
 {?>
     <div class="top_nav">
             <a href="./credentials/logout.php?id=<?php echo $user_admin_id?>" class="top_nav_bar" id="logout">Logout</a>
+            <!-- <a href="./Create/create_project.php" class="top_nav_bar">Create Project</a> -->
+            <a href="./view/userlist.php" class="top_nav_bar">Users</a>
+            <a href="./view/deptlist.php" class="top_nav_bar">Department</a>
+            <a href="./interface.php" class="top_nav_bar">Home</a>
             <h2 class="dashboard">User Dashboard</h2>
         </div>
         <div class="head">
@@ -194,8 +200,6 @@ else if ($userType == "user")
             }
         ?>
             <div class="nav">
-             <a href="./view/userlist.php" class="nav_bar">Users</a>
-             <a href="./view/deptlist.php" class="nav_bar">Department</a>
              <h2 class="foreman_name"><?php echo $user_name;?><br><?php echo "Username"; ?></h2>
             </div>
 <!-- View project details -->

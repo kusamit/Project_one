@@ -32,6 +32,7 @@ if($userType == "admin" || $userType == "foreman" || $userType == "user")
                 <a href="../Create/create_project.php" class="top_nav_bar">Create Project</a>
             <?php
             }?>
+            
             <a href="../view/userlist.php" class="top_nav_bar">Users</a>
             <a href="../view/deptlist.php" class="top_nav_bar">Department</a>
             <a href="../interface.php" class="top_nav_bar">Home</a>
@@ -122,53 +123,51 @@ if($userType == "admin" || $userType == "foreman" || $userType == "user")
             </div>
         <?php
         }?>
+        
+            
 
-        <!-- View user list -->
-        <!-- </div> -->
+        <!-- Department Creation -->
     <div class="outer">
-                    <!-- add user -->
-                    <?php
-                    if(!($userType == "user"))
-                    {?>
-                    <div class="adduser">
-                        <a href="../Create/create_department.php" id="adduser" class="nav_bar">Add Department</a>
+                <?php
+                if($userType=="admin")
+                {?>
+                    <center>
+                        <h3>Create New Department</h3>
+            <!-- <a style='float:left;' href='../interface.php'><img style=' height:30px; weight:30px;'src='../view/back_button.png'></a> -->
+            <div class="dpt_creation">
+                <form action="" method="POST">
+                    <span class="padd">Department Name</span>
+                    <span><input type="text" name="department"  required class="d_create" class="padd" placeholder="Enter Department Name"></span>
+                    <span><input type="submit" value="Submit" name="submit" id="submit_department" class="padd" ></span> 
+                </form>
+                <div class="phpdepartment">
+                       <!-- php here -->
+                       <?php
+                        if(isset($_POST["submit"]))
+                        {
+                            $dpt_name=$_POST["department"];
+                            $department_query="INSERT INTO department (department_name)
+                            VALUES ('$dpt_name')";
+                            $result=mysqli_query($conn,$department_query);
+                            if($result)
+                            {
+                               echo "$dpt_name Department Created Sucessfully...!!";
+                            // header('location:../view/deptlist.php');
+                            }
+                            else
+                            {
+                                echo "Error to create the Department";
+                            }
+                        }
+                        ?>
                     </div>
-                    <?php
-                    } ?>
+            </div>
+        </center>
+
+            <?php
+            }?>
                 
-                <center>
-        <form action="" method="POST">
-        <table>
-        <?php
-        $id=1;   //initializing id as autoincrement.
-               $sql = "SELECT * FROM department"; 
-               $result = mysqli_query($conn, $sql);
-               if (mysqli_num_rows($result) > 0) {
-                   echo "<table border='0'>";
-                echo "<h3>Department List <h3>";
-               while ($row = mysqli_fetch_assoc($result)) 
-               {
-                echo "<tr></tr>
-                <tr><th><h4>" . $id . "</h4></th>
-                <th><h2>". $row['department_name'] . "<a href='user_details_view.php?id=" . $row['dpt_id'] . "'>
-                <img src='delete.png' alt='Delete' title='Delete'></a>","<a href='user_details_view.php?id=" . $row['dpt_id'] . "'>
-                <img src='update.png' alt='Update' title='Update'></a>","<a href='user_details_view.php?id=" . $row['dpt_id'] . "'>
-                </a></h2></th> </tr>";
-                $id++;
-            }
-               echo "</table>";
-               } else {
-               echo "No records found.";}
-               mysqli_close($conn);
-        ?>
-            <tr>
-
-            </tr>
-        </table>
-    </form>
-
-    </center>
-               </div>
+            </div>
 
         
         <div class="footer">
