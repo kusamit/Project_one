@@ -211,15 +211,28 @@ body
             background-color: lightgrey;
             margin: 20rem;
             margin-top: 80px;
-            padding:1rem 2rem 2rem 2rem;
+            padding:1rem 3rem 3rem 3rem;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             font-size:larger;
             border-radius:3px;
             height: 30%;
         }
+        .user_creation
+        {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: lightgrey;
+            padding:1rem;
+            color:black;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            font-size:larger;
+            /* width:50%; */
+        }
         span{
             display:flex;
-            flex-direction:column;
+            /* flex-direction:column; */
             padding: 1px;
         }
         .p_create
@@ -229,11 +242,18 @@ body
         }
         .d_create
         {
-            padding: 5px;
+            padding: 10px;
+            width: 100%;
             
         }
-        #submit_project, #submit_department
+        .input_user
         {
+            width:40rem;
+            padding:4px;
+        }
+        #submit_project, #submit_department, #submit_user
+        {
+            margin-top:10px;
             width:30%;
             background-color: blue;
             color:white;
@@ -248,6 +268,10 @@ body
             padding:10px;
             margin:10px;
             margin-bottom:0px;
+            /* width: 100%;
+            display:flex;
+            flex-direction:column;
+            padding: 1px; */
         }
         .phpdepartment
         {

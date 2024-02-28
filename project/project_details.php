@@ -58,8 +58,12 @@ include '../persistLogin.php';
                             <div id="details">
                                 Project Details
                             </div>
+                            <!-- <div>
+                                <a href="" class="Assign">Assign</a>
+                            </div> -->
                         </div>
                     </div>  
+                    <div class="info_flex">
                     <div class="info_body">
                         <div class="detailed_info_left">
                                     <!-- details_Info -->
@@ -95,11 +99,12 @@ include '../persistLogin.php';
                                 </div>
                             </div>
                         </div>
+                                </div>
                         <div class="assign_user">
                             <?php
                             if(!($userType=="user"))
                             {?>
-                                <a href="../Assignment/userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign Users</a>
+                                <a href="../Assignment/assigned_user.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign Users</a>
                             <?php
                             }?>
                             <?php
@@ -110,15 +115,22 @@ include '../persistLogin.php';
                             }?>
                             
                         <div>
+                        </div>
                         <!-- closing of project info php -->
                     <?php
                     }
                     ?>
                 </table>
             <!-- Main tasks or topics -->
+            <?php
+            if(!($userType=="user"))
+            {?>
             <div class="topics">
                 <a href="../task_mgmt/create_main_task.php?project_id=<?php echo $project_id; ?>">Create Main Task | Topics</a>
             </div>
+            <?php
+            }?>
+            
             <div class="topics_View_nav">
                 <p Class="">Main Task | Topics</p>
             </div>

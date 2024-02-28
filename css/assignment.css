@@ -1,0 +1,52 @@
+.showuser, .showforeman 
+{
+    width: 100%;
+    height: 300px;
+    display: flex;
+    align-content: center;
+}
+.usertableview, .foremantableview 
+{
+    flex: 6;
+    margin:40px;
+}
+
+.usersubmitview, .foremansubmitview 
+{
+    flex: 1;
+    margin-left:10px;
+    margin-right: 10px;
+    margin-top: 0px;
+}
+
+table,th,td 
+{
+    font-size: larger;
+    /* padding: 5px; */
+    border-collapse: collapse;
+}
+table
+{
+    width: 100%;
+    border: 2px solid darkblue;
+}
+.btn_done {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+input.checkbox
+{
+    height: 3rem;
+}
+.foreman_nav, .user_nav
+{
+    background-color: darkblue;
+    color: white;
+    font-size: 20px;
+    margin: 10px;
+    padding: 5px;
+}

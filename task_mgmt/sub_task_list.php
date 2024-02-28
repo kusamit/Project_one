@@ -19,8 +19,14 @@ include '../persistLogin.php';
                 $main_task_id = $_GET['main_task_id'];
                 $project_id = $_GET['project_id'];
             ?>
+            <div class="top_nav">
+            <a href="../project/project_details.php?user_type=<?php echo $userType; ?>&id=<?php echo $project_id; ?>" class="top_nav_bar">Back</a></h4>
+            <a href="../interface.php" class="top_nav_bar">Home</a>
+            <h2 class="dashboard">Task Management</h2>
+        </div>
             <div class="header">
                 <!-- fetching the main task | Topics -->
+                
             <div class="taskname"> <center>
                 <?php
                         $sql = "SELECT * FROM main_task where Id='$main_task_id' and project_id='$project_id'";

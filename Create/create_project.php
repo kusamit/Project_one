@@ -14,12 +14,6 @@ include '../persistLogin.php';
     <title>Document</title>
     <link rel="stylesheet" href="../css/interface.css">
 </head>
-<!-- <style>
-   .adduser
-   {
-    background-color:darkblue;
-   }
-</style> -->
 <body>
 <?php
 if($userType == "admin")
