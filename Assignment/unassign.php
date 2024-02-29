@@ -14,6 +14,13 @@ $project_id = $_GET['p_id'];     //getting project id
     <link rel="stylesheet" href="../css/project_details.css">
     <link rel="stylesheet" href="../css/assignment.css">
 </head>
+<style>
+h1
+{
+    color:darkblue;
+    margin-left: 1.8rem;
+}
+</style>
 <body>
 <?php
     if($userType=="admin" || $userType=="foreman" || $userType=="user")
@@ -56,27 +63,32 @@ $project_id = $_GET['p_id'];     //getting project id
             </div>
         <?php
         }?>
-        <a href="./userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign</a>
-        <a href="./unassign.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign</a>
+         <hr>
+        <div class="layout">
+            <h1>State</h1>
+            <a href="./userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_a_nav">Assign</a>
+            <a href="./unassign.php?p_id=<?php echo $project_id; ?>" id="assign_a_nav">UnAssign</a>
+        </div>
         <center><div Class="user_nav">Assigned User</div></center>
         <div class='showuser'>
             <div class="usertableview">
                 <form action="" method="POST">
                     <table border="1">
-                        <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Role</th>
-                        <th>Department</th>
-                        <th>UnAssign</th>
-                        </tr>
                     <!-- php -->
                         <?php
                             $query_assigned_view="SELECT * from assigned_member where project_id='$project_id'";
                             $result_assigned=mysqli_query($conn,$query_assigned_view);
                             $num_assigned=mysqli_num_rows($result_assigned);
                             if($num_assigned>0)
-                            {
+                            {?>
+                                <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Role</th>
+                                <th>Department</th>
+                                <th>UnAssign</th>
+                                </tr>
+                                <?php
                                 while($row=mysqli_fetch_assoc($result_assigned))
                                 {
                                     $assigned_user_id=$row['user_id'];
@@ -121,6 +133,10 @@ $project_id = $_GET['p_id'];     //getting project id
                                     <?php
                                 }
                             }
+                            else
+                            {
+                                echo "No Members Found.";
+                            }
                         ?>
                     </table>
             </div>
@@ -134,38 +150,30 @@ $project_id = $_GET['p_id'];     //getting project id
             {
                 if (!isset($_POST['checked_id'])) 
                 {
-                    echo "Please Select Any User to Assign.";
+                    echo "Please Select Any User to UnAssign.";
+                    exit();
                 } 
                 else if (isset($_POST['checked_id']) && is_array($_POST['checked_id'])) 
                 {
                     foreach ($_POST['checked_id'] as $checked_row_id) 
                     {
-                        $checkAssignedUserQuery = "SELECT * FROM assigned_member WHERE project_id='$project_id' AND user_id='$checked_row_id'";
+                        $checkAssignedUserQuery = "DELETE FROM assigned_member WHERE project_id='$project_id' AND user_id='$checked_row_id'";
                         $AssignQueryResult = mysqli_query($conn, $checkAssignedUserQuery);
-                        if (mysqli_num_rows($AssignQueryResult) > 0) 
-                        {
-                            echo "UserId    ";
-                            echo $checked_row_id;
-                            echo "   has already assigned.";?><br><br><?php
-                        } 
-                        else 
-                        {
-                            $insertUserIdQuery = "INSERT INTO assigned_member (project_id, user_id) VALUES ('$project_id','$checked_row_id')";
-                            $AssignResult = mysqli_query($conn, $insertUserIdQuery);
-                            if($AssignResult)
-                            {
-                                echo "UserId    ";
-                                echo $checked_row_id;
-                               echo "   has been assigned."; ?><br><br><?php
-                            }
-                            
-                        }
                     }
+                    echo '<script>
+                    window.location.href = "unassign.php?p_id=' . $project_id . '";
+                    </script>';
                 }
+                 
+            }
+            else
+            {
+                exit();
             }
             ?>
             </div>
         </div>
+        </script>
     <?php
     }
     else

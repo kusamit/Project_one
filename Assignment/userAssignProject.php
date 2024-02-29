@@ -14,6 +14,13 @@ $project_id = $_GET['p_id'];     //getting project id
     <link rel="stylesheet" href="../css/project_details.css">
     <link rel="stylesheet" href="../css/assignment.css">
 </head>
+<style>
+h1
+{
+    color:darkblue;
+    margin-left: 1.8rem;
+}
+</style>
 <body>
 <?php
     if($userType=="admin" || $userType=="foreman")
@@ -56,27 +63,39 @@ $project_id = $_GET['p_id'];     //getting project id
             </div>
         <?php
         }?>
-        <a href="./userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign</a>
-        <a href="./unassign.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign</a>
-        <center><div Class="user_nav">User List</div></center>
+        <hr>
+        <div class="layout">
+            <h1>State</h1>
+            <a href="./userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign</a>
+            <a href="./unassign.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign</a>
+        </div>        
+            <center><div Class="user_nav">User List</div></center>
         <div class='showuser'>
             <div class="usertableview">
                 <form action="" method="POST">
                     <table border="1">
-                        <tr>
+                        <!-- <tr>
                         <th>Id</th>
                         <th>Name</th>
                         <th>Role</th>
                         <th>Department</th>
                         <th>Assign</th>
-                        </tr>
+                        </tr> -->
                     <!-- php -->
                         <?php
                             $query_users_view="SELECT * from users where role='user'";
                             $result_view=mysqli_query($conn,$query_users_view);
                             $num_view=mysqli_num_rows($result_view);
                             if($num_view>0)
-                            {
+                            {?>
+                                <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Role</th>
+                                <th>Department</th>
+                                <th>Assign</th>
+                                </tr>
+                                <?php
                                 while($row=mysqli_fetch_assoc($result_view))
                                 {
                                     $user_id=$row['id'];

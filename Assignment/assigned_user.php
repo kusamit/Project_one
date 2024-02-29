@@ -14,6 +14,13 @@ $project_id = $_GET['p_id'];     //getting project id
     <link rel="stylesheet" href="../css/project_details.css">
     <link rel="stylesheet" href="../css/assignment.css">
 </head>
+<style>
+h1
+{
+    color:darkblue;
+    margin-left: 1.8rem;
+}
+</style>
 <body>
 <?php
     if($userType=="admin" || $userType=="foreman" || $userType=="user")
@@ -56,9 +63,15 @@ $project_id = $_GET['p_id'];     //getting project id
             </div>
         <?php
         }?>
-        <a href="./userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign</a>
-        <a href="./unassign.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign</a>
+        <hr>
+        <div class="layout">
+        <h1>State</h1>
+            <a href="./userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign</a>
+            <a href="./unassign.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign</a>
+            
+        </div>
         <center><div Class="user_nav">Assigned User</div></center>
+        
         <div class='showuser'>
             <div class="usertableview">
                 <form action="" method="POST">
@@ -94,6 +107,7 @@ $project_id = $_GET['p_id'];     //getting project id
                                         while($row=mysqli_fetch_assoc($result_view))
                                         {
                                             $user_id=$row['id'];
+                                            // echo $user_id;
                                             $fullname=$row['fullname'];
                                             $role=$row['role'];
                                             $dpt_id=$row['department_id'];

@@ -14,7 +14,7 @@ include '../persistLogin.php';
 </head>
 <body>
     <?php
-   if($userType=="admin" || $userType=="foreman" || $userType=="user")
+   if($userType=="admin" || $userType=="foreman")
    {?>
         <form action="" method="POST">
         <?php

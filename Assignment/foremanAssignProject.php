@@ -2,7 +2,7 @@
 session_start();
 include '../dbconnect/dbconnect.php';
 $userType= $_SESSION["user_type"];
-echo $userType;
+// echo $userType;
 include '../persistLogin.php';
 $project_id = $_GET['p_id'];            //getting project id
 // echo $project_id;

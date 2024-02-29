@@ -24,7 +24,8 @@ body {
     margin-top: 5px;
 }
 
-.project_info {
+.project_info 
+{
     /* background-color:#b2b266;   */
 }
 
@@ -114,7 +115,7 @@ a:hover {
     gap: 10px;
     margin-bottom: 10px;
     margin-top: 0px;
-    background-color: #d9d9d9;
+    /* background-color: #f7f7f7; */
     padding-bottom: 10px;
     width: 80%;
 }
@@ -129,14 +130,7 @@ a:hover {
 }
 
 .assign_user {
-    /* padding: 20px; */
     text-align: center;
-    /* flex: 4; */
-    /* margin: 10px; */
-    /* padding: 10px;
-    justify-content: center;
-    margin-top: 4rem;
-    margin-left: 5rem; */
     display: flex;
     flex-direction: column;
 }
@@ -250,4 +244,19 @@ embed {
     shadow: 5px 10px #888888;
     padding: 5px;
 }
-
+#assign_a_nav
+{
+    margin-top: 2rem;
+    margin-bottom: 5px;
+    margin: 5px;
+    margin-left: 6rem;
+    /* margin-top: 4rem; */
+    padding: 10px;
+    font-size: 20px;
+    text-decoration: none;
+    background-color: lightcyan;
+    /* width: fit-content;
+    height: fit-content; */
+    border-radius: 5px;
+    color: #551A8B;
+}

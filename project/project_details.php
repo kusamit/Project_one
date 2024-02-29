@@ -2,7 +2,7 @@
 session_start();
 include '../dbconnect/dbconnect.php';
 $userType= $_SESSION["user_type"];
-echo $userType;
+// echo $userType;
 include '../persistLogin.php';
 ?>
 
@@ -101,19 +101,8 @@ include '../persistLogin.php';
                         </div>
                                 </div>
                         <div class="assign_user">
-                            <?php
-                            if(!($userType=="user"))
-                            {?>
                                 <a href="../Assignment/assigned_user.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign Users</a>
-                            <?php
-                            }?>
-                            <?php
-                            if(!($userType=="foreman" || $userType=="user") )
-                            {?>
-                                <a href="../Assignment/foremanAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_foreman">Assign Foreman</a>
-                            <?php
-                            }?>
-                            
+                                <a href="../Assignment/foremanAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_foreman">Assign Foreman</a> 
                         <div>
                         </div>
                         <!-- closing of project info php -->

@@ -1,3 +1,10 @@
+<?php
+session_start();
+include '../dbconnect/dbconnect.php';
+$userType= $_SESSION["user_type"];
+// echo $userType;
+include '../persistLogin.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
