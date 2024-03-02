@@ -2,11 +2,11 @@
 include '../dbconnect/dbconnect.php'; 
 session_start();
 $userType= $_SESSION["user_type"];
-echo $userType;
+// echo $userType;
 include '../persistLogin.php';
 ?>
 <?php
-if($usertype=='admin' || $userType=='foreman')
+if($userType=='admin' || $userType=='foreman')
 {
     include 'dbconnect.php';
     $id = $_GET['id'];

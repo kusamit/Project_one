@@ -29,16 +29,24 @@ include '../persistLogin.php';
         <label for="Assign">Assign to User</label>
         <label for="Assign_user"><?php include '../Assignment/userAssignMainTask.php';?></label><br>
         <label for="deadline">Deadline</label> <br>
-        <label for="deadlinetask"><input type="datetime-local" name="dt" id="" ></label>
+        <label for="deadlinetask"><input type="datetime-local" name="dt" id="" required></label>
         <center>
-        <input type="submit" value="Create" name="create" id="submit">
+        <input type="submit" value="Create" name="create" id="submit"><br><br>
         </form>
     <?php
         include 'dbconnect.php';
         if(isset($_POST['create']))
         {
-            $create=$_POST['task'];
-            $assigned_id=$_POST['user_name'];
+            
+            if(!(isset($_POST['user_name'])))
+            {
+                echo "Please select User";
+            }
+            else
+            {   
+                $create=$_POST['task'];
+                $assigned_id=$_POST['user_name'];
+            // }
             $datetime=$_POST['dt'];
             $query="INSERT INTO main_task (name,project_id,user_id,deadline) values ('$create','$project_id','$assigned_id','$datetime') ";
             $check_duplicate_query = "SELECT * FROM main_task WHERE name='$create'";
@@ -53,6 +61,7 @@ include '../persistLogin.php';
                 echo $create;
                 echo "  as Main Task | Topics is Created!";
             }
+        }
         }
     ?> </center> 
     <?php

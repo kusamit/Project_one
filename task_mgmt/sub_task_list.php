@@ -228,6 +228,10 @@ include '../persistLogin.php';
             <!-- file display -->
             <td>
                 <input type="file" name="doc" id="file" >
+                <!-- $file=$_FILES['file']['name'];
+                $temp=$_FILES['file']['tmp_name'];
+                $folder='../project/file/'.$file;
+                move_uploaded_file($temp,$folder); -->
             </td>
             <!-- display remarks -->
             <td>

@@ -14,6 +14,7 @@ if ($result_view) {
     if ($num_view > 0) {
         ?>
         <!-- select element outside the loop -->
+        
         <select name="user_name" id="">
             <?php
             while ($row = mysqli_fetch_assoc($result_view)) {
@@ -33,6 +34,7 @@ if ($result_view) {
                             $fullname = $user_row['fullname'];
                             ?>
                             <!-- Select option inside the loop -->
+                            <!-- <option value="">Assign the users to the project first.</option> -->
                             <option value="<?php echo $user_id; ?>"><?php echo $fullname; ?></option>
                             <?php
                         } else {
