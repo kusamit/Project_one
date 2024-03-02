@@ -23,10 +23,10 @@ h1
 </style>
 <body>
 <?php
-    if($userType=="admin" || $userType=="foreman" || $userType=="user")
+    if($userType=="admin" || $userType=="foreman")
 {?>
     <?php
-        if($userType== "admin" || $userType== "foreman" || $userType=="user")
+        if($userType== "admin" || $userType== "foreman")
         { ?>
             <div class="main">
                 <table border="1">
@@ -65,7 +65,7 @@ h1
         }?>
          <hr>
         <div class="layout">
-            <h1>State</h1>
+            <!-- <h1>State</h1> -->
             <a href="./userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_a_nav">Assign</a>
             <a href="./unassign.php?p_id=<?php echo $project_id; ?>" id="assign_a_nav">UnAssign</a>
         </div>
@@ -81,17 +81,20 @@ h1
                             $num_assigned=mysqli_num_rows($result_assigned);
                             if($num_assigned>0)
                             {?>
-                                <tr>
+                            <tr>
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Role</th>
                                 <th>Department</th>
                                 <th>UnAssign</th>
-                                </tr>
+                            </tr>
                                 <?php
                                 while($row=mysqli_fetch_assoc($result_assigned))
                                 {
                                     $assigned_user_id=$row['user_id'];
+                                    if($assigned_user_id=='0'){}
+                                    else
+                                    {
                                     $query_users_view="SELECT * from users where id='$assigned_user_id'";
                                     $result_view=mysqli_query($conn,$query_users_view);
                                     $num_view=mysqli_num_rows($result_view);
@@ -106,6 +109,13 @@ h1
                                         }
                                     }
                                     ?>
+                                    <!-- <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Role</th>
+                                        <th>Department</th>
+                                        <th>UnAssign</th>
+                                    </tr> -->
                                     <tr>
                                         <td><?php echo  $user_id ?></td>
                                         <td><?php echo $fullname  ?></td>
@@ -132,6 +142,7 @@ h1
                                     </tr>
                                     <?php
                                 }
+                            }
                             }
                             else
                             {

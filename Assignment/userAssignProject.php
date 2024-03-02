@@ -65,7 +65,7 @@ h1
         }?>
         <hr>
         <div class="layout">
-            <h1>State</h1>
+            <!-- <h1>State</h1> -->
             <a href="./userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign</a>
             <a href="./unassign.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign</a>
         </div>        
@@ -74,13 +74,6 @@ h1
             <div class="usertableview">
                 <form action="" method="POST">
                     <table border="1">
-                        <!-- <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Role</th>
-                        <th>Department</th>
-                        <th>Assign</th>
-                        </tr> -->
                     <!-- php -->
                         <?php
                             $query_users_view="SELECT * from users where role='user'";

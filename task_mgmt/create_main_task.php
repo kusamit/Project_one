@@ -1,18 +1,24 @@
 <?php
 include '../dbconnect/dbconnect.php'; 
 session_start();
+$project_id = $_GET['p_id'];
+// echo $project_id;
 $userType= $_SESSION["user_type"];
-echo $userType;
+// echo $userType;
 include '../persistLogin.php';
 ?>
 <html>
     <head>
         <title>Create Main Task | Topics</title>
-        <style>
-
-        </style>
+        <link rel="stylesheet" href="./subtaskcss/taskstyle.css">
+        <link rel="stylesheet" href="../css/project_details.css">
+        <link rel="stylesheet" href="../css/assignment.css">
     </head>
+    
     <body>
+    <?php
+        include "./header.php";
+    ?>
    <?php
    if($userType=="admin" || $userType=="foreman")
    {?>
@@ -24,10 +30,10 @@ include '../persistLogin.php';
         <label for="Assign_user"><?php include '../Assignment/userAssignMainTask.php';?></label><br>
         <label for="deadline">Deadline</label> <br>
         <label for="deadlinetask"><input type="datetime-local" name="dt" id="" ></label>
-        <label for="submit"><input type="submit" value="Create" name="create" id="submit"></label>
+        <center>
+        <input type="submit" value="Create" name="create" id="submit">
         </form>
     <?php
-        $project_id = $_GET['project_id'];
         include 'dbconnect.php';
         if(isset($_POST['create']))
         {
@@ -48,7 +54,7 @@ include '../persistLogin.php';
                 echo "  as Main Task | Topics is Created!";
             }
         }
-    ?>  
+    ?> </center> 
     <?php
     }?> 
     </body>

@@ -150,7 +150,8 @@ else if ($userType == "foreman")
                         }
                         echo "<tr><th><h4>" . $id . "</h4></th>
                         <th><h2>". $project_name . "<a href='./project/project_details.php?id=" . $project_id . "'>
-                        <img src='./view/eye.png' alt='View' title='View'></a></h2></th> </tr>";
+                        <img src='./view/eye.png' alt='View' title='View'>
+                        </a></h2></th> </tr>";
                         $id++;
                     }
                     echo "</table>";
@@ -174,8 +175,8 @@ else if ($userType == "user")
     <div class="top_nav">
             <a href="./credentials/logout.php?id=<?php echo $user_admin_id?>" class="top_nav_bar" id="logout">Logout</a>
             <!-- <a href="./Create/create_project.php" class="top_nav_bar">Create Project</a> -->
-            <a href="./view/userlist.php" class="top_nav_bar">Users</a>
-            <a href="./view/deptlist.php" class="top_nav_bar">Department</a>
+            <!-- <a href="./view/userlist.php" class="top_nav_bar">Users</a> -->
+            <!-- <a href="./view/deptlist.php" class="top_nav_bar">Department</a> -->
             <a href="./interface.php" class="top_nav_bar">Home</a>
             <h2 class="dashboard">User Dashboard</h2>
         </div>

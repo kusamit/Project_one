@@ -22,66 +22,27 @@ h1
 }
 </style>
 <body>
-<?php
-    if($userType=="admin" || $userType=="foreman" || $userType=="user")
-{?>
     <?php
-        if($userType== "admin" || $userType== "foreman" || $userType=="user")
+if($userType== "admin" || $userType== "foreman" || $userType=="user")
         { ?>
-            <div class="main">
-                <table border="1">
-                    <!-- fetching project name and details      -->
-                    <div class="project_info">
-                        <?php
-                            $sql="select * from project where id=$project_id" ;
-                            $result_view=mysqli_query($conn,$sql);
-                            if($result_view)
-                                {
-                                    echo "";
-                                }
-                            else
-                                {
-                                    echo "error database connection";
-                                }
-                            // Fetched details from the project table
-                            $num_view=mysqli_num_rows($result_view);
-                            $row_view=mysqli_fetch_assoc($result_view);
-                            $fetched_id=$row_view['id'];
-                            $fetched_project_name=$row_view['project_name'];
-                        ?>
-                        <!-- View project Name and Details HTML -->
-                        <div id="project_name">
-                        <h4 class="p">Project Name <a href="../project/project_details.php?user_type=<?php echo $userType; ?>&id=<?php echo $project_id; ?>" class="back_btn">Back</a></h4>
-                            <h4 class="p_n">
-                                <?php 
-                                echo $fetched_project_name ;
-                                ?>
-                            </h4>
-                        </div> 
-                    </div>
-                </table>
-            </div>
+    <?php
+        include "./header/header.php";
+    ?>
         <?php
-        }?>
-        <hr>
+        if(!($userType=='user')){?>
         <div class="layout">
-        <h1>State</h1>
-            <a href="./userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign</a>
-            <a href="./unassign.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign</a>
-            
-        </div>
+               <!-- <h1>State</h1> -->
+                <a href="./userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign</a>
+                <a href="./unassign.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign</a>
+                 </div> 
+            <?php
+            }?>
         <center><div Class="user_nav">Assigned User</div></center>
         
         <div class='showuser'>
             <div class="usertableview">
                 <form action="" method="POST">
                     <table border="1">
-                        <!-- <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Role</th>
-                        <th>Department</th>
-                        </tr> -->
                     <!-- php -->
                         <?php
                             $query_assigned_view="SELECT * from assigned_member where project_id='$project_id'";
@@ -89,7 +50,7 @@ h1
                             $num_assigned=mysqli_num_rows($result_assigned);
                             if($num_assigned>0)
                             {?>
-                                <tr>
+                             <tr>
                                 <th>Id</th>
                                 <th>Name</th>
                                 <th>Role</th>
@@ -99,11 +60,23 @@ h1
                                 while($row=mysqli_fetch_assoc($result_assigned))
                                 {
                                     $assigned_user_id=$row['user_id'];
+                                    if($assigned_user_id=='0')
+                                    {
+                                        // echo "No Assigned Member Found.";
+                                    }
+                                    else if(!$assigned_user_id=='0'){
                                     $query_users_view="SELECT * from users where id='$assigned_user_id'";
                                     $result_view=mysqli_query($conn,$query_users_view);
                                     $num_view=mysqli_num_rows($result_view);
                                     if($num_view>0)
-                                    {
+                                    {?>
+                                        <!-- <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Role</th>
+                                        <th>Department</th>
+                                        </tr> -->
+                                        <?php
                                         while($row=mysqli_fetch_assoc($result_view))
                                         {
                                             $user_id=$row['id'];
@@ -114,6 +87,12 @@ h1
                                         }
                                     }
                                     ?>
+                                    <!-- <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Role</th>
+                                        <th>Department</th>
+                                    </tr> -->
                                     <tr>
                                         <td><?php echo  $user_id ?></td>
                                         <td><?php echo $fullname  ?></td>
@@ -138,12 +117,10 @@ h1
                                     </tr>
                                     <?php
                                 }
-                                
                             }
-                            else
-                                {
-                                    echo "No Assigned Member Found.";
-                                }
+                                
+                        }
+                        
                         ?>
                     </table>
             </div>

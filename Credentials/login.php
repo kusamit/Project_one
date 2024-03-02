@@ -8,20 +8,87 @@ include '../dbconnect/dbconnect.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+body
+{
+    background-color: lightgrey;
+}
+div.form
+    {
+        max-width: 300px;
+        margin: 20px auto;
+        margin-top: 5rem;
+        padding: 5rem;
+        background-color: rgb(233, 225, 225);
+        border-radius: 4px;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        color:Black;
+        
+    }
+    label
+    {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1px;
+        font-size: 20px;
+        text-align: left;
+        margin:2px;
+        
+    }
+    input,select
+    {
+        font-weight: bold;
+        color:Black;
+        padding: 5px;
+        margin:2px;
+        margin-bottom: 15px;
+    }
+    p
+    {
+        text-align: center;
+        font-size: 20px;
+        color:Darkblue;
+        font-weight: bold;
+    }
+    h1
+    {
+        color:darkblue;
+        font-weight: bold;
+        margin-top: 0px;
+    }
+    #sbmt_login
+    {
+        background-color:green;
+        color:white;
+        border:0px;
+        border-radius:5px;
+        width: 40%;
+        padding: 10px;
+    }
+    </style>
 <body>
+    <center>
+    <div class='form'>
     <form action="" method="POST">
-       <label for="">Username</label><br>
-       <label for=""><input type="text" name="username" id=""></label><br>
-        <label for="">Password</label><br>
-        <label for=""><input type="password" name="password" id=""></label><br>
+        <h1>PMS</h1>
+       <label for="">Username</label>
+       <label for=""><input type="text" name="username" id=""></label>
+        <label for="">Password</label>
+        <label for=""><input type="password" name="password" id=""></label>
+        <label for="">UserType</label>
+        <label for="">
         <select name="authentication" id="">
             <option value="1" >Admin</option>
             <!-- <option value="2">Foreman</option> -->
             <option value="2">User</option>
         </select>
-        <label for=""><input type="submit" value="login" name="login"></label>
+        </label>
+        <input type="submit" value="login" name="login" id="sbmt_login">
         
     </form>
+    <!-- </center> -->
     <?php
             if(isset($_POST['login']))
             {
@@ -103,7 +170,8 @@ include '../dbconnect/dbconnect.php';
                         }
                 }
             }
-        ?> 
-    
+        ?>
+        </center> 
+    </div>
 </body>
 </html>

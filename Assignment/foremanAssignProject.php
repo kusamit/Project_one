@@ -24,12 +24,6 @@ $project_id = $_GET['p_id'];            //getting project id
 </head>
 <body>
     <?php
-    // if($userType=="admin")
-    // {?>
-        <!-- <a style='float:left;' href='../project/project_details.php?id=<?php echo $project_id; ?>'>
-            <img style=' height:30px; weight:30px;'src='../view/back_button.png'>
-        </a> -->
-        <?php
     if($userType=="admin")
 {?>
     <?php
@@ -58,7 +52,7 @@ $project_id = $_GET['p_id'];            //getting project id
                         ?>
                         <!-- View project Name and Details HTML -->
                         <div id="project_name">
-                        <h4 class="p">Project Name <a href="../project/project_details.php?user_type=<?php echo $userType; ?>&id=<?php echo $project_id; ?>" class="back_btn">Back</a></h4>
+                        <h4 class="p">Project Name <a href="./Assignedforeman.php?user_type=<?php echo $userType; ?>&p_id=<?php echo $project_id; ?>" class="back_btn">Back</a></h4>
                             <h4 class="p_n">
                                 <?php 
                                 echo $fetched_project_name ;
@@ -70,25 +64,43 @@ $project_id = $_GET['p_id'];            //getting project id
             </div>
         <?php
     }?>
+    <hr>
+    <?php
+        if(!($userType=='user')){?>
+        <div class="layout">
+               <!-- <h1>State</h1> -->
+                <a href="./foremanAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign</a>
+                <a href="./unassignforeman.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign</a>
+                 </div> 
+            <?php
+            }?>
     <center><div Class="foreman_nav">Foreman List</div></center>
         <div class="showforeman">
             <div class="foremantableview">
             <form action="" method="POST">
             <table border="1">
-                <tr>
+                <!-- <tr>
                 <th>Id</th>
                 <th>Name</th>
                 <th>Role</th>
                 <th>Department</th>
                 <th>Assign</th>
-                </tr>
+                </tr> -->
             <!-- php -->
                 <?php
                     $query_users_view="SELECT * from users where role='foreman'";
                     $result_view=mysqli_query($conn,$query_users_view);
                     $num_view=mysqli_num_rows($result_view);
                     if($num_view>0)
-                    {
+                    {?>
+                        <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Role</th>
+                        <th>Department</th>
+                        <th>Assign</th>
+                        </tr>
+                        <?php
                         while($row=mysqli_fetch_assoc($result_view))
                         {
                             $foreman_id=$row['id'];
@@ -159,9 +171,12 @@ $project_id = $_GET['p_id'];            //getting project id
                     $insertForemanIdResult = mysqli_query($conn, $insertForemanIdQuery);
                     if($insertForemanIdQuery)
                     {
-                        echo "ForemanId   ";
-                        echo $checked_row_id;
-                        echo "   has been assigned.";
+                        echo '<script>
+                    window.location.href = "Assignedforeman.php?p_id=' . $project_id . '";
+                    </script>';
+                        // echo "ForemanId   ";
+                        // echo $checked_row_id;
+                        // echo "   has been assigned.";
                     }
                     // echo $insertForemanIdQuery;
                 }
@@ -177,13 +192,16 @@ $project_id = $_GET['p_id'];            //getting project id
                     $updateForemanIdResult = mysqli_query($conn, $updateForemanIdQuery);
                     if($updateForemanIdResult)
                     {
-                        echo "ForemanId   ";
-                        echo $existingForemanId;
-                        echo "   has UnAssigned and   ";
-                        echo $checked_row_id;
-                        echo "   has been Assigned.";?><br><br><?php
+                        echo '<script>
+                    window.location.href = "Assignedforeman.php?p_id=' . $project_id . '";
+                    </script>';
+                        // echo "ForemanId   ";
+                        // echo $existingForemanId;
+                        // echo "   has UnAssigned and   ";
+                        // echo $checked_row_id;
+                        // echo "   has been Assigned.";
+                        
                     }
-                    // echo $updateForemanIdResult;
                 }
             }
         }

@@ -102,7 +102,9 @@ include '../persistLogin.php';
                                 </div>
                         <div class="assign_user">
                                 <a href="../Assignment/assigned_user.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign Users</a>
-                                <a href="../Assignment/foremanAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_foreman">Assign Foreman</a> 
+                                <a href="../Assignment/Assignedforeman.php?p_id=<?php echo $project_id; ?>" id="assign_foreman">Assign Foreman</a> 
+                                <!-- <a href="../Assignment/foremanAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_foreman">Update Project</a> 
+                                <a href="../Assignment/foremanAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_foreman">Delete Project</a>  -->
                         <div>
                         </div>
                         <!-- closing of project info php -->
@@ -115,7 +117,7 @@ include '../persistLogin.php';
             if(!($userType=="user"))
             {?>
             <div class="topics">
-                <a href="../task_mgmt/create_main_task.php?project_id=<?php echo $project_id; ?>">Create Main Task | Topics</a>
+                <a href="../task_mgmt/create_main_task.php?p_id=<?php echo $project_id; ?>">Create Main Task | Topics</a>
             </div>
             <?php
             }?>

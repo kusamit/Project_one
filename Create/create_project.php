@@ -115,8 +115,11 @@ if($userType == "admin")
                         <option value="1">image</option>
                         <option value="2">pdf</option>
                     </select></span>
-                    <span><input type="file" name="file" id="project_file" required class="p_create"></span>
-                    <span>Cost</span> <span><input type="number" name="cost" class="p_create"></span>
+                    <span><input type="file" name="file" id="project_file"  class="p_create"></span>
+                    <span>Cost</span> <span>
+                    <input type="number" name="cost" class="p_create"></span>
+                    <span>Deadline</span>
+                    <span><input type="datetime-local" name="dt" id="" class="p_create" required></span>
                     <span>Details</span>
                     <span><textarea name="p_details" id="project" cols="" rows="" class="p_create"></textarea></span><br><br>
                     <span><input type="submit" value="Create" name="submit" id="submit_project" ></span> 

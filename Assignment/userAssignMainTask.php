@@ -1,6 +1,6 @@
 <?php
 include '../dbconnect/dbconnect.php';
-$project_id = $_GET['project_id'];            //getting project id
+$project_id = $_GET['p_id'];            //getting project id
 ?>
 <div class="usersview">
         <table border="1">
