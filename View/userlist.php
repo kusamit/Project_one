@@ -3,7 +3,7 @@ session_start();
 include '../dbconnect/dbconnect.php';
 $userType= $_SESSION["user_type"];
 $user_admin_id=$_SESSION['Login_session'];
-echo $userType;
+// echo $userType;
 include '../persistLogin.php';
 ?>
 <!DOCTYPE html>

@@ -15,10 +15,7 @@ include '../persistLogin.php';
     <link rel="stylesheet" href="../css/interface.css">
 </head>
 <style>
-   .adduser
-   {
-    background-color:darkblue;
-   }
+  
 </style>
 <body>
 <?php
