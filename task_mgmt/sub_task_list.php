@@ -70,25 +70,7 @@ include '../persistLogin.php';
     </div>
 
     <!-- java Script for Current time -->
-    <script>
-        function reloadDiv() {
-            // Fetching updated time
-            var currentDate = new Date();
-            var hours = currentDate.getHours();
-            var minutes = currentDate.getMinutes();
-            var seconds = currentDate.getSeconds();
-            var ampm = hours >= 12 ? 'PM' : 'AM';
-
-            //12-hour format
-            hours = hours % 12;
-            hours = hours ? hours : 12; 
-            var formattedTime = hours + ':' + (minutes < 10 ? '0' : '') + minutes + ':' + (seconds < 10 ? '0' : '') + seconds + ' ' + ampm;
-            var updatedDate = new Date().toLocaleDateString();
-            document.getElementById('timeupdate').innerHTML = "Current Date:    " + updatedDate + " <br><br>Current Time:    " + formattedTime;
-        }
-        setInterval(reloadDiv, 1000);    // 1-second reload
-    </script>
-
+    <?php include './js/currenttimefunction.php'; ?>
                     <?php '</strong></p>'; ?></h4><br>
                     
                     <!-- deadline date -->
@@ -125,7 +107,7 @@ include '../persistLogin.php';
                 </div>
 
             <!-- task management View -->
-            <form action="" method="POST" enctype="multipart/form-data">
+<form action="" method="POST" enctype="multipart/form-data">
     <p><b>Tasks</b></p>
     <hr>
     <table border="0">
@@ -160,31 +142,7 @@ include '../persistLogin.php';
         $count = 1; // Initialize the count variable
 
         // Check condition function is not already defined the date and time
-        if (!function_exists('getDateTimeDiff')) 
-        {
-            function getDateTimeDiff($end_date_time) {
-                date_default_timezone_set("Asia/Kathmandu");
-                $now_timestamp = strtotime(date('Y-m-d H:i:s'));
-                $end_timestamp = strtotime($end_date_time);
-                $diff_timestamp = $end_timestamp - $now_timestamp;
-
-                if ($diff_timestamp < 0) {
-                    return 'expired';
-                } elseif ($diff_timestamp < 60) {
-                    return 'few seconds left';
-                } elseif ($diff_timestamp >= 60 && $diff_timestamp < 3600) {
-                    return round($diff_timestamp / 60) . ' mins left';
-                } elseif ($diff_timestamp >= 3600 && $diff_timestamp < 86400) {
-                    return round($diff_timestamp / 3600) . ' hours left';
-                } elseif ($diff_timestamp >= 86400 && $diff_timestamp < (86400 * 30)) {
-                    return round($diff_timestamp / (86400)) . ' days left';
-                } elseif ($diff_timestamp >= (86400 * 30) && $diff_timestamp < (86400 * 365)) {
-                    return round($diff_timestamp / (86400 * 30)) . ' months left';
-                } else {
-                    return round($diff_timestamp / (86400 * 365)) . ' years left';
-                }
-            }
-        } 
+        include 'checkdatetimefunction.php';
     //fetch subtask from the database
     while ($row = mysqli_fetch_assoc($result)) {
             $msg = $row['message'];
@@ -227,17 +185,14 @@ include '../persistLogin.php';
             </td>
             <!-- file display -->
             <td>
-                <input type="file" name="doc" id="file" >
-                <!-- $file=$_FILES['file']['name'];
-                $temp=$_FILES['file']['tmp_name'];
-                $folder='../project/file/'.$file;
-                move_uploaded_file($temp,$folder); -->
+                <input type="file" name="file[]" id="file" >
             </td>
             <!-- display remarks -->
             <td>
                 <?php if($fetched_remarks!=="undefined")
                     {
                         echo $fetched_remarks;
+                        echo $rowId;
                     }
                     else
                     {
@@ -247,7 +202,7 @@ include '../persistLogin.php';
             </td>
             <!-- to display action -->
             <td>
-                <form action="" method="POST" class="action_form">
+                <!-- <form action="" method="POST" class="action_form"> -->
                     <?php if(getDateTimeDiff($end_time) !== "expired"): ?>
                     <select name="" id="progress_select" class="btn_p">
                         <option value="0">Select</option>
@@ -265,9 +220,28 @@ include '../persistLogin.php';
                     <button name="action_btn"class="btn_s" onclick="updateStatus('<?php echo $rowId; ?>', 'suspend')" >Suspend</button>
                     <button name="action_btn" class="btn_c" onclick="updateStatus('<?php echo $rowId; ?>', 'completed')">Completed</button>
                     <textarea type="text" name="remark" placeholder="Remarks" class="remarks"></textarea>
-                
+                    <input type="hidden" name="row_id[]" value="<?php echo $rowId; ?>">
+                    <input type="submit" value="Task Submit" name='done'>
                 <?php endif; ?>
                 </form>
+                <?php
+                if(isset($_POST['done']))
+                {
+                    // // $rowIdToUpdate = $_POST['row_id'];
+                    // $file = $_FILES['file']['name'];
+                    // $temp = $_FILES['file']['tmp_name'];
+                    // $folder = './sub_task_file/' . $file;
+                    // // if(move_uploaded_file($temp, $folder))
+                    // // {
+                        
+                    //     echo $rowId;
+                    //     echo $folder;
+                        
+                    // // }
+                    
+
+                }
+                ?>
             <hr>
             </td>
             <td>
@@ -297,47 +271,57 @@ include '../persistLogin.php';
         echo "No records found.";
     }
     ?>
-    </form>
-
-    <!-- JavaScript code -->
-    <script>
-
-    function getValueAsync(selector) {
-        return new Promise(resolve => {
-            var element = document.querySelector(selector);
-            resolve(element ? element.value : '');
-        });
-    }
-        
-    async function updateStatus(rowId, status) {
-        try{
-            var progress = await getValueAsync("#row_" + rowId + " #progress_select");
-            var remarks = await getValueAsync("#row_" + rowId + " .remarks");
-
-            var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function () {
-                if (xhr.readyState == 4 && xhr.status == 200) {
-                    var response = xhr.responseText;
-                    console.log(response);            
-                }
-            } 
-            xhr.open('POST', "update_status.php", true);
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    <!-- </form> -->
+    <?php
+    if (isset($_POST['done'])) {
+        $fileCount = count($_FILES['file']['name']);
+    
+        for ($i = 0; $i < $fileCount; $i++) {
+            $file = $_FILES['file']['name'][$i];
+            $temp = $_FILES['file']['tmp_name'][$i];
+            $folder = './sub_task_file/' . $file;
+            $rowId = $_POST['row_id'][$i];
             
-            if(status === "progress"){
-                xhr.send("rowId=" + rowId + "&status=" + status+"&progress="+progress);
+    
+            if (move_uploaded_file($temp, $folder)) {
+                // Handle the uploaded file and its associated row ID
+                echo $folder;
+                echo "File for Row ID $rowId uploaded successfully.";
+                $file_query="UPDATE sub_task_mgmt SET fileupload='$folder', isvarified='0' where id='$rowId'";
+            $resultfileupdate=mysqli_query($conn,$file_query);
+            if($resultfileupdate)
+            {
+            echo "Task Submitted Sucessfully";
             }
-            else{
-                xhr.send("rowId=" + rowId + "&status=" + status+"&remarks=" + remarks);
+            else
+            {
+            echo "Error ";
+            }
+            } else {
+                echo "Error uploading file for Row ID $rowId.";
             }
         }
-        catch (error) {
-            console.error("An error occurred:", error);
-        }
-        
     }
-
-    </script> 
+    
+                // if(isset($_POST['done']))
+                // {
+                //     $rowIdToUpdate = $_POST['row_id'];
+                 
+                //         $file = $_FILES['file']['name'];
+                //         $temp = $_FILES['file']['tmp_name'];
+                //         $folder = './sub_task_file/' . $file;
+                //         // if (move_uploaded_file($temp, $folder)) {
+                //             echo "File uploaded successfully.";
+                //             echo $rowIdToUpdate;
+                //             echo $folder;
+                            
+                //         // } else {
+                //         //     echo "Error uploading file.";
+                //         // }
+                //     }
+                ?>
+    <!-- JavaScript code -->
+    <?php include './js/updatefunctionpass.php'; ?>
         <?php
         }?>
         
