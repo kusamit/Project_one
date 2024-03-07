@@ -11,24 +11,35 @@
  .header
  {
     width:100%;
-    background-color:red ;
+    /* background-color:red ; */
     border-radius:20px;
     height:100%;
-    background-color: rgba(255, 255, 224, 0.486) ;
+    background-color:  #bbbb77 ;
     /* overflow: visible; */
-    margin:20px;
+    margin-top:20px;
     padding:0px;
  }
 
 body{
-    background-color:#018CB6;
+    background-color:darkblue;
     height:100%;
+    margin:0px;
+    padding: 0px;
 }
-input
+#inputdata
 {
-    border:3px #8a8a5c solid;
+    /* border:3px #8a8a5c solid; */
     border-radius:10px;
     padding:2px;
+}
+.file_sbmt
+{
+    margin: 5px;
+    border-radius: 3px;
+    background-color: darkblue;
+    color:whitesmoke;
+    font-weight: bold;
+    /* border: 10px white solid; */
 }
 #add{
     border-radius:20px;
@@ -44,7 +55,8 @@ input
     width:40%;
     align-items:left;
     margin-left:10px;
-    
+    border-radius:10px;
+    border:3px #8a8a5c solid;
 }
 table,tr
 {
@@ -91,8 +103,14 @@ p{
 }
 .taskname
 {
+    /* margin-top: 40px; */
+    padding: 5px;
+    justify-content: center;
     text-align:center;
     font-weight: bold;
+    color:darkblue;
+    font-weight: bold;
+    font-size: large;
 }
 .btn
 {
@@ -177,7 +195,7 @@ p{
 }
 .dashboard
 {
-    margin: 0px;
+    margin: 30px;
     padding: 0px;
     justify-content: center;
     color: white;
@@ -204,32 +222,3 @@ p{
 {
  background-color: #ffd966;   
 }
-        /* {
-            margin:0px;
-            margin-bottom:35px;
-            padding:10px;
-            color:black;
-            background-color:white;
-            border-radius:5px;
-            text-decoration:none;
-            font-family: "Times New Roman", Times, serif;
-            font-size:90%;
-            }
-            .top_nav_bar
-            {
-                margin-left:3rem;
-                padding:10px;
-                color:black;
-                background-color:white;
-                border-radius:5px;
-                text-decoration:none;
-                font-family: "Times New Roman", Times, serif;
-                font-size:20px;
-                
-            }
-            .top_nav_bar:hover
-                {
-                    background-color: #ffd966;
-                    width:fit-content;
-                    border-radius:5px;
-                } */

@@ -1,0 +1,8 @@
+DDL: how database can be designed/defined. it works with the column only in a table.
+create
+Alter
+Rename
+Modify
+Trancute
+Drop
+
