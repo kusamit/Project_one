@@ -1,14 +1,26 @@
 body
 {
     background-color: lightgrey;
+    margin: 0px;
+    padding: 0px;
+}
+.topnav
+{
+    background-color: #33bbff;
+    color: whitesmoke;
+    font-weight: bolder;
+    margin:0px;
+    padding: 2rem;
+    font-size: x-large;
 }
     div.form
     {
         max-width: 300px;
         margin: 20px auto;
-        margin-top: 5rem;
+        margin-top: 10px;
+        /* margin-top: 5rem; */
         padding: 5rem;
-        background-color: rgb(233, 225, 225);
+        background-color: rgb(255, 255, 255,0.7);
         border-radius: 4px;
         justify-content: center;
         align-items: center;

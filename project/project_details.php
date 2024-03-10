@@ -58,9 +58,6 @@ include '../persistLogin.php';
                             <div id="details">
                                 Project Details
                             </div>
-                            <!-- <div>
-                                <a href="" class="Assign">Assign</a>
-                            </div> -->
                         </div>
                     </div>  
                     <div class="info_flex">
@@ -103,8 +100,7 @@ include '../persistLogin.php';
                         <div class="assign_user">
                                 <a href="../Assignment/assigned_user.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign Users</a>
                                 <a href="../Assignment/Assignedforeman.php?p_id=<?php echo $project_id; ?>" id="assign_foreman">Assign Foreman</a> 
-                                <!-- <a href="../Assignment/foremanAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_foreman">Update Project</a> 
-                                <a href="../Assignment/foremanAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_foreman">Delete Project</a>  -->
+                              <a href="../Assignment/foremanAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_foreman">Delete Project</a>  -->
                         <div>
                         </div>
                         <!-- closing of project info php -->

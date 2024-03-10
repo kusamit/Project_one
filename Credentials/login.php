@@ -14,9 +14,10 @@ include '../dbconnect/dbconnect.php';
     </style>
 <body>
     <center>
+        <div class='topnav'>Project Management System <br> (PMS)</div>
     <div class='form'>
     <form action="" method="POST">
-        <h1>LogIn | PMS</h1>
+        <h1>LogIn</h1>
        <label for="">Username</label>
        <label for=""><input type="text" name="username" id=""></label>
         <label for="">Password</label>
