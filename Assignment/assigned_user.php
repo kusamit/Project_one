@@ -64,63 +64,54 @@ if($userType== "admin" || $userType== "foreman" || $userType=="user")
                                     {
                                         // echo "No Assigned Member Found.";
                                     }
-                                    else if(!$assigned_user_id=='0'){
-                                    $query_users_view="SELECT * from users where id='$assigned_user_id'";
-                                    $result_view=mysqli_query($conn,$query_users_view);
-                                    $num_view=mysqli_num_rows($result_view);
-                                    if($num_view>0)
-                                    {?>
-                                        <!-- <tr>
-                                        <th>Id</th>
-                                        <th>Name</th>
-                                        <th>Role</th>
-                                        <th>Department</th>
-                                        </tr> -->
+                                    else if(!$assigned_user_id=='0')
+                                    {
+                                        $query_users_view="SELECT * from users where id='$assigned_user_id'";
+                                        $result_view=mysqli_query($conn,$query_users_view);
+                                        $num_view=mysqli_num_rows($result_view);
+                                        if($num_view>0)
+                                        {
+                                            while($row=mysqli_fetch_assoc($result_view))
+                                            {
+                                                $user_id=$row['id'];
+                                                // echo $user_id;
+                                                $fullname=$row['fullname'];
+                                                $role=$row['role'];
+                                                $dpt_id=$row['department_id'];
+                                            }
+                                        }
+                                        ?>
+                                        <tr>
+                                            <td><?php echo  $user_id ?></td>
+                                            <td><?php echo $fullname  ?></td>
+                                            <td><?php echo $role ?></td>
+                                        <!-- fetch department name from the department table using the foreign key from users table. -->
                                         <?php
-                                        while($row=mysqli_fetch_assoc($result_view))
-                                        {
-                                            $user_id=$row['id'];
-                                            // echo $user_id;
-                                            $fullname=$row['fullname'];
-                                            $role=$row['role'];
-                                            $dpt_id=$row['department_id'];
-                                        }
-                                    }
-                                    ?>
-                                    <!-- <tr>
-                                        <th>Id</th>
-                                        <th>Name</th>
-                                        <th>Role</th>
-                                        <th>Department</th>
-                                    </tr> -->
-                                    <tr>
-                                        <td><?php echo  $user_id ?></td>
-                                        <td><?php echo $fullname  ?></td>
-                                        <td><?php echo $role ?></td>
-                                <!-- fetch department name from the department table using the foreign key from users table. -->
-                                    <?php
-                                        $query_department_view="SELECT * from department where dpt_id='$dpt_id'";
-                                        $dpt_result_view=mysqli_query($conn,$query_department_view);
-                                        if($dpt_result_view)
-                                        {
-                                            // echo "connection sucess";
-                                        }
-                                        else
-                                        {
-                                            echo "unsucess to connect";
-                                        }
-                                        $num_view=mysqli_num_rows($dpt_result_view);
-                                            $row=mysqli_fetch_assoc($dpt_result_view);
-                                                $dpt_name=$row['department_name'];
-                                    ?>
+                                            $query_department_view="SELECT * from department where dpt_id='$dpt_id'";
+                                            $dpt_result_view=mysqli_query($conn,$query_department_view);
+                                            if($dpt_result_view)
+                                            {
+                                                // echo "connection sucess";
+                                            }
+                                            else
+                                            {
+                                                echo "unsucess to connect";
+                                            }
+                                            $num_view=mysqli_num_rows($dpt_result_view);
+                                                $row=mysqli_fetch_assoc($dpt_result_view);
+                                                    $dpt_name=$row['department_name'];
+                                        ?>
                                         <td><?php echo $dpt_name ?></td>    
-                                    </tr>
-                                    <?php
+                                        </tr>
+                                        <?php
+                                    }
                                 }
-                            }
                                 
-                        }
-                        
+                            }
+                            else
+                            {
+                                echo "No Assigned Member Found.";
+                            }
                         ?>
                     </table>
             </div>

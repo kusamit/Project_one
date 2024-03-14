@@ -55,12 +55,13 @@ if($userType == "admin")
             <center>
             <form action="" method="POST">
                 <table border="0">
+                <h3>Project List</h3>
                 <?php
                 $id=1;   //initializing id as autoincrement.
                     $sql = "SELECT * FROM project"; 
                     $result = mysqli_query($conn, $sql);
                     if (mysqli_num_rows($result) > 0) {
-                        echo "<h3>Projects</h3>";
+                        // echo "";
                         echo "<table border='0'>
                     ";
                     while ($row = mysqli_fetch_assoc($result)) 
@@ -74,8 +75,10 @@ if($userType == "admin")
 
                     }
                     echo "</table>";
-                    } else {
-                    echo "No records found.";}
+                    } 
+                    else
+                    {
+                        echo "<h6>No records found.</h6>"; }
                     mysqli_close($conn);
                 
                 ?>

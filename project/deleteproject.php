@@ -9,12 +9,14 @@ include '../persistLogin.php';
 if($userType=='admin')
 {
     include 'dbconnect.php';
-    $id = $_GET['id'];
-    $query="DELETE FROM users where Id=$id";
+    // $id = $_GET['id'];
+    // $main_task_id = $_GET['main_task_id'];
+    $project_id = $_GET['p_id'];
+    $query="DELETE FROM project where id=$project_id";
     $result=mysqli_query($conn,$query);
     if($result)
         {
-            header('Location: userlist.php');
+            header('Location: ../interface.php');
         }
         else
         {

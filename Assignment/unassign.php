@@ -24,46 +24,9 @@ h1
 <body>
 <?php
     if($userType=="admin" || $userType=="foreman")
-{?>
-    <?php
-        if($userType== "admin" || $userType== "foreman")
-        { ?>
-            <div class="main">
-                <table border="1">
-                    <!-- fetching project name and details      -->
-                    <div class="project_info">
-                        <?php
-                            $sql="select * from project where id=$project_id" ;
-                            $result_view=mysqli_query($conn,$sql);
-                            if($result_view)
-                                {
-                                    echo "";
-                                }
-                            else
-                                {
-                                    echo "error database connection";
-                                }
-                            // Fetched details from the project table
-                            $num_view=mysqli_num_rows($result_view);
-                            $row_view=mysqli_fetch_assoc($result_view);
-                            $fetched_id=$row_view['id'];
-                            $fetched_project_name=$row_view['project_name'];
-                        ?>
-                        <!-- View project Name and Details HTML -->
-                        <div id="project_name">
-                        <h4 class="p">Project Name <a href="./assigned_user.php?user_type=<?php echo $userType; ?>&p_id=<?php echo $project_id; ?>" class="back_btn">Back</a></h4>
-                            <h4 class="p_n">
-                                <?php 
-                                echo $fetched_project_name ;
-                                ?>
-                            </h4>
-                        </div> 
-                    </div>
-                </table>
-            </div>
-        <?php
-        }?>
-         <hr>
+{
+    include"./header/headerassign.php";
+    ?>
         <div class="layout">
             <!-- <h1>State</h1> -->
             <a href="./userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_a_nav">Assign</a>
@@ -81,20 +44,26 @@ h1
                             $num_assigned=mysqli_num_rows($result_assigned);
                             if($num_assigned>0)
                             {?>
-                            <tr>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Role</th>
-                                <th>Department</th>
-                                <th>UnAssign</th>
-                            </tr>
                                 <?php
                                 while($row=mysqli_fetch_assoc($result_assigned))
                                 {
                                     $assigned_user_id=$row['user_id'];
-                                    if($assigned_user_id=='0'){}
-                                    else
-                                    {
+                                }
+                                if($assigned_user_id=='0')
+                                {
+                                    echo 'No Assigned Member Found.';
+                                }
+                                else if(!($assigned_user_id=='0'))
+                                {
+                                ?>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Name</th>
+                                        <th>Role</th>
+                                        <th>Department</th>
+                                        <th>UnAssign</th>
+                                    </tr>
+                                <?php
                                     $query_users_view="SELECT * from users where id='$assigned_user_id'";
                                     $result_view=mysqli_query($conn,$query_users_view);
                                     $num_view=mysqli_num_rows($result_view);
@@ -108,41 +77,34 @@ h1
                                             $dpt_id=$row['department_id'];
                                         }
                                     }
-                                    ?>
-                                    <!-- <tr>
-                                        <th>Id</th>
-                                        <th>Name</th>
-                                        <th>Role</th>
-                                        <th>Department</th>
-                                        <th>UnAssign</th>
-                                    </tr> -->
+                                ?>
                                     <tr>
                                         <td><?php echo  $user_id ?></td>
                                         <td><?php echo $fullname  ?></td>
                                         <td><?php echo $role ?></td>
-                                <!-- fetch department name from the department table using the foreign key from users table. -->
-                                    <?php
-                                        $query_department_view="SELECT * from department where dpt_id='$dpt_id'";
-                                        $dpt_result_view=mysqli_query($conn,$query_department_view);
-                                        if($dpt_result_view)
-                                        {
-                                            // echo "connection sucess";
-                                        }
-                                        else
-                                        {
-                                            echo "unsucess to connect";
-                                        }
-                                        $num_view=mysqli_num_rows($dpt_result_view);
+                                        <!-- fetch department name from the department table using the foreign key from users table. -->
+                                        <?php
+                                            $query_department_view="SELECT * from department where dpt_id='$dpt_id'";
+                                            $dpt_result_view=mysqli_query($conn,$query_department_view);
+                                            if($dpt_result_view)
+                                            {
+                                                // echo "connection sucess";
+                                            }
+                                            else
+                                            {
+                                                echo "unsucess to connect";
+                                            }
+                                            $num_view=mysqli_num_rows($dpt_result_view);
                                             $row=mysqli_fetch_assoc($dpt_result_view);
-                                                $dpt_name=$row['department_name'];
-                                    ?>
+                                            $dpt_name=$row['department_name'];
+                                        ?>
                                         <td><?php echo $dpt_name ?></td>    
                                         <td><input type="checkbox" name="checked_id[]" value="<?php echo $user_id; ?>" class="checkbox"></td>   
                                         <!-- <td><input type="submit" value="Assign" name="submit" class="btn_done"></td>                       -->
                                     </tr>
-                                    <?php
+                                <?php
                                 }
-                            }
+                                // }
                             }
                             else
                             {
@@ -192,4 +154,3 @@ h1
     }?>
 </body>
 </html>
-

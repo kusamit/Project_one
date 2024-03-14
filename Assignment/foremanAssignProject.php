@@ -77,69 +77,66 @@ $project_id = $_GET['p_id'];            //getting project id
     <center><div Class="foreman_nav">Foreman List</div></center>
         <div class="showforeman">
             <div class="foremantableview">
-            <form action="" method="POST">
-            <table border="1">
-                <!-- <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Role</th>
-                <th>Department</th>
-                <th>Assign</th>
-                </tr> -->
-            <!-- php -->
-                <?php
-                    $query_users_view="SELECT * from users where role='foreman'";
-                    $result_view=mysqli_query($conn,$query_users_view);
-                    $num_view=mysqli_num_rows($result_view);
-                    if($num_view>0)
-                    {?>
-                        <tr>
-                        <th>Id</th>
-                        <th>Name</th>
-                        <th>Role</th>
-                        <th>Department</th>
-                        <th>Assign</th>
-                        </tr>
+                <form action="" method="POST">
+                    <table border="1">
+                    <!-- php -->
                         <?php
-                        while($row=mysqli_fetch_assoc($result_view))
-                        {
-                            $foreman_id=$row['id'];
-                            $fullname=$row['fullname'];
-                            $role=$row['role'];
-                            $dpt_id=$row['department_id'];
-                            ?>
-                            <tr>
-                                <td><?php echo  $foreman_id ?></td>
-                                <td><?php echo $fullname  ?></td>
-                                <td><?php echo $role ?></td>
-                        <!-- fetch department name from the department table using the foreign key from users table. -->
-                            <?php
-                                $query_department_view="SELECT * from department where dpt_id='$dpt_id'";
-                                $dpt_result_view=mysqli_query($conn,$query_department_view);
-                                if($dpt_result_view)
+                            $query_users_view="SELECT * from users where role='foreman'";
+                            $result_view=mysqli_query($conn,$query_users_view);
+                            $num_view=mysqli_num_rows($result_view);
+                            if($num_view>0)
+                            {?>
+                                <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>Role</th>
+                                <th>Department</th>
+                                <th>Assign</th>
+                                </tr>
+                                <?php
+                                while($row=mysqli_fetch_assoc($result_view))
                                 {
-                                    // echo "connection sucess";
+                                    $foreman_id=$row['id'];
+                                    $fullname=$row['fullname'];
+                                    $role=$row['role'];
+                                    $dpt_id=$row['department_id'];
+                                    ?>
+                                    <tr>
+                                        <td><?php echo  $foreman_id ?></td>
+                                        <td><?php echo $fullname  ?></td>
+                                        <td><?php echo $role ?></td>
+                                        <!-- fetch department name from the department table using the foreign key from users table. -->
+                                        <?php
+                                            $query_department_view="SELECT * from department where dpt_id='$dpt_id'";
+                                            $dpt_result_view=mysqli_query($conn,$query_department_view);
+                                            if($dpt_result_view)
+                                            {
+                                                // echo "connection sucess";
+                                            }
+                                            else
+                                            {
+                                                echo "unsucess to connect";
+                                            }
+                                            $num_view=mysqli_num_rows($dpt_result_view);
+                                            $row=mysqli_fetch_assoc($dpt_result_view);
+                                            $dpt_name=$row['department_name'];
+                                        ?>
+                                        <td><?php echo $dpt_name ?></td>    
+                                        <td><input type="radio" name="checked_id" value="<?php echo $foreman_id; ?>" class="checkbox"></td>                         
+                                    </tr>
+                                    <?php
                                 }
-                                else
-                                {
-                                    echo "unsucess to connect";
-                                }
-                                $num_view=mysqli_num_rows($dpt_result_view);
-                                    $row=mysqli_fetch_assoc($dpt_result_view);
-                                        $dpt_name=$row['department_name'];
-                            ?>
-                                <td><?php echo $dpt_name ?></td>    
-                                <td><input type="radio" name="checked_id" value="<?php echo $foreman_id; ?>" class="checkbox"></td>                         
-                            </tr>
-                            <?php
-                        }
-                    }
-                ?>
-            </table>
-                </div>
-            <div class="foremansubmitview">
-                 <!-- submit button -->
-            <input type="submit"  value="Assign" name="submit" class="btn_done">
+                            }
+                            else
+                            {
+                                echo "No Foreman Found.";
+                            }
+                        ?>
+                    </table>
+                    </div>
+                <div class="foremansubmitview">
+                    <!-- submit button -->
+                <input type="submit"  value="Assign" name="submit" class="btn_done">
         </form>
         <br><br>
                 <!-- submit Assigned Button -->
@@ -171,14 +168,12 @@ $project_id = $_GET['p_id'];            //getting project id
                     $insertForemanIdResult = mysqli_query($conn, $insertForemanIdQuery);
                     if($insertForemanIdQuery)
                     {
-                        echo '<script>
-                    window.location.href = "Assignedforeman.php?p_id=' . $project_id . '";
-                    </script>';
-                        // echo "ForemanId   ";
                         // echo $checked_row_id;
-                        // echo "   has been assigned.";
+                        // echo "  has been Assigned.";
+                        echo '<script>
+                                window.location.href = "Assignedforeman.php?p_id=' . $project_id . '";
+                              </script>';
                     }
-                    // echo $insertForemanIdQuery;
                 }
                 else if (mysqli_num_rows($checkAssignedForemanResult) > 0 && $existingForemanId == $checked_row_id)
                 {
@@ -193,14 +188,8 @@ $project_id = $_GET['p_id'];            //getting project id
                     if($updateForemanIdResult)
                     {
                         echo '<script>
-                    window.location.href = "Assignedforeman.php?p_id=' . $project_id . '";
-                    </script>';
-                        // echo "ForemanId   ";
-                        // echo $existingForemanId;
-                        // echo "   has UnAssigned and   ";
-                        // echo $checked_row_id;
-                        // echo "   has been Assigned.";
-                        
+                                window.location.href = "Assignedforeman.php?p_id=' . $project_id . '";
+                              </script>';
                     }
                 }
             }

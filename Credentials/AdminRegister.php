@@ -43,7 +43,7 @@ if(isset($_POST["submit"]))
 
 
 //insert information to table.
-    $insertquery="INSERT INTO admin_registration (full_name,organization,org_address,tel_phone,org_email,phone_no,username,password)
+    $insertquery="INSERT INTO admin (full_name,organization,org_address,tel_phone,org_email,phone_no,username,password)
     values('$name','$organization','$org_address','$telphone','$org_email','$phone','$username','$password')";
     $insertinfo=mysqli_query($conn,$insertquery);
     if($insertinfo)

@@ -183,8 +183,8 @@ include '../persistLogin.php';
         $temp = $_FILES['file']['tmp_name'];
         $folder = './sub_task_file/' . $file;
         if (move_uploaded_file($temp, $folder)) {
-            echo $folder;
-            echo "File for Row ID $rowIdToUpdate uploaded successfully.";
+            // echo $folder;
+            // echo "File for Row ID $rowIdToUpdate uploaded successfully.";
             $file_query="UPDATE sub_task_mgmt SET fileupload='$folder', isvarified='1',review='1' where id='$rowIdToUpdate'";
             $resultfileupdate=mysqli_query($conn,$file_query);
             if($resultfileupdate)

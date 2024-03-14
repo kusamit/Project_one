@@ -16,20 +16,13 @@ body
         {
             width:90%;
             /* margin-left:20%; */
-            margin-bottom:2rem;
-            margin-top:2px;
+            /* margin-bottom:2rem; */
+            margin-top:5px;
             align-items:center;
             text-align:center;
             height:5px;
             box-shadow: inset;
         }
-        form
-        {
-            /* width:100%;
-            margin:0px;
-            padding:0px; */
-        }
-
         h2{
             /* margin-left:30px; */
             margin-top:15px;
@@ -50,7 +43,7 @@ body
             padding:5px;
             background-color:#003399;
             color:white;
-            margin:0px;
+            margin-top:0px;
         }
         h4
         {
@@ -119,6 +112,7 @@ body
             }
         .nav_bar
             {
+                /* float: left; */
                 margin-left:3rem;
                 padding:10px;
                 color:black;
@@ -183,7 +177,6 @@ body
         {
             background-color: #003399;
             color:white;
-            /* margin-top:15px; */
         }
         #adduser:hover
         {
@@ -289,4 +282,9 @@ body
         .adduser
         {
          background-color:darkblue;
+        }
+        h6
+        {
+            text-align: left;
+            margin: 2rem;
         }
