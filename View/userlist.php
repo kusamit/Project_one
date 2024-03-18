@@ -46,10 +46,10 @@ if($userType == "admin" || $userType == "foreman" || $userType == "user")
             {
                 echo "
                 <tr><th><h4>" . $id . "</h4></th>
-                <th><h2>". $row['fullname'] . "<a href='delete_user.php?id=" . $row['id'] . "'>
-                <img src='delete.png' alt='Delete' title='Delete'></a>","<a href='?id=" . $row['id'] . "'>
-                <img src='update.png' alt='Update' title='Update'></a>","<a href='user_details_view.php?id=" . $row['id'] . "'>
-                <img src='eye.png' alt='View' title='View'></a></h2></th> </tr>";
+                <th><h2>". $row['fullname'] . 
+                // "<a href='delete_user.php?id=" . $row['id'] . "'><img src='delete.png' alt='Delete' title='Delete'></a>",
+                "<a href='update_user.php?id=" . $row['id'] . "'><img src='update.png' alt='Update' title='Update'></a>",
+                "<a href='user_details_view.php?id=" . $row['id'] . "'><img src='eye.png' alt='View' title='View'></a></h2></th> </tr>";
                 $id++;
             }
             echo "</table>";

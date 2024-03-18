@@ -44,26 +44,19 @@ h1
                             $num_assigned=mysqli_num_rows($result_assigned);
                             if($num_assigned>0)
                             {?>
-                                <?php
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Role</th>
+                                    <th>Department</th>
+                                    <th>UnAssign</th>
+                                </tr>
+                            <?php  
                                 while($row=mysqli_fetch_assoc($result_assigned))
                                 {
                                     $assigned_user_id=$row['user_id'];
-                                }
-                                if($assigned_user_id=='0')
+                                if(!($assigned_user_id=='0'))
                                 {
-                                    echo 'No Assigned Member Found.';
-                                }
-                                else if(!($assigned_user_id=='0'))
-                                {
-                                ?>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Name</th>
-                                        <th>Role</th>
-                                        <th>Department</th>
-                                        <th>UnAssign</th>
-                                    </tr>
-                                <?php
                                     $query_users_view="SELECT * from users where id='$assigned_user_id'";
                                     $result_view=mysqli_query($conn,$query_users_view);
                                     $num_view=mysqli_num_rows($result_view);
@@ -104,7 +97,7 @@ h1
                                     </tr>
                                 <?php
                                 }
-                                // }
+                                }
                             }
                             else
                             {

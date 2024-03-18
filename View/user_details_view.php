@@ -2,7 +2,8 @@
 session_start();
 include '../dbconnect/dbconnect.php';
 $userType= $_SESSION["user_type"];
-echo $userType;
+$user_admin_id=$_SESSION['Login_session'];
+// echo $userType;
 include '../persistLogin.php';
 ?>
 <!DOCTYPE html>
@@ -11,10 +12,19 @@ include '../persistLogin.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/user_details_view.css">
+    <link rel="stylesheet" href="../css/interface.css">
+
+    <link rel="stylesheet" href="../css/u_details.css">
 </head>
 <body>
+<?php
+if($userType == "admin" || $userType == "foreman" || $userType == "user")
+{?>
+    <?php
+     include '../interface_nav.php';   // top_nav 
+    ?>    
     <div class="outer_m">
+        <center>
     <form action="" method="POST">
         <table>
             <?php
@@ -29,7 +39,7 @@ include '../persistLogin.php';
                         $user_details = mysqli_fetch_assoc($result);
                         $user_department=$user_details['department_id'];
                         // show user details
-                        echo "<h5>User Details<hr></h5>";
+                        echo "<h5>User Details</h5>";
                         echo "<tr><th>ID: " . $user_details['id'] . "</th>
                         <th>Full Name : " . $user_details['fullname'] . "</th></tr>",
                         "<tr><th>Phone No. : " . $user_details['phone'] . "</th>
@@ -51,7 +61,7 @@ include '../persistLogin.php';
                        <?php echo "<th> Department: " . $department_details['department_name'] . "</th></tr>",
                         "<th>Username: " . $user_details['username'] . "</th></tr>";
                         
-                        echo "<p><a href='userlist.php'><img src='back_button.png'></a></p>";
+                        // echo "<p><a href='userlist.php'><img src='back_button.png'></a></p>";
                     } 
                     else 
                     {
@@ -69,6 +79,9 @@ include '../persistLogin.php';
 
         </table>
     </form>
+    </center>
     </div>
+    <?php        
+}?>
 </body>
 </html>

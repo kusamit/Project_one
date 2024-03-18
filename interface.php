@@ -66,10 +66,12 @@ if($userType == "admin")
                     ";
                     while ($row = mysqli_fetch_assoc($result)) 
                     {
-
+                        $id=$row["id"];
+                        // echo $id;
+                        // include "./foreman_reference.php";
                         echo "<tr><th><h4>" . $id . "</h4></th>
-                        <th><h2>". $row['project_name'] . "<a href='./project/project_details.php?id=" . $row['id'] . "'>
-                        <img src='./view/eye.png' alt='View' title='View'>
+                        <th><h2>". $row['project_name'] . 
+                        "<a href='./project/project_details.php?id=" . $row['id'] . "'><img src='./view/eye.png' alt='View' title='View'>
                         </a></h2></th> </tr>";
                         $id++;
 

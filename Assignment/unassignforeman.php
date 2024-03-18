@@ -89,7 +89,7 @@ $project_id = $_GET['p_id'];            //getting project id
                         // echo $assigned_foreman_id;
                     if(($assigned_foreman_id=='0'))
                     {
-
+                        echo "No assigned member found.";
                     }
                     else if(!($assigned_foreman_id=='0'))
                     {
