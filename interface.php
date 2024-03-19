@@ -74,7 +74,6 @@ if($userType == "admin")
                         "<a href='./project/project_details.php?id=" . $row['id'] . "'><img src='./view/eye.png' alt='View' title='View'>
                         </a></h2></th> </tr>";
                         $id++;
-
                     }
                     echo "</table>";
                     } 
@@ -82,7 +81,6 @@ if($userType == "admin")
                     {
                         echo "<h6>No records found.</h6>"; }
                     mysqli_close($conn);
-                
                 ?>
                 </table>
             </form>

@@ -23,26 +23,23 @@ if($userType == "admin")
     ?>
     <!-- fetch user details -->
     <?php
-                if (isset($_GET['id'])) 
+        if (isset($_GET['id'])) 
+        {
+            $user_id = $_GET['id'];
+            $sql = "SELECT * FROM users WHERE id = '$user_id'";
+            $result = mysqli_query($conn, $sql);
+            if (mysqli_num_rows($result) > 0) 
+            {
+                $user_details = mysqli_fetch_assoc($result);
+                $user_department=$user_details['department_id'];
+                $dpt="SELECT * from department where dpt_id ='$user_department'";
+                $result2 = mysqli_query($conn, $dpt);
+                if (mysqli_num_rows($result2) > 0) 
                 {
-                    $user_id = $_GET['id'];
-
-                    $sql = "SELECT * FROM users WHERE id = '$user_id'";
-                    $result = mysqli_query($conn, $sql);
-
-                    if (mysqli_num_rows($result) > 0) {
-                        $user_details = mysqli_fetch_assoc($result);
-                        $user_department=$user_details['department_id'];
-                                    $dpt="SELECT * from department where dpt_id ='$user_department'";
-                                    $result2 = mysqli_query($conn, $dpt);
-
-                                if (mysqli_num_rows($result2) > 0) 
-                                {
-                                    $department_details = mysqli_fetch_assoc($result2);
-                                }
-                        
-                    }
+                    $department_details = mysqli_fetch_assoc($result2);
                 }
+            }
+        }
     ?>
         <!-- Update user -->
         <center>

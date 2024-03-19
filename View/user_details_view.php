@@ -13,8 +13,17 @@ include '../persistLogin.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/interface.css">
-
     <link rel="stylesheet" href="../css/u_details.css">
+    <style>
+        .change_password
+        {
+            color:white;
+            background-color: blue;
+            margin-right: 6rem;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
 <?php
@@ -76,11 +85,17 @@ if($userType == "admin" || $userType == "foreman" || $userType == "user")
 
             <!-- foreign key -->
           
-
+            
         </table>
+        
     </form>
     </center>
     </div>
+    <?php
+    if($userType=='admin')
+    {?>
+    <a href="./change_password.php?uid=<?php echo $user_details['id'] ?>" class='change_password'>Change Password</a>
+    <?php } ?>
     <?php        
 }?>
 </body>

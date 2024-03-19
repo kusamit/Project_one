@@ -14,7 +14,12 @@ include '../persistLogin.php';
         <link rel="stylesheet" href="../css/project_details.css">
         <link rel="stylesheet" href="../css/assignment.css">
     </head>
-    
+    <style>
+        body
+        {
+            background-color: white;
+        }
+    </style>
     <body>
     <?php
         include "./header.php";
