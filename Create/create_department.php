@@ -14,9 +14,6 @@ include '../persistLogin.php';
     <title>Document</title>
     <link rel="stylesheet" href="../css/interface.css">
 </head>
-<style>
-  
-</style>
 <body>
 <?php
 if($userType == "admin" || $userType == "foreman" || $userType == "user")

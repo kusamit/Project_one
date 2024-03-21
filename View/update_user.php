@@ -48,11 +48,11 @@ if($userType == "admin")
                 <form action="" method="POST">
                     
                     <span>Full Name</span><span><input type="text" value='<?php echo $user_details['fullname'] ?>' name="name" id="" class="input_user" required></span>
-                    <span>Email</span><span><input type="email" value='<?php echo $user_details['email'] ?>' name="email" id="" class="input_user"></span>
+                    <span>Email</span><span><input type="email" value='<?php echo $user_details['email'] ?>' name="email" id="" class="input_user"></span><br>
                     <span>Phone No.</span><span><input type="number" value='<?php echo $user_details['phone'] ?>' name="phone" id="" class="input_user"></span>
                     <span>Address</span><span><input type="text" value='<?php echo $user_details['address'] ?>' name="address" id="" class="input_user"></span>
                     <!-- <span>Username</span><span><input type="username" name="username" id="" class="input_user"></span>
-                    <span>Password</span><span><input type="password"  name="password" id="" class="input_user"></span> -->
+                    <span>Password</span><span><input type="password"  name="password" id="" class="input_user" required></span> -->
                     <!-- <span>Department</span>
                     <span> 
                         <select name="dept_id" id="" class="input_user">
@@ -87,11 +87,11 @@ if($userType == "admin")
                         
                     </span>
                     <!-- for choose the user of manager -->
-                    <span>Role</span>
+                    <!-- <span>Role</span>
                     <Span><select name="role" id="" class="input_user">
                         <option value="user">User</option>
                         <option value="foreman">Foreman</option>
-                    </select></Span>
+                    </select></Span> -->
                     <span><input type="submit" value="Update" name="submit" id="submit_user"></span> 
                 </form>
                 <div class="phpdepartment">
@@ -108,8 +108,8 @@ if($userType == "admin")
                             //encryption password_hash, Password_bcrypt
                             // $password = password_hash($_POST['password'],PASSWORD_BCRYPT);  
                             // $department=$_POST["dept_id"];
-                            $user_role=$_POST["role"];
-                            $update_user = "UPDATE users SET fullname='$name', email='$email', phone='$phone', address='$address', role='$user_role' WHERE id='$user_id'";
+                            // $user_role=$_POST["role"];
+                            $update_user = "UPDATE users SET fullname='$name', email='$email', phone='$phone', address='$address' WHERE id='$user_id'";
                             $result=mysqli_query($conn,$update_user);
                             if($result)
                             {

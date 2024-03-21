@@ -25,7 +25,7 @@ if($userType == "admin" || $userType == "foreman" || $userType == "user")
     <div class="outer">
                     <!-- add user -->
                     <?php
-                    if(!($userType == "user"))
+                    if(!($userType == "user" || $userType == "foreman"))
                     {?>
                     <div class="adduser">
                         <a href="../Create/create_department.php" id="adduser" class="nav_bar">Add Department</a>

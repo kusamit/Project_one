@@ -65,6 +65,7 @@ include '../persistLogin.php';
                 $result=mysqli_query($conn,$query);
                 echo $create;
                 echo "  as Main Task | Topics is Created!";
+                header("Location: ../project/project_details.php?user_type=" . $userType . "&id=" . $project_id);
             }
         }
         }

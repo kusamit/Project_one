@@ -105,7 +105,7 @@ include '../persistLogin.php';
                             <a href="../Assignment/assigned_user.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign Users</a>
                             <a href="../Assignment/Assignedforeman.php?p_id=<?php echo $project_id; ?>" id="assign_foreman">Assign Foreman</a> 
                             <!-- <a href="./deleteproject.php?p_id=<?php echo $project_id; ?>" id="assign_foreman">Delete Project</a> -->
-                            <a href="./updateproject.php?p_id=<?php echo $project_id; ?>" id="assign_foreman">Update Project</a>
+                            <!-- <a href="./updateproject.php?p_id=<?php echo $project_id; ?>" id="assign_foreman">Update Project</a> -->
                         <div>
                 </div>
                 <!-- closing of project info php -->

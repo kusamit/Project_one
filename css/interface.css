@@ -241,8 +241,10 @@ body
         }
         .input_user
         {
+            border-radius: 5px;
+            border-color: white;
             width:40rem;
-            padding:4px;
+            padding:10px;
         }
         #submit_project, #submit_department, #submit_user
         {
@@ -269,6 +271,8 @@ body
         .phpdepartment
         {
             color:black;
+            font-family: Arial, Helvetica, sans-serif;
+            margin-top: 20px;
         }
         .phpproject
         {
