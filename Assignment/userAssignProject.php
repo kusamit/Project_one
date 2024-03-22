@@ -2,6 +2,7 @@
 include '../dbconnect/dbconnect.php';
 session_start();
 $project_id = $_GET['p_id'];     //getting project id
+$user_admin_id=$_SESSION['Login_session'];
    $userType = $_SESSION["user_type"];//getting usertype
 // echo $project_id;
 ?>

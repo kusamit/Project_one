@@ -24,8 +24,15 @@
                         ?>
                         <!-- View project Name and Details HTML -->
                         <div id="project_name">
-                        <h4 class="p">Project Name <a href="../project/project_details.php?user_type=<?php echo $userType; ?>&id=<?php echo $project_id; ?>" class="back_btn">Back</a></h4>
-                            <h4 class="p_n">
+                        <?php if($userType=="user"){?>
+                        <!-- <h4 class="p">Project Name <a href="../project/project_details.php?user_type=<?php echo $userType; ?>&id=<?php echo $project_id; ?>" class="back_btn">Back</a></h4> -->
+                        <?php } 
+                        else
+                        {?>
+                        <!-- <h4 class="p">Project Name <a href="../project/project_details.php?user_type=<?php echo $userType; ?>&id=<?php echo $project_id; ?>" class="back_btn">Back</a></h4> -->
+                        <?php }?>    
+                        
+                        <h4 class="p_n">
                                 <?php 
                                 echo $fetched_project_name ;
                                 ?>

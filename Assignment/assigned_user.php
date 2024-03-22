@@ -1,6 +1,7 @@
 <?php
 include '../dbconnect/dbconnect.php';
 session_start();
+$user_admin_id=$_SESSION['Login_session'];
 $project_id = $_GET['p_id'];     //getting project id
    $userType = $_SESSION["user_type"];//getting usertype
 // echo $project_id;
@@ -32,7 +33,7 @@ if($userType== "admin" || $userType== "foreman" || $userType=="user")
         if(!($userType=='user')){?>
         <div class="layout">
                <!-- <h1>State</h1> -->
-                <a href="./userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign</a>
+                <a href="./userAssignProject.php?p_id=<?php echo $project_id ?>" id="assign_user">Assign</a>
                 <a href="./unassign.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign</a>
                  </div> 
             <?php

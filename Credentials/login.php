@@ -95,6 +95,7 @@ include '../dbconnect/dbconnect.php';
                                  header('location:../interface.php');
                                 }else if($db_user_role == "user"){
                                     $_SESSION['user_type'] = $db_user_role;
+                                    $_SESSION['Login_session'] = $db_user_id;
                                     echo $db_user_role;
                                     $_SESSION['login'] = true;
                                      header('location:../interface.php');

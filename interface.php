@@ -71,7 +71,7 @@ if($userType == "admin")
                         // include "./foreman_reference.php";
                         echo "<tr><th><h4>" . $id . "</h4></th>
                         <th><h2>". $row['project_name'] . 
-                        "<a href='./project/project_details.php?id=" . $row['id'] . "'><img src='./view/eye.png' alt='View' title='View'>
+                        "<a href='./project/project_details.php?id=" . $row['id'] ."'><img src='./view/eye.png' alt='View' title='View'>
                         </a></h2></th> </tr>";
                         $id++;
                     }
@@ -231,7 +231,7 @@ else if ($userType == "user")
                             }
                         }
                         echo "<tr><th><h4>" . $id . "</h4></th>
-                        <th><h2>". $project_name . "<a href='./project/project_details.php?id=" . $project_id . "'>
+                        <th><h2>". $project_name . "<a href='./project/project_details.php?id=" . $project_id . "&user_id=".$user_admin_id."'>
                         <img src='./view/eye.png' alt='View' title='View'></a>
                         
                         </h2></th> </tr>";

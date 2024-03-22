@@ -1,6 +1,7 @@
 <?php
 include '../dbconnect/dbconnect.php'; 
 session_start();
+$user_admin_id=$_SESSION['Login_session'];
 $userType= $_SESSION["user_type"];
 // echo $userType;
 include '../persistLogin.php';
@@ -14,7 +15,9 @@ include '../persistLogin.php';
         if($userType=="admin" || $userType=="foreman" || $userType=="user")
         {?>
         <!-- fetched topic and insert of tasks -->
-          <?php include 'topic_insert.php'; ?>
+          <?php 
+          include 'topic_insert.php'; 
+          ?>
             <!-- task management View -->
     <table border="0">
         <tr>

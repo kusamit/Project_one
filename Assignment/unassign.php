@@ -1,6 +1,7 @@
 <?php
 include '../dbconnect/dbconnect.php';
 session_start();
+$user_admin_id=$_SESSION['Login_session'];
 $project_id = $_GET['p_id'];     //getting project id
    $userType = $_SESSION["user_type"];//getting usertype
 // echo $project_id;

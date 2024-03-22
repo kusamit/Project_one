@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../dbconnect/dbconnect.php';
+$user_admin_id=$_SESSION['Login_session'];
 $userType= $_SESSION["user_type"];
 // echo $userType;
 include '../persistLogin.php';

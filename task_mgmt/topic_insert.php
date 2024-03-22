@@ -5,7 +5,12 @@
         $project_id = $_GET['project_id'];
 ?>
             <div class="top_nav">
+            <?php if($userType=="user"){ ?>
+            <a href="../project/project_details.php?user_type=<?php echo $userType; ?>&id=<?php echo $project_id; ?>&user_id=<?php echo $user_admin_id ?>" class="top_nav_bar">Back</a></h4>
+            <?php }
+            else{ ?>
             <a href="../project/project_details.php?user_type=<?php echo $userType; ?>&id=<?php echo $project_id; ?>" class="top_nav_bar">Back</a></h4>
+            <?php }?>
             <a href="../interface.php" class="top_nav_bar">Home</a>
             <h2 class="dashboard">Task Management</h2>
         </div>
