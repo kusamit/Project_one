@@ -17,8 +17,14 @@ include './persistLogin.php';
 <?php
 if($userType == "admin")
 {?>
+<script>
+    function logout() {
+        // If the user confirms, redirect to the logout page
+        return  confirm("Are you sure you want to logout?");
+    }
+    </script>
     <div class="top_nav">
-            <a href="./credentials/logout.php?id=<?php echo $user_admin_id?>" class="top_nav_bar" id="logout">Logout</a>
+            <a onclick=" return logout()" href="./credentials/logout.php?id=<?php echo $user_admin_id?>" class="top_nav_bar" id="logout">Logout</a>
             <a href="./Create/create_project.php" class="top_nav_bar">Create Project</a>
             <a href="./view/userlist.php" class="top_nav_bar">Users</a>
             <a href="./view/deptlist.php" class="top_nav_bar">Department</a>
@@ -57,7 +63,7 @@ if($userType == "admin")
                 <table border="0">
                 <h3>Project List</h3>
                 <?php
-                $id=1;   //initializing id as autoincrement.
+                $sn=1;   //initializing id as autoincrement.
                     $sql = "SELECT * FROM project"; 
                     $result = mysqli_query($conn, $sql);
                     if (mysqli_num_rows($result) > 0) {
@@ -67,14 +73,26 @@ if($userType == "admin")
                     while ($row = mysqli_fetch_assoc($result)) 
                     {
                         $id=$row["id"];
-                        // echo $id;
-                        // include "./foreman_reference.php";
-                        echo "<tr><th><h4>" . $id . "</h4></th>
-                        <th><h2>". $row['project_name'] . 
-                        "<a href='./project/project_details.php?id=" . $row['id'] ."'><img src='./view/eye.png' alt='View' title='View'>
-                        </a></h2></th> </tr>";
-                        $id++;
-                    }
+                        include "./Assignment/supervised.php";
+                        ?>
+                        <tr>
+                            <th><h4><?php echo $sn ?></h4></th>
+                            <th><h2><?php echo $row['project_name'] ?>
+                                <a href='./project/project_details.php?id=<?php echo $row['id'] ?>'>
+                                <?php 
+                                // Output supervised name if assigned
+                                if (!empty($supervised_name)) {
+                                    echo "Supervised: " . $supervised_name;
+                                }
+                                ?>
+                                <img src='./view/eye.png' alt='View' title='View'>
+                                </a>
+                            </h2></th>
+                        </tr>
+        <?php 
+        $sn++; // Incrementing $id
+    }
+                    // }
                     echo "</table>";
                     } 
                     else

@@ -66,7 +66,12 @@ if($userType == "admin")
                             if($result)
                             {
                             //    echo "$project_name Project Created Sucessfully...!!";
-                            header('Location: ../interface.php');
+                            echo "<script>
+                            alert('project has been created successfully');
+                            </script>";
+                            header("Refresh:0;url='../interface.php'");
+                            // window.location.href = '../interface.php';
+                            // header('Location: ../interface.php');
                             }
                             else
                             {

@@ -105,7 +105,12 @@ if($userType == "admin" || $userType == "foreman")
                             if($result)
                             {
                             //    echo "User Created Sucessfully...!!";
-                            header('Location: ../View/userlist.php');
+                            echo "<script>
+                            alert('user has been created successfully');
+                            </script>";
+                            header("Refresh:0;url='../View/userlist.php'");
+                            // window.location.href = '../View/userlist.php';
+                            // header('Location: ../View/userlist.php');
 
                             }
                             else

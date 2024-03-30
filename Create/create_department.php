@@ -47,7 +47,11 @@ if($userType == "admin" || $userType == "foreman" || $userType == "user")
                             if($result)
                             {
                             //    echo "$dpt_name Department Created Sucessfully...!!";
-                            header('location:../view/deptlist.php');
+                            echo "<script>
+                            alert('Department has been created successfully');
+                            </script>";
+                            // window.location.href = '../view/deptlist.php';
+                            header("Refresh:0;url='../view/deptlist.php'");
                             }
                             else
                             {

@@ -45,6 +45,7 @@ include '../dbconnect/dbconnect.php';
                     $admin_name = mysqli_real_escape_string($conn, $_POST['username']);
                     $query_admin = "SELECT * FROM admin WHERE username = '$admin_name'";
                     $result_admin = mysqli_query($conn, $query_admin);
+                    // echo $result_admin;
                     $num_admin = mysqli_num_rows($result_admin);
                         if ($num_admin > 0) {
                             $data_admin = mysqli_fetch_array($result_admin);

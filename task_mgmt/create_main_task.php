@@ -63,9 +63,13 @@ include '../persistLogin.php';
             else
             {
                 $result=mysqli_query($conn,$query);
-                echo $create;
-                echo "  as Main Task | Topics is Created!";
-                header("Location: ../project/project_details.php?user_type=" . $userType . "&id=" . $project_id);
+                // echo $create;
+                // echo "  as Main Task | Topics is Created!";
+                echo "<script>
+                            alert('Main Task | Topic has been created successfully');
+                            </script>";
+                            header("Refresh:0;url='../project/project_details.php?user_type=" . $userType . "&id=" . $project_id . "'");
+                            // header("Location: ../project/project_details.php?user_type=" . $userType . "&id=" . $project_id);
             }
         }
         }
