@@ -101,7 +101,8 @@ include '../persistLogin.php';
                         <tr><td>Task Name</td></tr>
                         <tr><td><input type="text" name="task" value="<?php echo $msg; ?>"></td></tr>
                         <tr><th>Date and Time</th></tr>
-                        <tr><td><input type="datetime-local" name="dt" value="<?php echo $deadline; ?>"></td></tr>
+                        <tr><td><input type="datetime-local" id="datePicker" name="dt" value="<?php echo $deadline; ?>"></td></tr>
+                        <script src="./js/validatebackdate.js"></script>
                     </table>
                     <input type="submit" value="update" name="update" id="update">
                     <?php
@@ -123,8 +124,9 @@ include '../persistLogin.php';
             $update_query = "UPDATE sub_task_mgmt SET message='$message', end_date_time='$date_time' WHERE id='$id'";
             $result_update = mysqli_query($conn, $update_query);
             if ($result_update) {
-                echo "Updated";
-                    header('Location: sub_task_list.php?main_task_id='. $main_task_id.'&project_id='.$project_id);
+                echo "<script> alert ('Updated Sucessfully.') </script>";
+                // echo "Updated";
+                header("Refresh:0;url='sub_task_list.php?main_task_id=" . $main_task_id . "&project_id=" . $project_id . "'");
             } else {
                 echo "Error";
             }

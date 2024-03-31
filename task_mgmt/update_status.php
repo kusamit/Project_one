@@ -29,13 +29,10 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
                 mysqli_query($conn, "UPDATE sub_task_mgmt SET progress = 0, completed=0, review=0,suspend=1, $update_percentage WHERE Id = $rowId");
                 break;
     }
-
-    // You can send a response if needed
-    echo "Status updated successfully";
-    
+    echo "Status updated successfully";  
 } 
-else {
-    // Handle invalid requests
+else 
+{
     echo "Invalid request";
 }
 ?>

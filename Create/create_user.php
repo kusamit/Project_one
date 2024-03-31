@@ -86,7 +86,10 @@ if($userType == "admin" || $userType == "foreman")
                             $checkresult=mysqli_query($conn,$checkusername);
                             if(mysqli_num_rows( $checkresult)> 0)
                             {
-                                echo "Username Already Exists. Please Use another Username";
+                                echo "<script>
+                            alert('Username Already Exists. Please Use another Username');
+                            </script>"; 
+                                // echo "Username Already Exists. Please Use another Username";
                             }
                             else
                             {
@@ -97,7 +100,7 @@ if($userType == "admin" || $userType == "foreman")
                             {
                             //    echo "User Created Sucessfully...!!";
                             echo "<script>
-                            alert('user has been created successfully');
+                            alert('User has been created successfully');
                             </script>";
                             header("Refresh:0;url='../View/userlist.php'");
                             // window.location.href = '../View/userlist.php';
@@ -106,7 +109,10 @@ if($userType == "admin" || $userType == "foreman")
                             }
                             else
                             {
-                                echo "Error to create the user, Please try again later...!";
+                                echo "<script>
+                            alert('Error to create the user, Please try again later...!');
+                            </script>";   
+                                // echo "Error to create the user, Please try again later...!";
                             }
                             }
                         }

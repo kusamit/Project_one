@@ -64,7 +64,8 @@
                     <?php '</strong></p>'; ?></h4><br>
                     
                     <!-- deadline date -->
-                    Deadline<input type="datetime-local" name="dt" id="inputdata" >
+                    <span class="inputdata">Deadline</span><input type="datetime-local" name="dt" class="inputdata" id="datePicker">
+                    <script src="./js/validatebackdate.js"></script>
                     
                     <input type="submit" value="Add" name="submit" id="add" >
                     <!-- php for insertion of task -->

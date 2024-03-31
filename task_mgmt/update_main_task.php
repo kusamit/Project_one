@@ -65,7 +65,8 @@ include '../persistLogin.php';
                             {?>
                             <tr><th>Date and Time</th></tr>
                                <?php  $deadline= $rows['deadline'];?>
-                                <tr><td><input type="datetime-local" name="dt" id="" value='<?php echo $deadline; ?>' ></td></tr> 
+                                <tr><td><input type="datetime-local" name="dt" id="datePicker" value='<?php echo $deadline; ?>' ></td></tr> 
+                                <script src="./js/validatebackdate.js"></script>
                             <?php
                             }?>
                                 <?php 

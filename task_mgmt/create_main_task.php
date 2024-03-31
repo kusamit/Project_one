@@ -30,6 +30,12 @@ include '../persistLogin.php';
    <?php
    if($userType=="admin" || $userType=="foreman")
    {?>
+   <!-- <script src="./js/validatebackdate.js" defer ></script> -->
+
+
+
+
+    <!-- </script> -->
       <form action="" method="POST">
        <p>Create Main Task | Topics</p> 
         <label for="topic">Name of Topic</label><br>
@@ -37,46 +43,42 @@ include '../persistLogin.php';
         <label for="Assign">Assign to User</label>
         <label for="Assign_user"><?php include '../Assignment/userAssignMainTask.php';?></label><br>
         <label for="deadline">Deadline</label> <br>
-        <label for="deadlinetask"><input type="datetime-local" name="dt" id="" required></label>
+        <label for="deadlinetask"><input type="datetime-local" name="dt" id="datePicker" required></label>
+        <script src="./js/validatebackdate.js"></script>
         <center>
         <input type="submit" value="Create" name="create" id="submit"><br><br>
         </form>
-    <?php
-        include 'dbconnect.php';
-        if(isset($_POST['create']))
-        {
-            
-            if(!(isset($_POST['user_name'])))
-            {
-                echo "Please select User";
-            }
-            else
-            {   
-                $create=$_POST['task'];
-                $assigned_id=$_POST['user_name'];
-            // }
-            $datetime=$_POST['dt'];
-            $query="INSERT INTO main_task (name,project_id,user_id,deadline) values ('$create','$project_id','$assigned_id','$datetime') ";
-            $check_duplicate_query = "SELECT * FROM main_task WHERE name='$create' and project_id='$project_id'";
-            $check_duplicate_result = mysqli_query($conn, $check_duplicate_query);
-            if($check_duplicate_result->num_rows > 0)
-            {
-                echo "This Main Task | Topic  already exists!";
-            }
-            else
-            {
-                $result=mysqli_query($conn,$query);
-                // echo $create;
-                // echo "  as Main Task | Topics is Created!";
-                echo "<script>
-                            alert('Main Task | Topic has been created successfully');
-                            </script>";
+        <?php
+            if(isset($_POST['create'])) {
+                if(!(isset($_POST['user_name']))) 
+                {
+                    echo "<script>alert('Please select a User.');</script>"; 
+                } 
+                else 
+                {   
+                    $create = $_POST['task'];
+                    $assigned_id = $_POST['user_name'];
+                    $datetime = $_POST['dt'];
+                    $check_duplicate_query = "SELECT * FROM main_task WHERE name='$create' AND project_id='$project_id'";
+                    $check_duplicate_result = mysqli_query($conn, $check_duplicate_query);
+
+                    if($check_duplicate_result->num_rows > 0) {
+                        echo "<script>alert('This Main Task | Topic already exists for this project!');</script>"; 
+                    } else {
+                        $query = "INSERT INTO main_task (name, project_id, user_id, deadline) VALUES ('$create', '$project_id', '$assigned_id', '$datetime')";
+                        $result = mysqli_query($conn, $query);
+
+                        if ($result) {
+                            echo "<script>alert('Main Task | Topic has been created successfully');</script>";
                             header("Refresh:0;url='../project/project_details.php?user_type=" . $userType . "&id=" . $project_id . "'");
-                            // header("Location: ../project/project_details.php?user_type=" . $userType . "&id=" . $project_id);
+                        } else {
+                            echo "<script>alert('Error creating task');</script>";
+                        }
+                    }
+                }
             }
-        }
-        }
-    ?> </center> 
+        ?>
+ </center> 
     <?php
     }?> 
     </body>

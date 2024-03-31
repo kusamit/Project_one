@@ -43,7 +43,8 @@ if($userType == "admin")
                     <input type="number" name="cost" class="p_create">
                     
                     <span>Deadline</span>
-                    <input type="datetime-local" name="dt" id="" class="p_create" required>
+                    <input type="datetime-local" name="dt" id="datePicker" class="p_create" required>
+                    <script src="../task_mgmt/js/validatebackdate.js"></script>
                     
                     <span>Details</span>
                     <textarea name="p_details" id="project" cols="" rows="" class="p_create"></textarea>

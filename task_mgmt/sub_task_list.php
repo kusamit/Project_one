@@ -69,6 +69,8 @@ include '../persistLogin.php';
             $fetched_file=basename($row['fileupload']);
             $suspend=$row['suspend'];
             $status_tsbmt = "";
+            $isvarified=$row['isvarified'];
+            // echo $isvarified;
                // Check if form submitted for this row
                if (isset($_POST['done']) && $_POST['row_id'] == $rowId) {
                 $status_tsbmt = "Task Submitted";
@@ -87,11 +89,25 @@ include '../persistLogin.php';
             </td>
             <td>
                 <p><?php echo $progress_percentage!=0 ? $progress_percentage:''; ?></p>
+                <?php 
+                    if($isvarified==2 && $review==2)
+                    {
+                        echo "100 % Completed";
+                    }
+                    ?>
             </td>
             <!-- progress display -->
             <td>
                 <?php 
-                    if ($completed == 1) {
+                    if($isvarified==1 && $review==1)
+                    {
+                        echo "<p style='background-color:#00e600;' class='btn'>Task Submitted InReview</p>";
+                    }
+                    if($isvarified==2 && $review==2)
+                    {
+                        echo "<p style='background-color:#00e600;' class='btn'>Varified</p>";
+                    }
+                    else if ($completed == 1) {
                         echo "<p style='background-color:#00e600;' class='btn'>Completed</p>";
                     } else if ($progress_status == 1) {
                         echo "<p style='background-color:#ffdb4d;' class='btn'>In-Progress</p>";
@@ -126,7 +142,8 @@ include '../persistLogin.php';
             <!-- to display action -->
             <td>
                 <!-- <form action="" method="POST" class="action_form"> -->
-                    <?php if(getDateTimeDiff($end_time) !== "expired"): ?>
+                    <?php if(getDateTimeDiff($end_time) !== "expired"):
+                        if(!($isvarified==2 && $review==2)){ ?>
                     <select name="" id="progress_select" class="btn_p">
                         <option value="0">Select</option>
                         <option value="5">5%</option>
@@ -145,7 +162,7 @@ include '../persistLogin.php';
                     <textarea type="text" name="remark" placeholder="Remarks" class="remarks"></textarea><br>
                     <input type="hidden" name="row_id" value="<?php echo $rowId; ?>">
                     <input type="submit" value="Submit Task" name='done' class='file_sbmt'><br>
-                    <?php echo $status_tsbmt; ?>
+                    <?php echo $status_tsbmt; }?>
                 <?php endif; ?>
                 </form>
             <hr>
