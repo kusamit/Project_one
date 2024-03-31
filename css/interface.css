@@ -197,9 +197,10 @@ body
         }
         .dpt_creation
         {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            /* display: flex; */
+            background-color: grey;
+            /* flex-direction: column;
+            justify-content: center; */
             background-color: grey;
             padding:1rem 3rem 3rem 3rem;
             padding-bottom: 11rem;
