@@ -13,6 +13,7 @@ include '../persistLogin.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/interface.css">
+    <link rel="stylesheet" href="../css/user.css">
 </head>
 <body>
 <?php
@@ -45,55 +46,13 @@ if($userType == "admin")
         <center>
         <h3>Update User</h3>
             <div class="user_creation">
-                <form action="" method="POST">
-                    
-                    <span>Full Name</span><span><input type="text" value='<?php echo $user_details['fullname'] ?>' name="name" id="" class="input_user" required></span>
-                    <span>Email</span><span><input type="email" value='<?php echo $user_details['email'] ?>' name="email" id="" class="input_user"></span><br>
-                    <span>Phone No.</span><span><input type="number" value='<?php echo $user_details['phone'] ?>' name="phone" id="" class="input_user"></span>
-                    <span>Address</span><span><input type="text" value='<?php echo $user_details['address'] ?>' name="address" id="" class="input_user"></span>
-                    <!-- <span>Username</span><span><input type="username" name="username" id="" class="input_user"></span>
-                    <span>Password</span><span><input type="password"  name="password" id="" class="input_user" required></span> -->
-                    <!-- <span>Department</span>
-                    <span> 
-                        <select name="dept_id" id="" class="input_user">
-                            <option value=''><?php echo $department_details['department_name'] ?></option>
-                            //php for select option department -->
-                            <?php
-                                $sql="SELECT * from department";
-                                $result=mysqli_query($conn,$sql);
-                                if($result)
-                                {
-                                    // echo "";
-                                }else
-                                {
-                                    // echo "error to Find Department";
-                                }
-                                $num=mysqli_num_rows($result);
-                                if ($num>0) 
-                                {
-                                    while ($row = mysqli_fetch_assoc($result)) 
-                                    {
-                                        ?>
-                                        <!-- <option value="<?php echo $row['dpt_id']?>"><?php echo $row['department_name']?></option>; -->
-                                        <?php
-                                    }
-                                } 
-                                else 
-                                {
-                                    // echo "<option value=''>Create a department first</option>";
-                                }
-                            ?>
-                        <!-- </select> -->
-                        
-                    </span>
-                    <!-- for choose the user of manager -->
-                    <!-- <span>Role</span>
-                    <Span><select name="role" id="" class="input_user">
-                        <option value="user">User</option>
-                        <option value="foreman">Foreman</option>
-                    </select></Span> -->
-                    <span><input type="submit" value="Update" name="submit" id="submit_user"></span> 
-                </form>
+            <form action="" method="POST">
+                <span>Full Name</span><span><input type="text" value='<?php echo $user_details['fullname'] ?>' name="name" id="" class="input_user" required></span>
+                <span>Email</span><span><input type="email" value='<?php echo $user_details['email'] ?>' name="email" id="" class="input_user"></span><br>
+                <span>Phone No.</span><span><input type="number" value='<?php echo $user_details['phone'] ?>' name="phone" id="" class="input_user"></span>
+                <span>Address</span><span><input type="text" value='<?php echo $user_details['address'] ?>' name="address" id="" class="input_user"></span>
+                <span><input type="submit" value="Update" name="submit" id="submit_user" class="submit_button"></span> 
+            </form>
                 <div class="phpdepartment">
                        <!-- php here -->
                        <?php
@@ -113,13 +72,14 @@ if($userType == "admin")
                             $result=mysqli_query($conn,$update_user);
                             if($result)
                             {
-                               echo "User Updated Sucessfully...!!";
+                                echo "<script> alert('updated succesfully') </script>";
+                            //    echo "User Updated Sucessfully...!!";
                             // header('Location: ../View/userlist.php');
 
                             }
                             else
                             {
-                                echo "Error to Update the user, Please try again later...!";
+                                echo "<script> alert('Error to Update the user, Please try again later...!') </script>";
                             }
                         }
                     ?>

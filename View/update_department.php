@@ -13,6 +13,7 @@ include '../persistLogin.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/interface.css">
+    <link rel="stylesheet" href="../css/project.css">
 </head>
 <body>
 <?php
@@ -46,12 +47,15 @@ if($userType == "admin")
                 {?>
                     <center>
                         <h3>Update Department</h3>
+                    </center>
             <div class="dpt_creation">
+                <center>
                 <form action="" method="POST">
                     <span class="padd">Department Name</span>
                     <span><input type="text" value="<?php echo $dept_name ?>"  name="department"  required class="d_create" class="padd" placeholder="Enter Department Name"></span>
-                    <span><input type="submit" value="Update" name="update" id="submit_department" class="padd" ></span> 
+                    <span><input type="submit" value="Update" name="update" class="padd" ></span> 
                 </form>
+                </center>
                 <div class="phpdepartment">
                        <!-- php here -->
                        <?php
@@ -62,12 +66,13 @@ if($userType == "admin")
                             $result=mysqli_query($conn,$department_query);
                             if($result)
                             {
-                               echo "$dpt_name Department Updated Sucessfully...!!";
-                            // header('location:../view/deptlist.php');
+                                echo "<script> alert('Department Updated Sucessfully...!!') </script>";
+                                header("Refresh:0;url='../view/deptlist.php'");
                             }
                             else
                             {
-                                echo "<h6> Error to update the Department</h6>";
+                                echo "<script> alert('Error to update the Department') </script>";
+                                // echo "<h6> Error to update the Department</h6>";
                             }
                         }
                         ?>

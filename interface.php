@@ -195,9 +195,6 @@ else if ($userType == "user")
 {?>
     <div class="top_nav">
             <a href="./credentials/logout.php?id=<?php echo $user_admin_id?>" class="top_nav_bar" id="logout">Logout</a>
-            <!-- <a href="./Create/create_project.php" class="top_nav_bar">Create Project</a> -->
-            <!-- <a href="./view/userlist.php" class="top_nav_bar">Users</a> -->
-            <!-- <a href="./view/deptlist.php" class="top_nav_bar">Department</a> -->
             <a href="./interface.php" class="top_nav_bar">Home</a>
             <h2 class="dashboard">User Dashboard</h2>
         </div>
@@ -227,43 +224,47 @@ else if ($userType == "user")
             <center>
             <form action="" method="POST">
                 <table border="0">
-                <h3>Projects</h3>
+                <h3>Project List</h3>
                 <?php
-                $id=1;   //initializing id as autoincrement.
-                    $query_assigned_member = "SELECT * FROM assigned_member where user_id='$user_admin_id'"; 
-                    $result_user = mysqli_query($conn, $query_assigned_member);
-                    if (mysqli_num_rows($result_user) > 0) {
-                    while ($assigned_row = mysqli_fetch_assoc($result_user)) 
+                $sn=1;   //initializing id as autoincrement.
+                    $sql = "SELECT * FROM project"; 
+                    $result = mysqli_query($conn, $sql);
+                    if (mysqli_num_rows($result) > 0) {
+                        // echo "";
+                        echo "<table border='0'>
+                    ";
+                    while ($row = mysqli_fetch_assoc($result)) 
                     {
-                        $fetched_project_id=$assigned_row['project_id'];
-                        $fetched_user_id=$assigned_row['user_id'];
-                        // fetched from project
-                        $project_query="SELECT * from project where id='$fetched_project_id'";
-                        $project_result = mysqli_query($conn, $project_query);
-                        if (mysqli_num_rows($project_result) > 0)
-                         {
-                            while ($project_row = mysqli_fetch_assoc($project_result)) 
-                            {
-                                $project_id=$project_row['id'];
-                                $project_name=$project_row['project_name'];
-                            }
-                        }
-                        echo "<tr><th><h4>" . $id . "</h4></th>
-                        <th><h2>". $project_name . "<a href='./project/project_details.php?id=" . $project_id . "&user_id=".$user_admin_id."'>
-                        <img src='./view/eye.png' alt='View' title='View'></a>
-                        
-                        </h2></th> </tr>";
-                        $id++;
-                    }
-                    echo "</table>";
-                    } else {
-                    echo "No records found.";}
-                    mysqli_close($conn);
-                
-                ?>
-                </table>
-            </form>
-            </center>
+                        $id=$row["id"];
+                        include "./Assignment/supervised.php";
+                        ?>
+                        <tr>
+                            <th><h4><?php echo $sn ?></h4></th>
+                            <th><h2><?php echo $row['project_name'] ?>
+                                <a href='./project/project_details.php?id=<?php echo $row['id'] ?>'>
+                                <?php 
+                                // Output supervised name if assigned
+                                if (!empty($supervised_name)) {
+                                    echo "Supervised: " . $supervised_name;
+                                }
+                                ?>
+                                <img src='./view/eye.png' alt='View' title='View'>
+                                </a>
+                            </h2></th>
+                        </tr>
+        <?php 
+        $sn++; // Incrementing $id
+    }
+        echo "</table>";
+    } 
+    else 
+        {
+        echo "No records found.";}
+        mysqli_close($conn);        
+    ?>
+    </table>
+    </form>
+</center>
         </div>
         
         <div class="footer">

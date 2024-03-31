@@ -189,45 +189,38 @@ body
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: lightgrey;
+            background-color: grey;
             padding:1rem;
             color:black;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             font-size:larger;
-            /* width:50%; */
         }
         .dpt_creation
         {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            background-color: lightgrey;
-            margin: 20rem;
-            margin-top: 80px;
+            background-color: grey;
             padding:1rem 3rem 3rem 3rem;
+            padding-bottom: 11rem;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             font-size:larger;
             border-radius:3px;
-            height: 30%;
         }
         .user_creation
         {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: lightgrey;
+            background-color: grey;
             padding:1rem;
             color:black;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             font-size:larger;
-            /* width:50%; */
         }
-        span{
+        /* span{
             display:flex;
-            /* flex-direction:column; */
             padding: 1px;
-        }
+            justify-content: space-between;
+            justify-items: space-between;
+        } */
         .p_create
         {
             width:30rem;
@@ -256,6 +249,7 @@ body
             padding: 10px;
             border-radius: 5px;
             float:right;
+            height: 40px;
             margin-left: 70%;
         }
         .padd
@@ -263,10 +257,6 @@ body
             padding:10px;
             margin:10px;
             margin-bottom:0px;
-            /* width: 100%;
-            display:flex;
-            flex-direction:column;
-            padding: 1px; */
         }
         .phpdepartment
         {
@@ -276,9 +266,7 @@ body
         }
         .phpproject
         {
-            background-color:lightgrey;
             text-align:center;
-            /* margin-bottom:10px; */
             padding: 10px;
             font-size:15px;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;

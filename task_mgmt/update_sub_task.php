@@ -71,7 +71,7 @@ include '../persistLogin.php';
         $project_id = $_GET['project_id'];
 ?>
             <div class="top_nav_update">
-                <a href="./sub_task_list.php?user_type=<?php echo $userType; ?>&main_task_id=<?php echo $main_task_id ; ?>&project_id=<?php echo $project_id ;?> " class="top_nav_bar_update">Back</a></h4>
+                <!-- <a href="./sub_task_list.php?user_type=<?php echo $userType; ?>&main_task_id=<?php echo $main_task_id ; ?>&project_id=<?php echo $project_id ;?> " class="top_nav_bar_update">Back</a></h4> -->
                 <a href="../interface.php" class="top_nav_bar_update">Home</a>
                 <h2 class="dashboard_update">Task Management</h2>
                
@@ -98,7 +98,7 @@ include '../persistLogin.php';
                     <table border='0px'>
                         <?php  $msg= $rows['message'];?>
                         <?php  $deadline= $rows['end_date_time'];?>
-                        <tr><td>Task Details</td></tr>
+                        <tr><td>Task Name</td></tr>
                         <tr><td><input type="text" name="task" value="<?php echo $msg; ?>"></td></tr>
                         <tr><th>Date and Time</th></tr>
                         <tr><td><input type="datetime-local" name="dt" value="<?php echo $deadline; ?>"></td></tr>

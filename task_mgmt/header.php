@@ -2,7 +2,7 @@
         if($userType== "admin" || $userType== "foreman" || $userType=="user")
         { ?>
             <div class="main">
-                <table border="1">
+                <table border="0">
                     <!-- fetching project name and details      -->
                     <div class="project_info">
                         <?php
@@ -25,11 +25,11 @@
                         <!-- View project Name and Details HTML -->
                         <div id="project_name">
                         <?php if($userType=="user"){?>
-                        <!-- <h4 class="p">Project Name <a href="../project/project_details.php?user_type=<?php echo $userType; ?>&id=<?php echo $project_id; ?>" class="back_btn">Back</a></h4> -->
+                        <h4 class="p">Project Name <a href="../project/project_details.php?user_type=<?php echo $userType; ?>&id=<?php echo $project_id; ?>" class="back_btn"></a></h4>
                         <?php } 
                         else
                         {?>
-                        <!-- <h4 class="p">Project Name <a href="../project/project_details.php?user_type=<?php echo $userType; ?>&id=<?php echo $project_id; ?>" class="back_btn">Back</a></h4> -->
+                        <h4 class="p">Project Name <a href="../project/project_details.php?user_type=<?php echo $userType; ?>&id=<?php echo $project_id; ?>" class="back_btn"></a></h4>
                         <?php }?>    
                         
                         <h4 class="p_n">

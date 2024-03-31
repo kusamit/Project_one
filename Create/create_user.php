@@ -13,6 +13,7 @@ include '../persistLogin.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/interface.css">
+    <link rel="stylesheet" href="../css/user.css">
 </head>
 <body>
 <?php
@@ -27,54 +28,44 @@ if($userType == "admin" || $userType == "foreman")
         <div class="form_container">
             <div class="user_creation">
                 <form action="" method="POST">
-                    <!-- <table> -->
-                    <span>Full Name</span><span><input type="text" name="name" id="" class="input_user" required></span>
-                    <span>Email</span><span><input type="email" name="email" id="" class="input_user"></span>
-                    <span>Phone No.</span><span><input type="number" name="phone" id="" class="input_user"></span>
-                    <span>Address</span><span><input type="text" name="address" id="" class="input_user"></span>
-                    <span>Username</span><span><input type="username" name="username" id="" class="input_user"></span>
-                    <span>Password</span><span><input type="password" name="password" id="" class="input_user" required></span>
+                    <span>Full Name</span><input type="text" name="name" id="" class="input_user" required>
+                    <span>Email</span><input type="email" name="email" id="" class="input_user">
+                    <span>Phone No.</span><input type="number" name="phone" id="" class="input_user">
+                    <span>Address</span><input type="text" name="address" id="" class="input_user">
+                    <span>Username</span><input type="username" name="username" id="" class="input_user">
+                    <span>Password</span><input type="password" name="password" id="" class="input_user" required>
                     <span>Department</span>
-                    <span> 
-                        <select name="dept_id" id="" class="input_user" required>
-                            <option value="" class="input_user">Select..</option>
-                            <!-- //php for select option department -->
-                            <?php
-                                $sql="SELECT * from department";
-                                $result=mysqli_query($conn,$sql);
-                                if($result)
-                                {
-                                    echo "";
-                                }else
-                                {
-                                    echo "error to Create department";
-                                }
-                                $num=mysqli_num_rows($result);
-                                if ($num>0) 
-                                {
-                                    while ($row = mysqli_fetch_assoc($result)) 
-                                    {
-                                        ?>
-                                        <option value="<?php echo $row['dpt_id']?>"><?php echo $row['department_name']?></option>;
-                                        <?php
-                                    }
-                                } 
-                                else 
-                                {
-                                    echo "<option value=''>Create a department first</option>";
-                                }
-                            ?>
-                        </select>
-                        
-                    </span>
-                    <!-- for choose the user of manager -->
+                    <select name="dept_id" id="" class="input_user" required>
+                        <option value="">Select..</option>
+                        <!-- PHP for select option department -->
+                        <?php
+                        $sql="SELECT * from department";
+                        $result=mysqli_query($conn,$sql);
+                        if($result) {
+                            echo "";
+                        } else {
+                            echo "error to Create department";
+                        }
+                        $num=mysqli_num_rows($result);
+                        if ($num>0) {
+                            while ($row = mysqli_fetch_assoc($result)) {
+                                ?>
+                                <option value="<?php echo $row['dpt_id']?>"><?php echo $row['department_name']?></option>;
+                                <?php
+                            }
+                        } else {
+                            echo "<option value=''>Create a department first</option>";
+                        }
+                        ?>
+                    </select>
+                    
                     <span>Role</span>
-                    <Span><select name="role" id="" class="input_user" required>
+                    <select name="role" id="" class="input_user" required>
                         <option value="user">User</option>
                         <option value="foreman">Foreman</option>
-                    </select></Span>
-                    <!-- </table> -->
-                    <span><input type="submit" value="Add" name="submit" id="submit_user"></span> 
+                    </select>
+                    
+                    <input type="submit" value="Add" name="submit" id="submit_user" class="submit_button">
                 </form>
                 <div class="phpdepartment">
                        <!-- php here -->

@@ -13,6 +13,8 @@ include '../persistLogin.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../css/interface.css">
+    <link rel="stylesheet" href="../css/project.css">
+
 </head>
 <body>
 <?php
@@ -28,50 +30,55 @@ if($userType == "admin" || $userType == "foreman" || $userType == "user")
                 {?>
                     <center>
                         <h3>Create New Department</h3>
-            <!-- <a style='float:left;' href='../interface.php'><img style=' height:30px; weight:30px;'src='../view/back_button.png'></a> -->
+                        </center>
             <div class="dpt_creation">
+                <center>
                 <form action="" method="POST">
                     <span class="padd">Department Name</span>
                     <span><input type="text" name="department"  required class="d_create" class="padd" placeholder="Enter Department Name"></span>
-                    <span><input type="submit" value="Submit" name="submit" id="submit_department" class="padd" ></span> 
+                    <span><input type="submit" value="Submit" name="submit"  class="padd" ></span> 
                 </form>
+                </center>
                 <div class="phpdepartment">
                        <!-- php here -->
                        <?php
-                        if(isset($_POST["submit"]))
-                        {
-                            $dpt_name=$_POST["department"];
-                            $department_query="INSERT INTO department (department_name)
-                            VALUES ('$dpt_name')";
-                            $result=mysqli_query($conn,$department_query);
-                            if($result)
-                            {
-                            //    echo "$dpt_name Department Created Sucessfully...!!";
-                            echo "<script>
-                            alert('Department has been created successfully');
-                            </script>";
-                            // window.location.href = '../view/deptlist.php';
-                            header("Refresh:0;url='../view/deptlist.php'");
-                            }
-                            else
-                            {
-                                echo "<h6> Error to create the Department</h6>";
-                            }
-                        }
-                        ?>
+if(isset($_POST["submit"])) {
+    $dpt_name = $_POST["department"];
+    $check_department = "SELECT * FROM department WHERE department_name='$dpt_name'";
+    $check_result = mysqli_query($conn, $check_department);
+    
+    if(mysqli_num_rows($check_result) > 0) {
+        // Department already exists
+        echo "<script>
+                alert('The entered department already exists!');
+            </script>";
+    } else {
+        // Department does not exist, proceed to insert
+        $department_query = "INSERT INTO department (department_name) VALUES ('$dpt_name')";
+        $add_result = mysqli_query($conn, $department_query);
+        if($add_result) {
+            // Department added successfully
+            echo "<script>
+                alert('Department has been created successfully');
+                window.location.href = '../view/deptlist.php';
+            </script>";
+            exit;
+        } else {
+            // Error adding department
+            echo "Error: " . mysqli_error($conn);
+        }
+    }
+}
+?>
+
                     </div>
             </div>
-        </center>
+        <!-- </center> -->
 
             <?php
             }?>
                 
             </div>
-
-        
-        <div class="footer">
-            <!-- Project Management System -->
-        </div>
 <?php        
 }?>
 </body>
