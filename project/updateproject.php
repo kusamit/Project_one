@@ -12,7 +12,7 @@ include '../persistLogin.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Update Project</title>
     <!-- <link rel="stylesheet" href="../css/assignment.css"> -->
     <!-- <link rel="stylesheet" href="../css/project.css"> -->
     <!-- <link rel="stylesheet" href="../css/interface.css"> -->

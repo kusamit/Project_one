@@ -7,6 +7,7 @@ $userType= $_SESSION["user_type"];
 include '../persistLogin.php';
 ?>
 <html>
+    <title>Task</title>
     <head>
         <link rel="stylesheet" href="../css/subtasklist.css">
     </head>

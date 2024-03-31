@@ -11,7 +11,7 @@ include '../persistLogin.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Update Main Task | Topic</title>
+    <title>Main Task | Topic</title>
         <link rel="stylesheet" href="../css/project_details.css">
 </head>
 <style>
