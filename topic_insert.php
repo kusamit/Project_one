@@ -11,8 +11,8 @@
             else{ ?>
             <!-- <a href="../project/project_details.php?user_type=<?php echo $userType; ?>&id=<?php echo $project_id; ?>" class="top_nav_bar">Back</a></h4> -->
             <?php }?>
-            <!-- <a href="../interface.php" class="top_nav_bar">Home</a>
-            <h2 class="dashboard">Task Management</h2> -->
+            <a href="../interface.php" class="top_nav_bar">Home</a>
+            <h2 class="dashboard">Task Management</h2>
         </div>
             <div class="header">
                 <!-- fetching the main task | Topics -->
@@ -64,9 +64,10 @@
                     <?php '</strong></p>'; ?></h4><br>
                     
                     <!-- deadline date -->
-                   <div class='inputdata'>Deadline <input type="datetime-local" name="dt" id="inputdata" class="inputdata">
+                    <span class="inputdata">Deadline</span><input type="datetime-local" name="dt" class="inputdata" id="datePicker">
+                    <script src="./js/validatebackdate.js"></script>
                     
-                    <input type="submit" value="Add" name="submit" id="add" ></div> 
+                    <input type="submit" value="Add" name="submit" id="add" >
                     <!-- php for insertion of task -->
                     <?php
                         if(isset($_POST['submit']))

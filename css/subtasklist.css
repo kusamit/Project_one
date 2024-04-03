@@ -21,7 +21,7 @@
  }
 
 body{
-    background-color:darkblue;
+    /* background-color:darkblue; */
     height:100%;
     margin:0px;
     padding: 0px;
@@ -61,12 +61,9 @@ body{
 table,tr
 {
     margin-right:10px;
-    padding:10px;
-    /* padding-left:50px; */
     padding-top:1px;
     text-align:center;
     align-items:center;
-    /* max-width:25rem; */
 }
 td
 {
@@ -184,41 +181,4 @@ p{
     margin:5px;
     height:fit-content;
     border-radius:5px;
-}
-.top_nav
-{
-    /* background-color: white; */
-    height: 3rem;
-    width: 100%;
-    border-radius: 3px;
-    justify-content: center;
-}
-.dashboard
-{
-    margin: 30px;
-    padding: 0px;
-    justify-content: center;
-    color: white;
-    margin-left: 3rem;
-
-}
-.body
-{
-    margin: 0px;
-    padding: 0px;
-}
-.top_nav_bar
-{
-    background-color: white;
-    color: black;
-    float: right;
-    margin-right: 3rem;
-    padding: 10px;
-    border-radius: 4px;
-    text-decoration: none;
-    
-}
-.top_nav_bar:hover
-{
- background-color: #ffd966;   
 }

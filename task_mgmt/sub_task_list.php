@@ -3,6 +3,7 @@ include '../dbconnect/dbconnect.php';
 session_start();
 $user_admin_id=$_SESSION['Login_session'];
 $userType= $_SESSION["user_type"];
+$project_id = $_GET['project_id'];
 // echo $userType;
 include '../persistLogin.php';
 ?>
@@ -10,13 +11,16 @@ include '../persistLogin.php';
     <title>Task</title>
     <head>
         <link rel="stylesheet" href="../css/subtasklist.css">
+        <link rel="stylesheet" href="../css/headpname.css">
     </head>
     <body>
         <?php
         if($userType=="admin" || $userType=="foreman" || $userType=="user")
-        {?>
+        {
+            ?>
         <!-- fetched topic and insert of tasks -->
-          <?php 
+          <?php include '../interface_nav.php';
+                      include '../Assignment/header/header.php';
           include 'topic_insert.php'; 
           ?>
             <!-- task management View -->
@@ -28,6 +32,8 @@ include '../persistLogin.php';
     </table>
     <!-- to display the sub task  -->
     <?php
+    include './js/validmaintaskdate.php';
+    // include './js/daterange.php';
         $sql = "SELECT * FROM sub_task_mgmt WHERE main_task_id = '$main_task_id' and project_id='$project_id'";
         $result = mysqli_query($conn, $sql);
         // Check for errors in the query
@@ -142,7 +148,8 @@ include '../persistLogin.php';
             <!-- to display action -->
             <td>
                 <!-- <form action="" method="POST" class="action_form"> -->
-                    <?php if(getDateTimeDiff($end_time) !== "expired"):
+                    <?php if(getDateTimeDiff($valid_deadline) !== "expired"): 
+                    if(getDateTimeDiff($end_time) !== "expired"):
                         if(!($isvarified==2 && $review==2)){ ?>
                     <select name="" id="progress_select" class="btn_p">
                         <option value="0">Select</option>
@@ -163,7 +170,8 @@ include '../persistLogin.php';
                     <input type="hidden" name="row_id" value="<?php echo $rowId; ?>">
                     <input type="submit" value="Submit Task" name='done' class='file_sbmt'><br>
                     <?php echo $status_tsbmt; }?>
-                <?php endif; ?>
+                <?php endif; 
+                endif;?>
                 </form>
             <hr>
             </td>

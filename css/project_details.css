@@ -99,16 +99,15 @@ a:hover {
     border-radius: 5px;
 }
 
-.main {
+/* .main {
     margin: 0px;
     max-width: 100vw;
     border: 1px solid grey;
     padding: 0px;
-    /* margin-left:20px; */
     padding: 0px;
     border: 0px;
 
-}
+} */
 
 .info_body {
     display: flex;

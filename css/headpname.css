@@ -1,0 +1,79 @@
+
+/* top */
+.top_nav
+{
+    /* background-color: white; */
+    height: 3rem;
+    width: 100%;
+    border-radius: 3px;
+    justify-content: center;
+}
+.dashboard
+{
+    margin: 10px;
+    padding: 0px;
+    justify-content: center;
+    color: darkblue;
+    margin-left: 3rem;
+
+}
+h2
+{
+    font-size: 20px;
+}
+.head {
+    background-color: #33bbff;
+    padding: 1px;
+    color: White;
+    padding-left: 30px;
+}
+.body
+{
+    margin: 0px;
+    padding: 0px;
+}
+.foreman_name, .admin_name {
+    float: right;
+    margin-right: 5rem;
+    margin-top: 0px;
+    /* padding: 10px; */
+    text-align: center;
+    justify-content: center;
+    color: #000080;
+}
+.top_nav_bar
+{
+    background-color: white;
+    color: black;
+    float: right;
+    margin-right: 3rem;
+    padding: 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 20px;
+    
+}
+/* .top_nav_bar {
+    margin-left: 3rem;
+    padding: 10px;
+    color: black;
+    background-color: white;
+    border-radius: 5px;
+    text-decoration: none;
+    
+    
+} */
+.top_nav_bar:hover
+{
+ background-color: #ffd966;   
+}
+/* closing top; */
+.mainhead
+{
+    float: left;
+    margin-left: 30px;
+    color:darkblue;
+    font-weight: bold;
+    font-size: 18px;
+}
