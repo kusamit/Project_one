@@ -12,8 +12,16 @@ include './persistLogin.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Management System</title>
     <link rel="stylesheet" href="./css/interface.css">
+    <link rel="stylesheet" href="./css/head_nav.css">
+    <style>
+        .top_nav
+        {
+            margin-right: 0px;
+        }
+    </style>
 </head>
 <body>
+<!-- <a href="./head_nav.php" class="top_nav_bar">index</a> -->
 <?php
 if($userType == "admin")
 {?>
@@ -30,6 +38,9 @@ if($userType == "admin")
             <a href="./view/deptlist.php" class="top_nav_bar">Department</a>
             <a href="./interface.php" class="top_nav_bar">Home</a>
             <h2 class="dashboard">Admin Dashboard</h2>
+            <!-- <a href="./head_nav.php" class="top_nav_bar">index</a> -->
+
+            <a href="./index.php">index</a>
         </div>
         <div class="head">
             <h1>Project Management System</h1>

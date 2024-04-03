@@ -53,6 +53,7 @@
                             {
                         ?>
                                 <a href="../task_mgmt/delete_main_task.php?id=<?php echo $fetched_main_task_id?>&user_id=<?php echo $fetched_assigned_userId;?>&project_id=<?php echo $project_id;?>" class="action_UD">Delete</a>
+                                <a href="../task_mgmt/delete_main_task.php?id=<?php echo $fetched_main_task_id?>&user_id=<?php echo $fetched_assigned_userId;?>&project_id=<?php echo $project_id;?>" class="action_UD">Review</a>
                         <?php
                             }
                         ?>

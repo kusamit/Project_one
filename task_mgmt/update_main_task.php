@@ -2,6 +2,7 @@
 include '../dbconnect/dbconnect.php'; 
 session_start();
 $userType= $_SESSION["user_type"];
+$user_admin_id=$_SESSION['Login_session'];
 // echo $userType;
 $project_id=$_GET['project_id'];
 include '../persistLogin.php';
@@ -12,30 +13,32 @@ include '../persistLogin.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Task | Topic</title>
-        <link rel="stylesheet" href="../css/project_details.css">
+        <!-- <link rel="stylesheet" href="../css/project_details.css"> -->
+        <link rel="stylesheet" href="../css/headpname.css">
 </head>
 <style>
     .updatemaintask
     {
         border: 1px whitesmoke solid;
         border-radius: 4px;
-        margin-top: 40px;
+        margin-top: 8rem;
         margin-right: 20px;
         padding: 80px;
         padding-top: 0px;
         width:20%;
         background-color: whitesmoke;
     }
-    h3{
+    /* h3{
         margin-top: 50px;
         margin-bottom: 50px;
         color:#191966;
-    }
+    } */
 </style>
 <body>
     <?php
    if($userType=="admin" || $userType=="foreman")
-   {    include "./header.php";
+   {    include '../interface_nav.php';
+        include '../Assignment/header/header.php';
     ?>
         <form action="" method="POST">
         <?php

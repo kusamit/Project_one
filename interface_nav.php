@@ -7,23 +7,27 @@
             <?php
             }?>
             
-            <a href="../view/userlist.php" class="top_nav_bar">Users</a>
-            <a href="../view/deptlist.php" class="top_nav_bar">Department</a>
-            <a href="../interface.php" class="top_nav_bar">Home</a>
             <?php
             if($userType=="admin")
             {?>
                 <h2 class="dashboard">Admin</h2>
+                <a href="../view/userlist.php" class="top_nav_bar">Users</a>
+            <a href="../view/deptlist.php" class="top_nav_bar">Department</a>
+            <a href="../interface.php" class="top_nav_bar">Home</a>
             <?php
             }?><?php
             if($userType=="foreman")
             {?>
                 <h2 class="dashboard">Foreman</h2>
+                <a href="../view/userlist.php" class="top_nav_bar">Users</a>
+            <a href="../view/deptlist.php" class="top_nav_bar">Department</a>
+            <a href="../interface.php" class="top_nav_bar">Home</a>
             <?php
             }?><?php
             if($userType=="user")
             {?>
                 <h2 class="dashboard">User</h2>
+                <a href="../interface.php" class="top_nav_bar">Home</a>
             <?php
             }?>
         </div>

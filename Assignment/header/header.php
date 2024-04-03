@@ -24,19 +24,17 @@
                         ?>
                         <!-- View project Name and Details HTML -->
                         <div id="project_name">
-                            
-                        
-                        <h4 class="p_n">
+                        <h3 class="p_n">
                                 <?php 
                                 echo $fetched_project_name ;
                                 ?>
-                            </h4>
+                            </h3>
                             <?php if($userType=="user"){?>
-                        <h4 class="p">Project Name: </h4>
+                        <h3> Project Name </h3>
                         <?php }
                         else
                         { ?>
-                            <h4 class="p">Project Name: </h4>
+                            <h3 class="p">Project Name </h3>
                         <?php } ?>   
                         </div> 
                     </div>

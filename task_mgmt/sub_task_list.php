@@ -12,6 +12,7 @@ include '../persistLogin.php';
     <head>
         <link rel="stylesheet" href="../css/subtasklist.css">
         <link rel="stylesheet" href="../css/headpname.css">
+        <!-- <link rel="stylesheet" href="../css/project_details.css"> -->
     </head>
     <body>
         <?php
@@ -19,10 +20,12 @@ include '../persistLogin.php';
         {
             ?>
         <!-- fetched topic and insert of tasks -->
-          <?php include '../interface_nav.php';
-                      include '../Assignment/header/header.php';
-          include 'topic_insert.php'; 
+            <?php 
+            include '../interface_nav.php';
+            include '../Assignment/header/header.php';
+            include 'topic_insert.php'; 
           ?>
+          
             <!-- task management View -->
     <table border="0">
         <tr>

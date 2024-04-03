@@ -3,6 +3,7 @@ session_start();
 include '../dbconnect/dbconnect.php';
 $user_admin_id=$_SESSION['Login_session'];
 $userType= $_SESSION["user_type"];
+$project_id = $_GET['id'];
 // echo $userType;
 include '../persistLogin.php';
 ?>
@@ -14,6 +15,16 @@ include '../persistLogin.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project Details</title>
     <link rel="stylesheet" href="../css/project_details.css">
+    <link rel="stylesheet" href="../css/headpname.css">
+    <style>
+        .assign
+        {
+            float: right;
+            text-decoration: none;
+            color:white;
+            /* background-color: green; */
+        }
+    </style>
 </head>
 <body>
     <?php
@@ -21,6 +32,10 @@ include '../persistLogin.php';
         { 
     ?>
         <div class="main">
+        <?php
+            include '../interface_nav.php';
+            include '../Assignment/header/header.php';
+                            ?>
             <table border="0">
                 <!-- fetching project name and details      -->
                 <div class="project_info">
@@ -42,20 +57,19 @@ include '../persistLogin.php';
                             $num_view=mysqli_num_rows($result_view);
                             $row_view=mysqli_fetch_assoc($result_view);
                             $fetched_id=$row_view['id'];
-                            // echo $fetched_id;
                             $fetched_file_type=$row_view['file_type'];
                             $fetched_file=$row_view['file'];
                             $fetched_project_details=$row_view['project_details'];
                     ?>
-                            <!-- View project Name and Details HTML -->
-                            <div id="project_name">
-                                <h4 class="p">Project Name  <a href="../interface.php" class="back_btn">Back</a><br>
-                                <h4 class="p_n"> <?php echo $row_view['project_name'] ;?> </h4>
-                            </div>
                         <!-- Project Details HTML -->
                         <div id="project_details">
                             <div id="details">
                                 Project Details
+                            </div>
+                            <div class='assign'>
+                            <a href="./userAssignProject.php?p_id=<?php echo $project_id ?>" id="assign_user">Assign</a>
+                            <a href="./unassign.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign</a>
+                
                             </div>
                         </div>
                 </div>  

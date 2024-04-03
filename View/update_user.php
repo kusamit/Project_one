@@ -13,6 +13,7 @@ include '../persistLogin.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User</title>
     <link rel="stylesheet" href="../css/interface.css">
+    <link rel="stylesheet" href="../css/head_nav.css">
     <link rel="stylesheet" href="../css/user.css">
 </head>
 <body>

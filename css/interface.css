@@ -15,8 +15,6 @@ body
         table
         {
             width:90%;
-            /* margin-left:20%; */
-            /* margin-bottom:2rem; */
             margin-top:5px;
             align-items:center;
             text-align:center;
@@ -76,9 +74,10 @@ body
             margin-left:20px;
             
         }
-        .top_nav
+        /* .top_nav
         {
             margin:0px;
+            margin-right: 70px;
             margin-bottom:35px;
             padding:10px;
             color:black;
@@ -90,7 +89,7 @@ body
             }
         .top_nav_bar
         {
-            margin-left:3rem;
+            margin-right:3rem;
             padding:10px;
             color:black;
             background-color:white;
@@ -112,7 +111,6 @@ body
             }
         .nav_bar
             {
-                /* float: left; */
                 margin-left:3rem;
                 padding:10px;
                 color:black;
@@ -135,7 +133,7 @@ body
             padding:1px;
             color:White;
             padding-left:30px;
-        }
+        } */
         .footer
         {
             background-color:#adad85;
@@ -143,12 +141,11 @@ body
             margin-top:50px;
             padding:20px;
         }
-        .foreman_name,.admin_name
+        /* .foreman_name,.admin_name
         {
             float:right;
             margin-right:5rem;
             margin-top:0px;
-            /* padding:10px; */
             text-align:center;
             justify-content:center;
             color: #000080;
@@ -166,12 +163,10 @@ body
             margin-top:65px;
             padding:10px;
 
-        }
+        } */
         .userlist
         {
             text-align:center;
-            /* background-color:#003399;
-            color:white; */
         }
         #adduser
         {

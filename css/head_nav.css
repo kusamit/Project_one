@@ -1,0 +1,92 @@
+.top_nav
+        {
+            margin:0px;
+            margin-right: 40px;
+            margin-bottom:35px;
+            padding:10px;
+            color:black;
+            background-color:white;
+            border-radius:5px;
+            text-decoration:none;
+            font-family: "Times New Roman", Times, serif;
+            font-size:90%;
+            }
+        .top_nav_bar
+        {
+            margin-right:3rem;
+            padding:10px;
+            color:black;
+            background-color:white;
+            border-radius:5px;
+            text-decoration:none;
+            font-family: "Times New Roman", Times, serif;
+            font-size:20px;
+            float: right;
+        }
+        .top_nav_bar:hover
+            {
+                background-color: #ffd966;
+                width:fit-content;
+                border-radius:5px;
+            }
+        .nav
+            {
+               margin-bottom:3rem; 
+            }
+        .nav_bar
+            {
+                /* float: left; */
+                margin-left:3rem;
+                padding:10px;
+                color:black;
+                background-color:white;
+                border-radius:5px;
+                text-decoration:none;
+                font-family: "Times New Roman", Times, serif;
+                font-size:20px;
+                float:left;
+            }
+        .nav_bar:hover
+            {
+                background-color: #ffd966;
+                width:fit-content;
+                border-radius:5px;
+            }
+        .head
+        {
+            background-color:#33bbff;
+            padding:1px;
+            color:White;
+            padding-left:30px;
+        }
+        .footer
+        {
+            background-color:#adad85;
+            color:white;
+            margin-top:50px;
+            padding:20px;
+        }
+        .foreman_name,.admin_name
+        {
+            float:right;
+            margin-right:5rem;
+            margin-top:0px;
+            /* padding:10px; */
+            text-align:center;
+            justify-content:center;
+            color: #000080;
+        }
+        .dashboard
+        {
+            float:left;
+            margin:10px;
+            margin-left:30px;
+            color: #000080;
+        }
+        #logout
+        {
+            margin:0px;
+            margin-top:65px;
+            padding:10px;
+
+        }
