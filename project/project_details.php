@@ -67,7 +67,7 @@ include '../persistLogin.php';
                                 Project Details
                             </div>
                             <div class='assign'>
-                            <a href="./userAssignProject.php?p_id=<?php echo $project_id ?>" id="assign_user">Assign</a>
+                            <a href="../Assignment/foremanAssignProject.php?p_id=<?php echo $project_id ?>" id="assign_user">Assign</a>
                             <a href="./unassign.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign</a>
                 
                             </div>

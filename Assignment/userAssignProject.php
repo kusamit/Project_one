@@ -12,28 +12,30 @@ $user_admin_id=$_SESSION['Login_session'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/project_details.css">
+    <!-- <link rel="stylesheet" href="../css/project_details.css"> -->
+    <!-- <link rel="stylesheet" href="../css/head_nav.css"> -->
+    <link rel="stylesheet" href="../css/headpname.css">
     <link rel="stylesheet" href="../css/assignment.css">
 </head>
-<style>
-h1
-{
-    color:darkblue;
-    margin-left: 1.8rem;
-}
-</style>
 <body>
 <?php
     if($userType=="admin" || $userType=="foreman")
 {?>
-    <?php
-        include"./header/headerassign.php";
-    ?>
+    <div class="assign_nav">
+        <div class="assign_nav_inc">
+            <?php
+                include "../interface_nav.php";
+                include "./header/header.php";
+            ?>
+        </div>
+    <br>
         <div class="layout">
             <!-- <h1>State</h1> -->
-            <a href="./userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign</a>
-            <a href="./unassign.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign</a>
-        </div>        
+            <a href="./foremanAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign Foreman</a>
+            <a href="./userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign User</a>
+        </div>           
+    </div>
+    
         <center><div Class="user_nav">User List</div></center>
         <div class='showuser'>
             <div class="usertableview">

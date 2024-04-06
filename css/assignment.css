@@ -1,3 +1,7 @@
+body{
+    margin:0px;
+    padding:0px;
+}
 .showuser, .showforeman 
 {
     width: 100%;
@@ -16,7 +20,7 @@
     flex: 1;
     margin-left:10px;
     margin-right: 10px;
-    margin-top: 0px;
+    margin-top: 4px;
 }
 
 table,th,td 
@@ -42,15 +46,51 @@ input.checkbox
 {
     height: 3rem;
 }
-.foreman_nav, .user_nav
+/* .foreman_nav, .user_nav
 {
     background-color: darkblue;
     color: white;
     font-size: 20px;
-    margin: 10px;
+    margin: 0px;
+    margin-top: 30px;
     padding: 5px;
 }
 .layout
 {
     margin:1rem 0rem;
+    display: flex;
+    margin-left: 4rem;
+} */
+/* .assign_nav{
+    display: flex;
+    flex-direction: column;
+} */
+.foreman_nav, .user_nav
+{
+    background-color: darkblue;
+    color: white;
+    font-size: 20px;
+    /* margin: 10px; */
+    padding: 5px;
+}
+.layout
+{
+    margin-top:4rem;
+    margin-bottom:10px;
+}
+#assign_user
+{
+    /* margin-top:4rem; */
+    margin-left:4.5rem;
+    /* margin-bottom:10px; */
+    padding:10px;
+    background-color:#bbbb77;
+    text-decoration:none;
+    border-radius:4px;
+    color:white;
+    font-weight: bold;
+}
+#assign_user:hover
+{
+    background-color: green;
 }

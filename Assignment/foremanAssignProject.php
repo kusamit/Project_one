@@ -3,10 +3,8 @@ session_start();
 include '../dbconnect/dbconnect.php';
 $user_admin_id=$_SESSION['Login_session'];
 $userType= $_SESSION["user_type"];
-// echo $userType;
 include '../persistLogin.php';
 $project_id = $_GET['p_id'];            //getting project id
-// echo $project_id;
 ?>
 
 <!DOCTYPE html>
@@ -15,12 +13,15 @@ $project_id = $_GET['p_id'];            //getting project id
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../css/project_details.css">
+    <!-- <link rel="stylesheet" href="../css/project_details.css"> -->
+    <link rel="stylesheet" href="../css/headpname.css">
     <link rel="stylesheet" href="../css/assignment.css">
     <style>
-        /* .btn_Assign{
-            float:right:
-        } */
+        body
+        {
+            margin:0px;
+            padding:0px;
+        }
     </style>
 </head>
 <body>
@@ -29,49 +30,17 @@ $project_id = $_GET['p_id'];            //getting project id
 {?>
     <?php
         if($userType== "admin")
-        { ?>
-            <div class="main">
-                <table border="1">
-                    <!-- fetching project name and details      -->
-                    <div class="project_info">
-                        <?php
-                            $sql="select * from project where id=$project_id" ;
-                            $result_view=mysqli_query($conn,$sql);
-                            if($result_view)
-                                {
-                                    echo "";
-                                }
-                            else
-                                {
-                                    echo "error database connection";
-                                }
-                            // Fetched details from the project table
-                            $num_view=mysqli_num_rows($result_view);
-                            $row_view=mysqli_fetch_assoc($result_view);
-                            $fetched_id=$row_view['id'];
-                            $fetched_project_name=$row_view['project_name'];
-                        ?>
-                        <!-- View project Name and Details HTML -->
-                        <div id="project_name">
-                        <h4 class="p">Project Name <a href="./Assignedforeman.php?user_type=<?php echo $userType; ?>&p_id=<?php echo $project_id; ?>" class="back_btn">Back</a></h4>
-                            <h4 class="p_n">
-                                <?php 
-                                echo $fetched_project_name ;
-                                ?>
-                            </h4>
-                        </div> 
-                    </div>
-                </table>
-            </div>
-        <?php
-    }?>
-    <hr>
+        { 
+                include "../interface_nav.php";
+                include "./header/header.php";
+        }?>
+        <br>
     <?php
         if(!($userType=='user')){?>
         <div class="layout">
                <!-- <h1>State</h1> -->
-                <a href="./foremanAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign</a>
-                <a href="./unassignforeman.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign</a>
+               <a href="./foremanAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign Foreman</a>
+               <a href="./userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign User</a>
                  </div> 
             <?php
             }?>
@@ -169,11 +138,11 @@ $project_id = $_GET['p_id'];            //getting project id
                     $insertForemanIdResult = mysqli_query($conn, $insertForemanIdQuery);
                     if($insertForemanIdQuery)
                     {
-                        // echo $checked_row_id;
-                        // echo "  has been Assigned.";
-                        echo '<script>
-                                window.location.href = "Assignedforeman.php?p_id=' . $project_id . '";
-                              </script>';
+                        echo $checked_row_id;
+                        echo "  has been Assigned.";
+                        // echo '<script>
+                        //         window.location.href = "foremanAssignProject.php?p_id=' . $project_id . '";
+                        //       </script>';
                     }
                 }
                 else if (mysqli_num_rows($checkAssignedForemanResult) > 0 && $existingForemanId == $checked_row_id)
@@ -188,9 +157,12 @@ $project_id = $_GET['p_id'];            //getting project id
                     $updateForemanIdResult = mysqli_query($conn, $updateForemanIdQuery);
                     if($updateForemanIdResult)
                     {
-                        echo '<script>
-                                window.location.href = "Assignedforeman.php?p_id=' . $project_id . '";
-                              </script>';
+                        echo $checked_row_id;
+                        echo "  has been Assigned. ";?><br><?php 
+                        echo "Updated Sucessfully ";
+                        // echo '<script>
+                        //         window.location.href = "foremanAssignProject.php?p_id=' . $project_id . '";
+                        //       </script>';
                     }
                 }
             }
