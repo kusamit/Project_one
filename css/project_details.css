@@ -101,9 +101,12 @@ a:hover {
 }
 
 .assign_user {
-    text-align: center;
+    margin-left: 5rem;
+    margin-top: 1rem;
+    overflow: auto;
+    /* text-align: center;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; */
 }
 
 .detailed_info_left {

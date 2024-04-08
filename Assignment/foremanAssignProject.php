@@ -47,17 +47,21 @@ $project_id = $_GET['p_id'];            //getting project id
     <center><div Class="foreman_nav">Foreman List</div></center>
         <div class="showforeman">
             <div class="foremantableview">
+                <?php
+                    // include "./supervised.php";
+                ?>
                 <form action="" method="POST">
                     <table border="1">
                     <!-- php -->
                         <?php
+                            $sn=1;
                             $query_users_view="SELECT * from users where role='foreman'";
                             $result_view=mysqli_query($conn,$query_users_view);
                             $num_view=mysqli_num_rows($result_view);
                             if($num_view>0)
                             {?>
                                 <tr>
-                                <th>Id</th>
+                                <th>Sn.</th>
                                 <th>Name</th>
                                 <th>Role</th>
                                 <th>Department</th>
@@ -72,7 +76,7 @@ $project_id = $_GET['p_id'];            //getting project id
                                     $dpt_id=$row['department_id'];
                                     ?>
                                     <tr>
-                                        <td><?php echo  $foreman_id ?></td>
+                                        <td><?php echo  $sn ?></td>
                                         <td><?php echo $fullname  ?></td>
                                         <td><?php echo $role ?></td>
                                         <!-- fetch department name from the department table using the foreign key from users table. -->
@@ -92,7 +96,17 @@ $project_id = $_GET['p_id'];            //getting project id
                                             $dpt_name=$row['department_name'];
                                         ?>
                                         <td><?php echo $dpt_name ?></td>    
-                                        <td><input type="radio" name="checked_id" value="<?php echo $foreman_id; ?>" class="checkbox"></td>                         
+                                        <td><input type="radio" name="checked_id" value="<?php echo $foreman_id; ?>" class="checkbox">
+                                        <div class="show_assigned">
+                                        <?php 
+                                        // if(!(empty($assigned_foreman_id)))
+                                        // {
+                                        //     echo "Assigned";
+                                        // }
+                                        ?>
+                                        </div>
+                                        </td>                         
+                                        <?php $sn++; ?>
                                     </tr>
                                     <?php
                                 }

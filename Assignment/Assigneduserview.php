@@ -6,6 +6,10 @@ if (!empty($project_id))
     $user_assigned = mysqli_num_rows($result_assigned);
     $assigned_name = ''; // Initialize supervised_name for each project
     if ($user_assigned > 0) {
+        ?>
+<b>Assigned User</b>
+<hr>
+<?php
         while ($assigned_row = mysqli_fetch_assoc($result_assigned)) {
             $assigned_user_id = $assigned_row['user_id'];
             if (!($assigned_user_id == '0')) {
@@ -16,7 +20,13 @@ if (!empty($project_id))
                     while ($user_row = mysqli_fetch_assoc($result_view)) {
                         $user_id = $user_row['id'];
                         $users_name = $user_row['fullname'];
+                        echo $users_name; 
+                        ?>
+                        <br>
+                        <?php
                     }
+                } else {
+                    echo "No Assigned Member yet.";
                 }
             }
         }

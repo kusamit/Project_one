@@ -37,6 +37,9 @@ include '../persistLogin.php';
             include '../Assignment/header/header.php';
                             ?>
             <table border="0">
+                <!-- <tr>
+                    <th>Assigned User</th>
+                </tr> -->
                 <!-- fetching project name and details      -->
                 <div class="project_info">
                     <?php
@@ -117,10 +120,19 @@ include '../persistLogin.php';
                         </div>
                     </div>
                         <div class="assign_user">
-                            <a href="../Assignment/assigned_user.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign Users</a>
+                        <!-- <b>Assigned Foreman</b>
+                        <hr> -->
+                            <?php include "../Assignment/supervised.php"; ?>
+                            <br><br>
+                            <!-- <b>Assigned User</b>
+                            <hr> -->
+                            <!-- <a href="#1"> -->
+                            <?php include "../Assignment/assigneduserview.php"; ?>
+                            <!-- </a> -->
+                            <!-- <a href="../Assignment/assigned_user.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign Users</a>
                             <a href="../Assignment/Assignedforeman.php?p_id=<?php echo $project_id; ?>" id="assign_foreman">Assign Foreman</a> 
-                            <!-- <a href="./deleteproject.php?p_id=<?php echo $project_id; ?>" id="assign_foreman">Delete Project</a> -->
-                            <!-- <a href="./updateproject.php?p_id=<?php echo $project_id; ?>" id="assign_foreman">Update Project</a> -->
+                            <a href="./deleteproject.php?p_id=<?php echo $project_id; ?>" id="assign_foreman">Delete Project</a>
+                            <a href="./updateproject.php?p_id=<?php echo $project_id; ?>" id="assign_foreman">Update Project</a> -->
                         <div>
                 </div>
                 <!-- closing of project info php -->
