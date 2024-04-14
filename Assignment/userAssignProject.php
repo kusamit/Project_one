@@ -29,12 +29,21 @@ $user_admin_id=$_SESSION['Login_session'];
             ?>
         </div>
     <br>
+    <?php
+        if(!($userType=="user" || $userType=="foreman")){?>
         <div class="layout">
-            <!-- <h1>State</h1> -->
-            <a href="./foremanAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign Foreman</a>
-            <a href="./userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign User</a>
-        </div>           
-    </div>
+               <!-- <h1>State</h1> -->
+               <a href="./foremanAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign Foreman</a>
+               <a href="./userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign User</a>
+               </div> 
+            <?php
+            }?>
+            <?php if(($userType=="foreman")){?>
+        <div class="layout">
+               <!-- <h1>State</h1> -->
+            <a href="./userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign User</a>               </div> 
+            <?php
+            }?>
     
         <center><div Class="user_nav">User List</div></center>
         <div class='showuser'>

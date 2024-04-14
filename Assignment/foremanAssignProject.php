@@ -17,11 +17,11 @@ $project_id = $_GET['p_id'];            //getting project id
     <link rel="stylesheet" href="../css/headpname.css">
     <link rel="stylesheet" href="../css/assignment.css">
     <style>
-        body
+        /* body
         {
             margin:0px;
             padding:0px;
-        }
+        } */
     </style>
 </head>
 <body>
@@ -36,14 +36,20 @@ $project_id = $_GET['p_id'];            //getting project id
         }?>
         <br>
     <?php
-        if(!($userType=='user')){?>
-        <div class="layout">
-               <!-- <h1>State</h1> -->
-               <a href="./foremanAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign Foreman</a>
-               <a href="./userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign User</a>
-                 </div> 
-            <?php
-            }?>
+    if(!($userType=="user" || $userType=="foreman")){?>
+    <div class="layout">
+           <!-- <h1>State</h1> -->
+           <a href="./foremanAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign Foreman</a>
+           <a href="./userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign User</a>
+           </div> 
+        <?php
+        }?>
+        <?php if(($userType=="foreman")){?>
+    <div class="layout">
+           <!-- <h1>State</h1> -->
+        <a href="./userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign User</a>               </div> 
+        <?php
+        }?>
     <center><div Class="foreman_nav">Foreman List</div></center>
         <div class="showforeman">
             <div class="foremantableview">

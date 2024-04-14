@@ -3,9 +3,7 @@ include '../dbconnect/dbconnect.php';
 session_start();
 $project_id = $_GET['p_id'];
 $user_admin_id=$_SESSION['Login_session'];
-// echo $project_id;
 $userType= $_SESSION["user_type"];
-// echo $userType;
 include '../persistLogin.php';
 ?>
 <html>
@@ -14,8 +12,6 @@ include '../persistLogin.php';
         <title>Create Main Task | Topics</title>
         <link rel="stylesheet" href="./subtaskcss/taskstyle.css">
         <link rel="stylesheet" href="../css/headpname.css">
-        <!-- <link rel="stylesheet" href="../css/project_details.css"> -->
-        <!-- <link rel="stylesheet" href="../css/assignment.css"> -->
     </head>
     <style>
         body
@@ -28,7 +24,7 @@ include '../persistLogin.php';
     <body>
     <?php
     include '../interface_nav.php';
-        include "../assignment/header/header.php";
+    include "../assignment/header/header.php";
     ?>
    <?php
    if($userType=="admin" || $userType=="foreman")

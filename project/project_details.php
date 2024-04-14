@@ -70,8 +70,21 @@ include '../persistLogin.php';
                                 Project Details
                             </div>
                             <div class='assign'>
+                                <?php if($userType=="admin")
+                            {?>
                             <a href="../Assignment/foremanAssignProject.php?p_id=<?php echo $project_id ?>" id="assign_user">Assign</a>
-                            <a href="./unassign.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign</a>
+                            <a href="../Assignment/unassignforeman.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign</a>
+                            <?php } 
+                            ?>
+                            <?php
+                            if($userType=="foreman")
+                            {
+                            ?>
+                            <a href="../Assignment/userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign User</a>
+                            <a href="../Assignment/unassign.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign</a>
+                            <?php }
+                            ?>
+
                 
                             </div>
                         </div>

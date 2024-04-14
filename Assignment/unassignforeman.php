@@ -14,63 +14,27 @@ $project_id = $_GET['p_id'];            //getting project id
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/project_details.css">
+    <title>UnAssign Foreman</title>
+    <link rel="stylesheet" href="../css/headpname.css">
     <link rel="stylesheet" href="../css/assignment.css">
 </head>
 <body>
         <?php
-    if($userType=="admin")
-{?>
-    <?php
-        if($userType== "admin")
-        { ?>
-            <div class="main">
-                <table border="1">
-                    <!-- fetching project name and details      -->
-                    <div class="project_info">
-                        <?php
-                            $sql="select * from project where id=$project_id" ;
-                            $result_view=mysqli_query($conn,$sql);
-                            if($result_view)
-                                {
-                                    echo "";
-                                }
-                            else
-                                {
-                                    echo "error database connection";
-                                }
-                            // Fetched details from the project table
-                            $num_view=mysqli_num_rows($result_view);
-                            $row_view=mysqli_fetch_assoc($result_view);
-                            $fetched_id=$row_view['id'];
-                            $fetched_project_name=$row_view['project_name'];
-                        ?>
-                        <!-- View project Name and Details HTML -->
-                        <div id="project_name">
-                        <h4 class="p">Project Name <a href="./Assignedforeman.php?user_type=<?php echo $userType; ?>&p_id=<?php echo $project_id; ?>" class="back_btn">Back</a></h4>
-                            <h4 class="p_n">
-                                <?php 
-                                echo $fetched_project_name ;
-                                ?>
-                            </h4>
-                        </div> 
-                    </div>
-                </table>
-            </div>
-        <?php
-    }?>
-    <hr>
+    if($userType=="admin" || $userType=="foreman")
+{
+    include "../interface_nav.php";
+    include "./header/header.php";?>
+<br>
     <?php
     if(!($userType=='user')){?>
         <div class="layout">
                <!-- <h1>State</h1> -->
-                <a href="./foremanAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_user">Assign</a>
-                <a href="./unassignforeman.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign</a>
+                <a href="./unassignforeman.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign Foreman</a>
+                <a href="./unassign.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign User</a>
                  </div> 
             <?php
             }?>
-    <center><div Class="foreman_nav">Assigned Foreman</div></center>
+    <center><div Class="foreman_nav">UnAssigned Foreman</div></center>
         <div class="showforeman">
             <div class="foremantableview">
             <form action="" method="POST">

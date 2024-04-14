@@ -11,29 +11,23 @@ $project_id = $_GET['p_id'];     //getting project id
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../css/project_details.css">
+    <title>UnAssign Usert</title>
     <link rel="stylesheet" href="../css/assignment.css">
+    <link rel="stylesheet" href="../css/headpname.css">
 </head>
-<style>
-h1
-{
-    color:darkblue;
-    margin-left: 1.8rem;
-}
-</style>
 <body>
 <?php
     if($userType=="admin" || $userType=="foreman")
 {
-    include"./header/headerassign.php";
-    ?>
+    include "../interface_nav.php";
+    include "./header/header.php";?>
+    <br>
         <div class="layout">
             <!-- <h1>State</h1> -->
-            <a href="./userAssignProject.php?p_id=<?php echo $project_id; ?>" id="assign_a_nav">Assign</a>
-            <a href="./unassign.php?p_id=<?php echo $project_id; ?>" id="assign_a_nav">UnAssign</a>
+            <a href="./unassignforeman.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign Foreman</a>
+            <a href="./unassign.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign User</a>
         </div>
-        <center><div Class="user_nav">Assigned User</div></center>
+        <center><div Class="user_nav">UnAssigned User</div></center>
         <div class='showuser'>
             <div class="usertableview">
                 <form action="" method="POST">

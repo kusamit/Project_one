@@ -1,6 +1,5 @@
  <!-- getting id of project and main task that has passed -->
  <?php
-        // include 'dbconnect.php';
         $main_task_id = $_GET['main_task_id'];
         $project_id = $_GET['project_id'];
 ?>
@@ -64,8 +63,9 @@
                     <?php '</strong></p>'; ?></h4><br>
                     
                     <!-- deadline date -->
-                   <div class='inputdata'>Deadline <input type="datetime-local" name="dt" id="inputdata" class="inputdata">
-                    
+                   <div class='inputdata'>Deadline <input type="datetime-local" name="dt" class="inputdata" id="datePicker">
+                   <?php include "./js/maxdate.php";?>
+                   <script src="./js/validatebackdate.js"></script>
                     <input type="submit" value="Add" name="submit" id="add" ></div> 
                     <!-- php for insertion of task -->
                     <?php
