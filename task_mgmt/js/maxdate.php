@@ -6,7 +6,7 @@
     while($maxdate_row=mysqli_fetch_assoc($result_maxdate))
     // $maxdate_row = ;
     $maxdate = $maxdate_row['deadline'];
-    echo "<p id='max_date'>";
+    echo "<p id='max_date' hidden>";
     echo $maxdate;
     echo "</p>";
   }

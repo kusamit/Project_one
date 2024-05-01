@@ -45,18 +45,14 @@
                         <?php
                         // if(!($userType=="user"))
                         // {?>
-                        <a href="../task_mgmt/update_main_task.php?id=<?php echo $fetched_main_task_id?>&user_id=<?php echo $fetched_assigned_userId;?>&project_id=<?php echo $project_id;?>" class="action_UD">Update</a>
+                        <a href="../task_mgmt/update_main_task.php?id=<?php echo $fetched_main_task_id?>
+                        &user_id=<?php echo $fetched_assigned_userId;?>&project_id=<?php echo $project_id;
+                        ?>" class="action_UD">Update</a>
+                        <a href="../task_mgmt/delete_main_task.php?id=<?php echo $fetched_main_task_id
+                        ?>&user_id=<?php echo $fetched_assigned_userId;?>&project_id=<?php echo $project_id;
+                        ?>" class="action_UD">Review</a>
                         <?php
                         // }?>
-                        <?php
-                            if(!($userType=="foreman" || $userType=="user"))
-                            {
-                        ?>
-                                <a href="../task_mgmt/delete_main_task.php?id=<?php echo $fetched_main_task_id?>&user_id=<?php echo $fetched_assigned_userId;?>&project_id=<?php echo $project_id;?>" class="action_UD">Delete</a>
-                                <a href="../task_mgmt/delete_main_task.php?id=<?php echo $fetched_main_task_id?>&user_id=<?php echo $fetched_assigned_userId;?>&project_id=<?php echo $project_id;?>" class="action_UD">Review</a>
-                        <?php
-                            }
-                        ?>
                             <!-- <a href="#3" class="action_UD">Completed</a> -->
                     </div>
                     <?php
@@ -117,14 +113,8 @@
                         <a href="../task_mgmt/update_main_task.php?id=<?php echo $fetched_main_task_id?>&user_id=<?php echo $fetched_assigned_userId;?>&project_id=<?php echo $project_id;?>" class="action_UD">Update</a>
                         <?php
                         // }?>
-                        <?php
-                            if(!($userType=="foreman" || $userType=="user"))
-                            {
-                        ?>
                                 <a href="../task_mgmt/delete_main_task.php?id=<?php echo $fetched_main_task_id?>&user_id=<?php echo $fetched_assigned_userId;?>&project_id=<?php echo $project_id;?>" class="action_UD">Delete</a>
-                        <?php
-                            }
-                        ?>
+                                <a href="../task_mgmt/Review.php?id=<?php echo $fetched_main_task_id?>&user_id=<?php echo $fetched_assigned_userId;?>&project_id=<?php echo $project_id;?>" class="action_UD">Review</a>
                             <!-- <a href="#3" class="action_UD">Completed</a> -->
                     </div>
                     <?php
