@@ -54,6 +54,7 @@ $user_id = $_GET['user_id'];
 </head>
 <body>
 <?php
+// <?php
 if (!($userType == "user")) {
     include '../interface_nav.php';
         include '../Assignment/header/header.php';
@@ -68,42 +69,42 @@ if (!($userType == "user")) {
             <th>File</th>
             <th colspan="2">Review</th>
         </tr>
-    <!-- </table> -->
     <?php
     $select_review = "SELECT * FROM sub_task_mgmt WHERE main_task_id='$main_task_id' AND project_id='$project_id'";
     $result_review = mysqli_query($conn, $select_review);
-    $num = mysqli_num_rows($result_review);
-    if ($num > 0) {
-        $sn = 0;
-        while ($fetched_review = mysqli_fetch_assoc($result_review)) {
-            $fetched_id = $fetched_review['Id'];
-            $fetched_message = $fetched_review['message'];
-            $fetched_deadline = $fetched_review['end_date_time'];
-            $fetched_progress_percentage = $fetched_review['progress_percentage'];
-            $fetched_remarks = $fetched_review['remarks'];
-            $fetched_file = $fetched_review['fileupload'];
-            $fetched_review_flag = $fetched_review['review']; // Use a different variable to store the review flag
-            $fetched_isvarified = $fetched_review['isvarified'];
-            $sn++;
-        }
+    $sn = 0;
 
-        if ($fetched_review_flag == 1) {
-        ?>
-            <!-- <table border='1'> -->
-                <tr>
-                    <td><?php echo $sn; ?></td>
-                    <td><?php echo $fetched_message; ?></td>
-                    <td><?php echo $fetched_deadline; ?></td>
-                    <td><?php echo $fetched_progress_percentage; ?></td>
-                    <td><?php echo $fetched_remarks; ?></td>
-                    <td><?php echo $fetched_file; ?></td>
-                    <td><a href="verify.php">Verify</a></td>
-                    <td><a href="redo.php">Redo</a></td>
-                </tr>
-            </table>
-        <?php
+    while ($fetched_review = mysqli_fetch_assoc($result_review)) {
+        $sn++;
+        $fetched_id = $fetched_review['Id'];
+        // echo  $fetched_id;
+        $fetched_message = $fetched_review['message'];
+        $fetched_main_task_id = $fetched_review['main_task_id'];
+        $fetched_project_id = $fetched_review['project_id'];
+        $fetched_deadline = $fetched_review['end_date_time'];
+        $fetched_progress_percentage = $fetched_review['progress_percentage'];
+        $fetched_remarks = $fetched_review['remarks'];
+        $fetched_file = $fetched_review['fileupload'];
+        $fetched_reviews = $fetched_review['review'];
+        $fetched_isvarified = $fetched_review['isvarified'];
+        
+        if ($fetched_reviews == '1' && $fetched_isvarified == '1') {
+    ?>
+            <tr> 
+                <td><?php echo $sn; ?></td>
+                <td><?php echo $fetched_message; ?></td>
+                <td><?php echo $fetched_deadline; ?></td>
+                <td><?php echo $fetched_progress_percentage; ?></td>
+                <td><?php echo $fetched_remarks; ?></td>
+                <td><?php echo $fetched_file; ?></td>
+                <td><a href="./verify.php?id=<?php echo $fetched_id; ?>&project_id=<?php echo $fetched_project_id; ?>&main_task_id=<?php echo $fetched_main_task_id; ?>&user_id=<?php echo $user_id; ?>">Verify</a></td>
+                <td><a href="./redo.php?id=<?php echo $fetched_id; ?>&project_id=<?php echo $fetched_project_id; ?>&main_task_id=<?php echo $fetched_main_task_id; ?>&user_id=<?php echo $user_id; ?>">Redo</a></td>
+    <?php
         }
     }
+    ?>
+    </table> 
+<?php
 }
 ?>
 </body>
