@@ -19,7 +19,7 @@ include '../persistLogin.php';
     <?php
     if($userType=='admin')
     {
-    include '../interface_nav.php';
+        include '../interface_nav.php';
         if (isset($_GET['uid'])) 
         {
             $user_id = $_GET['uid'];

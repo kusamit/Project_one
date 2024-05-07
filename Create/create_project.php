@@ -56,48 +56,49 @@ if($userType == "admin")
         <div class="phpproject">
                        <!-- php here -->
                        <?php
-                            include '../dbconnect/dbconnect.php';
-                            if(isset($_POST["submit"]))
-                            {
-                                $project_name=$_POST["project"];
-                                $file_type=$_POST['f_type'];
-                                $project_details=$_POST['p_details'];
-                                $cost=$_POST['cost'];
-                                // $p_file=$_POST['file'];
-                                $file=$_FILES['file']['name'];
-                                $temp=$_FILES['file']['tmp_name'];
-                                $folder='../project/file/'.$file;
-                                move_uploaded_file($temp,$folder);
-                                $deadline=$_POST['dt'];
-                                if (strlen($project_name) > 25)  // Validation for project_name length
-                                {
+                            if(isset($_POST["submit"])) {
+                                $project_name = $_POST["project"];
+                                $file_type = $_POST['f_type'];
+                                $project_details = $_POST['p_details'];
+                                $cost = $_POST['cost'];
+                                $file = $_FILES['file']['name'];
+                                $temp = $_FILES['file']['tmp_name'];
+                                $folder = '../project/file/' . $file;
+                                move_uploaded_file($temp, $folder);
+                                $deadline = $_POST['dt'];
+
+                                // Check if project name already exists
+                                $check_query = "SELECT * FROM project WHERE project_name = '$project_name'";
+                                $check_result = mysqli_query($conn, $check_query);
+
+                                if(mysqli_num_rows($check_result) > 0) {
                                     echo "<script>
+                                        alert('Project name already exists. Please choose a different Project Name.');
+                                    </script>";
+                                } else {
+                                    if (strlen($project_name) > 25) {
+                                        echo "<script>
                                             alert('Please enter a name with less than 25 Characters.');
+                                        </script>";
+                                    } else {
+                                        $project_query = "INSERT INTO project (project_name, file_type, project_details, cost, file, deadline)
+                                                        VALUES ('$project_name', '$file_type', '$project_details', '$cost', '$folder', '$deadline')";
+                                        $result = mysqli_query($conn, $project_query);
+                                        if($result) {
+                                            echo "<script>
+                                                alert('Project has been created successfully');
                                             </script>";
-                                }
-                                else
-                                {
-                                    $project_query="INSERT INTO project (project_name,file_type,project_details,cost,file,deadline)
-                                                    VALUES ('$project_name','$file_type','$project_details','$cost','$folder','$deadline')";
-                                    $result=mysqli_query($conn,$project_query);
-                                    if($result)
-                                    {
-                                        //    echo "$project_name Project Created Sucessfully...!!";
-                                        echo "<script>
-                                            alert('project has been created successfully');
+                                            header("Refresh:0;url='../interface.php'");
+                                        } else {
+                                            echo "<script>
+                                                alert('Error creating the project');
                                             </script>";
-                                        header("Refresh:0;url='../interface.php'");
-                                    }
-                                    else
-                                    {
-                                        echo "<script>
-                                            alert('Error to create the Project');
-                                            </script>";
-                                        // echo "";
+                                        }
                                     }
                                 }
                             }
                             ?>
+
 
                 </div> 
                     </div>

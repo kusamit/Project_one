@@ -206,7 +206,7 @@ body
         .user_creation
         {
             background-color: grey;
-            padding:1rem;
+            padding:4rem;
             color:black;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             font-size:larger;
@@ -235,7 +235,20 @@ body
             width:40rem;
             padding:10px;
         }
-        #submit_project, #submit_department, #submit_user
+        #submit_users
+        {
+            margin-top:30px;
+            width:30%;
+            background-color: blue;
+            color:white;
+            border:0px;
+            padding: 10px;
+            border-radius: 5px;
+            float:right;
+            height: 40px;
+            margin-left: 70%;
+        }
+        #submit_project, #submit_department
         {
             margin-top:10px;
             width:30%;

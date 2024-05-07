@@ -1,9 +1,6 @@
 <center>
     <?php
     if($userType=="user"){
-        // include 'dbconnect.php';
-        // $user_id=$_GET['user_id'];
-        // if($user_admin_id!= ''){
         $sql = "SELECT * FROM main_task where project_id=$project_id and user_id=$user_admin_id";
         $result_task = mysqli_query($conn, $sql);
         $num_topic = mysqli_num_rows($result_task);
@@ -45,12 +42,7 @@
                         <?php
                         // if(!($userType=="user"))
                         // {?>
-                        <a href="../task_mgmt/update_main_task.php?id=<?php echo $fetched_main_task_id?>
-                        &user_id=<?php echo $fetched_assigned_userId;?>&project_id=<?php echo $project_id;
-                        ?>" class="action_UD">Update</a>
-                        <a href="../task_mgmt/delete_main_task.php?id=<?php echo $fetched_main_task_id
-                        ?>&user_id=<?php echo $fetched_assigned_userId;?>&project_id=<?php echo $project_id;
-                        ?>" class="action_UD">Review</a>
+                        <a href="../task_mgmt/update_main_task.php?id=<?php echo $fetched_main_task_id?>&user_id=<?php echo $fetched_assigned_userId;?>&project_id=<?php echo $project_id;?>" class="action_UD">Update</a>
                         <?php
                         // }?>
                             <!-- <a href="#3" class="action_UD">Completed</a> -->
@@ -66,7 +58,6 @@
             echo "No records found.";
         }
     }
-    // }
     else
     {
         $sql = "SELECT * FROM main_task where project_id=$project_id";

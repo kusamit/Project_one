@@ -66,7 +66,7 @@ if($userType == "admin" || $userType == "foreman")
                         <option value="foreman">Foreman</option>
                     </select>
                     
-                    <input type="submit" value="Add" name="submit" id="submit_user" class="submit_button">
+                    <input type="submit" value="Add" name="submit" id="submit_users" class="submit_button">
                 </form>
                 <div class="phpdepartment">
                        <!-- php here -->

@@ -36,7 +36,7 @@ include '../persistLogin.php';
 </style>
 <body>
     <?php
-   if($userType=="admin" || $userType=="foreman")
+   if($userType=="admin" || $userType=="foreman" || $userType=="user")
    {    include '../interface_nav.php';
         include '../Assignment/header/header.php';
     ?>

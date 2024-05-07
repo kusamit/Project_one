@@ -84,8 +84,6 @@ include '../persistLogin.php';
                             <a href="../Assignment/unassign.php?p_id=<?php echo $project_id; ?>" id="assign_user">UnAssign</a>
                             <?php }
                             ?>
-
-                
                             </div>
                         </div>
                 </div>  
