@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2024 at 07:59 PM
+-- Generation Time: May 09, 2024 at 06:21 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -66,18 +66,10 @@ CREATE TABLE `assigned_member` (
 --
 
 INSERT INTO `assigned_member` (`Id`, `user_id`, `project_id`, `foreman_id`, `main_task_id`) VALUES
-(51, 0, 6, 29, 0),
-(58, 31, 9, 0, 0),
-(59, 34, 9, 0, 0),
-(61, 0, 9, 35, 0),
-(63, 39, 10, 0, 0),
-(64, 34, 10, 0, 0),
-(66, 39, 11, 0, 0),
-(67, 0, 11, 38, 0),
-(70, 32, 6, 0, 0),
-(71, 0, 18, 42, 0),
-(72, 39, 18, 0, 0),
-(73, 39, 6, 0, 0);
+(1, 0, 21, 45, 0),
+(2, 32, 21, 0, 0),
+(3, 33, 21, 0, 0),
+(4, 46, 21, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -103,7 +95,9 @@ INSERT INTO `department` (`dpt_id`, `department_name`, `created_date`) VALUES
 (42, 'IT', '2024-03-22 15:15:44'),
 (43, 'BIT', '2024-03-29 00:52:03'),
 (46, 'BBA', '2024-03-31 10:43:54'),
-(47, 'BSC DAV', '2024-04-03 01:55:06');
+(47, 'BSC DAV', '2024-04-03 01:55:06'),
+(48, 'BCA (Wizzy)', '2024-05-07 09:31:33'),
+(49, 'BCA(davian)', '2024-05-07 09:33:41');
 
 -- --------------------------------------------------------
 
@@ -125,17 +119,14 @@ CREATE TABLE `main_task` (
 --
 
 INSERT INTO `main_task` (`Id`, `name`, `project_id`, `user_id`, `deadline`, `created_date`) VALUES
-(10, 'event management system', 6, 33, '2024-05-31 11:49:00', '2024-03-31 17:52:58'),
-(12, 'Project Management System', 6, 31, '2024-05-30 21:59:00', '2024-03-31 17:52:58'),
-(13, 'Designing', 9, 31, '2024-04-30 22:10:00', '2024-03-31 17:52:58'),
-(14, 'Coding', 9, 34, '2024-04-30 22:12:00', '2024-03-31 17:52:58'),
-(16, 'Planning', 10, 39, '2024-03-31 21:07:00', '2024-03-31 17:52:58'),
-(17, 'Design', 10, 34, '2024-04-10 21:08:00', '2024-03-31 17:52:58'),
-(19, 'coding part 2', 9, 31, '2024-03-31 22:44:00', '2024-03-31 17:52:58'),
-(20, 'ovs', 6, 31, '2024-04-29 16:40:00', '2024-03-31 17:52:58'),
+(16, 'Planning', 10, 39, '0000-00-00 00:00:00', '2024-05-07 09:10:53'),
+(19, 'coding part 2', 9, 31, '2024-05-30 22:44:00', '2024-05-01 09:49:32'),
 (28, 'ovs', 9, 31, '2024-04-29 16:58:00', '2024-03-31 17:52:58'),
-(29, 'cmd', 6, 31, '2024-03-31 23:28:00', '2024-03-31 17:52:58'),
-(30, 'routine microcopic check', 18, 39, '2024-05-22 07:43:00', '2024-04-03 01:58:16');
+(34, 'project 1', 9, 31, '2024-05-23 15:16:00', '2024-05-01 09:31:42'),
+(35, 'project 2', 9, 31, '2024-05-22 15:17:00', '2024-05-01 09:32:14'),
+(36, 'Project Management System', 21, 46, '2024-07-31 16:05:00', '2024-05-07 10:20:31'),
+(37, 'Online Voting System', 21, 32, '2024-07-30 16:05:00', '2024-05-07 10:20:53'),
+(38, 'Event Management System', 21, 33, '2024-07-30 16:06:00', '2024-05-07 10:21:17');
 
 -- --------------------------------------------------------
 
@@ -159,12 +150,9 @@ CREATE TABLE `project` (
 --
 
 INSERT INTO `project` (`id`, `project_name`, `file_type`, `file`, `cost`, `project_details`, `created_date`, `deadline`) VALUES
-(6, 'Project I', 2, '../project/file/Project I Details for BCA 4th sem.pdf', 0, 'this is the sample as a reference which is provided to you like format whose in which way to make a project and submit  for the BCA fourth semester students, project I details, hope this is most helpful for you bca fourth semester students.', '2024-03-12 17:55:48', '2024-05-31 23:28:00'),
 (9, 'IT Club Management', 1, '../project/file/OIP.jpg', 0, 'within two weeks all work must be done.', '2024-03-21 04:54:13', '2024-03-31 10:38:00'),
 (10, 'Infomation Technology Website', 2, '../project/file/5.JournalofInformationTechnologyandSciencesJITSMAT.pdf', 80000, 'Website is the best way for publishing information and branding an organization. So, I have designed the web site on Islamic University, Bangladesh to spread the name and frame of the same globally. For designing the website, I have used HTML and CSS for web designing, PHP and MySQL have been used for developing of this site. In addition, I have taken help from many online web designing and developing tools. In this site information about the CSE department has been given. There is a short portrayal in this website about the university itself, the administrative setup, the department of the university and their faculties academic information and simple database for retrieving result of the students. The site has been made in such a way so that anyone can get a throughout postulation about the said organization. In future the implementation of this project will be for all universities of Bangladesh and will be converted to WEB site rapidly growing browsing media.', '2024-03-22 15:20:43', '2024-08-31 21:05:00'),
-(16, 'project 1', 1, '../project/file/', 0, '', '2024-03-31 10:52:41', '2024-04-23 16:37:00'),
-(17, 'project 1', 1, '../project/file/', 0, '', '2024-03-31 10:53:03', '2024-04-29 16:37:00'),
-(18, 'BSC Project I', 1, '../project/file/', 0, '', '2024-04-03 01:56:48', '2024-04-24 07:41:00');
+(21, 'project 1', 2, '../project/file/Final defennce report Amit Mahato.pdf', 0, 'a Report is provided.\r\naccording to this report, Develop a website.', '2024-05-07 10:16:39', '2024-06-30 15:58:00');
 
 -- --------------------------------------------------------
 
@@ -194,18 +182,13 @@ CREATE TABLE `sub_task_mgmt` (
 --
 
 INSERT INTO `sub_task_mgmt` (`Id`, `message`, `main_task_id`, `end_date_time`, `progress_percentage`, `progress`, `remarks`, `fileupload`, `completed`, `review`, `suspend`, `project_id`, `updated_date`, `isvarified`) VALUES
-(9, 'login page', 10, '2024-04-30 11:51:00', '100', 0, '', './sub_task_file/OIP.jpg', 1, 2, 0, 6, '0000-00-00 00:00:00', 2),
-(10, 'app', 10, '2024-03-31 11:55:00', '', NULL, 'None', '', NULL, 0, NULL, 6, '0000-00-00 00:00:00', 0),
-(14, 'Logo design', 13, '2024-04-29 22:10:00', '0', 0, '', './sub_task_file/OIP.jpg', 1, 1, 0, 9, '0000-00-00 00:00:00', 1),
-(15, 'Schedule desigh ', 13, '2024-04-29 17:48:00', '15', 0, '', '', 1, 1, 0, 9, '0000-00-00 00:00:00', 1),
-(16, 'Back-end dashboard page', 14, '2024-03-29 22:13:00', '15', 0, '', '', 1, 1, 0, 9, '0000-00-00 00:00:00', 1),
-(17, 'front-end login and session', 14, '2024-03-23 22:14:00', '100', 0, '', '', 1, 0, 0, 9, '0000-00-00 00:00:00', 0),
 (18, 'Requirement Collection ', 16, '2024-03-31 21:09:00', '75', 1, 'None', '', 0, 1, 0, 10, '0000-00-00 00:00:00', 1),
 (19, 'Existing systems', 16, '2024-03-31 21:10:00', '0', 1, 'None', '', 0, 0, 0, 10, '0000-00-00 00:00:00', 0),
-(20, 'dashboard', 10, '2024-03-31 07:09:00', '', NULL, 'None', '', NULL, 0, NULL, 6, '0000-00-00 00:00:00', 0),
-(21, 'lg', 29, '2024-04-30 23:26:00', '', NULL, 'None', '', NULL, 0, NULL, 6, '0000-00-00 00:00:00', 0),
-(22, 'jjj', 10, '2024-04-19 09:18:00', '50', 1, '', '', 0, 1, 0, 6, '0000-00-00 00:00:00', 1),
-(23, 'h', 30, '2024-04-12 07:45:00', '', NULL, 'None', '', NULL, 1, NULL, 18, '0000-00-00 00:00:00', 1);
+(33, 'kjkhjh', 16, '2024-04-30 21:16:00', '', NULL, 'None', '', NULL, 0, NULL, 10, '0000-00-00 00:00:00', 0),
+(34, 'lshfdkj', 19, '2024-05-30 15:34:00', '', NULL, 'None', '', NULL, 1, NULL, 9, '0000-00-00 00:00:00', 1),
+(41, 'Erd', 36, '2024-05-22 16:06:00', '100', 0, 'Completed', './sub_task_file/er diagram final.jpg', 1, 2, 0, 21, '0000-00-00 00:00:00', 2),
+(42, 'LogIn', 36, '2024-05-25 16:06:00', '75', 1, 'Redo', '', 0, 0, 0, 21, '0000-00-00 00:00:00', 0),
+(43, 'Dashboard', 36, '2024-06-15 16:07:00', '', 0, 'Redo', './sub_task_file/A_Web_based_Learning_System_using_Projec.pdf', 1, 2, 0, 21, '0000-00-00 00:00:00', 2);
 
 -- --------------------------------------------------------
 
@@ -243,7 +226,11 @@ INSERT INTO `users` (`id`, `fullname`, `email`, `phone`, `address`, `username`, 
 (38, 'Foremanone', 'foremanone@gmail.com', 2147483647, 'lalitpur', 'Foremanone', '$2y$10$.T5b3aftKUhYNvZsIwSjx.RMajBWm04wADTgJhkilsJCD.Jpboyk2', 42, 'foreman', '2024-03-22 15:16:43'),
 (39, 'Userone', 'userone@gmail.com', 2147483647, 'kathmandu', 'Userone', '$2y$10$FIDBvvx3Oo5BmYFulelGxO4PfRH1HbnBRfTkB7w7zz8C726plNAEK', 42, 'user', '2024-03-22 15:17:40'),
 (41, 'md', 'm@gmail.com', 0, '', 'davmd', '$2y$10$r.R.J/.CUgXQ02m4a6JdDeijymcNqaszFhpe1rMNsCEss9YhYId7q', 43, 'user', '2024-03-31 10:46:12'),
-(42, 'BSC', 'BSC@gmail.com', 0, '', 'BSC Teachers', '$2y$10$wZ7Xm1gDF596z4spKCBKae0.b4zQa3i2Bf7RrhG/JsM.4KkQvgB/a', 47, 'foreman', '2024-04-03 01:55:56');
+(42, 'BSC', 'BSC@gmail.com', 0, '', 'BSC Teachers', '$2y$10$wZ7Xm1gDF596z4spKCBKae0.b4zQa3i2Bf7RrhG/JsM.4KkQvgB/a', 47, 'foreman', '2024-04-03 01:55:56'),
+(43, 'User', 'user@gmail.com', 2147483647, 'Dhobighat', 'user', '$2y$10$nkx2GC9Ia/DfEo0fst01qed8/eCblryy7F9xNLLtg8omYo1STbxqy', 48, 'user', '2024-05-07 09:40:09'),
+(44, 'foreman', 'fo@gmail.com', 2147483647, 'dhobighat', 'foreman', '$2y$10$kfrOjhD472BPaULMeBqfUe6XpJxALtm8kbA2N5Bprd5uu0bEsz0WO', 48, 'foreman', '2024-05-07 09:39:56'),
+(45, 'Sudip', 'Sudip@gmail.com', 2147483647, 'Nakkhu', 'sudip', '$2y$10$2DndYzPWSrOIxxGY9XEGDOjB7kWBSejL0NfhSRuIXUwWbpvzA/WXG', 38, 'foreman', '2024-05-07 10:18:38'),
+(46, 'Amit', 'Amit@gmail.com', 2147483647, 'Dhobighat', 'amit', '$2y$10$Ky9eptlWyYsplB/zQturM.ulQ0cmYgrRtcNxJA4ZHDKa7v/SlZuJ6', 40, 'user', '2024-05-07 10:19:26');
 
 --
 -- Indexes for dumped tables
@@ -315,37 +302,37 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `assigned_member`
 --
 ALTER TABLE `assigned_member`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `department`
 --
 ALTER TABLE `department`
-  MODIFY `dpt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `dpt_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
 
 --
 -- AUTO_INCREMENT for table `main_task`
 --
 ALTER TABLE `main_task`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `sub_task_mgmt`
 --
 ALTER TABLE `sub_task_mgmt`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- Constraints for dumped tables
