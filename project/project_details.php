@@ -111,20 +111,20 @@ include '../persistLogin.php';
                             <div id="file">
                                 <div id="project_file">
                                     <?php 
-                                        if($fetched_file_type==1){ ?>
-                                        <a class="imgpdf" href="fullimg.php?url=<?php echo $row_view['file'] ; ?>?type=<?php echo $fetched_file_type; ?>">
+                                        // if($fetched_file_type==1){ ?>
+                                        <!-- <a class="imgpdf" href="fullimg.php?url=<?php echo $row_view['file'] ; ?>?type=<?php echo $fetched_file_type; ?>">
                                         <img style="height:10rem; width:7rem;" src="<?php echo $row_view['file'] ; ?>"><p id="view_file">View Image</p>
-                                        </a>
+                                        </a> -->
                                     <?php 
-                                        } 
-                                        elseif($fetched_file_type==2)
-                                        {
+                                        // } 
+                                        // elseif($fetched_file_type==2)
+                                        // {
                                     ?>
                                         <a class="imgpdf" href="fullpdf.php?url=<?php echo $row_view['file'] ; ?>?type=<?php echo $fetched_file_type; ?>">
                                         <embed style="height:10rem; width:7rem;" src="<?php echo $row_view['file']; ?>" type="application/pdf" /><p id="view_file">View PDF</p>
                                         </a>
                                     <?php 
-                                        }
+                                        // }
                                     ?>
                                 </div>
                             </div>

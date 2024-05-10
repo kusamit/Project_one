@@ -31,14 +31,14 @@ if($userType == "admin")
                     <span>Project Name</span>
                     <input type="text" name="project" id="project" required class="p_create">
                     
-                    <span>File Type</span>
-                    <select name="f_type" class="p_create">
+                    <span>File (*PDF)</span>
+                    <!-- <select name="f_type" class="p_create">
                         <option value="1">Image</option>
-                        <option value="2">PDF</option>
-                    </select>
+                        <option value="2" accept=".application/pdf" required>PDF</option>
+                    </select> -->
                     
                     <!-- <span>Upload File</span> -->
-                    <input type="file" name="file" id="project_file"  class="p_create">
+                    <input type="file" name="file" id="project_file" accept="application/pdf" class="p_create">
                     
                     <span>Cost</span>
                     <input type="number" name="cost" class="p_create">
@@ -58,7 +58,7 @@ if($userType == "admin")
                        <?php
                             if(isset($_POST["submit"])) {
                                 $project_name = $_POST["project"];
-                                $file_type = $_POST['f_type'];
+                                // $file_type = $_POST['f_type'];
                                 $project_details = $_POST['p_details'];
                                 $cost = $_POST['cost'];
                                 $file = $_FILES['file']['name'];
@@ -81,8 +81,8 @@ if($userType == "admin")
                                             alert('Please enter a name with less than 25 Characters.');
                                         </script>";
                                     } else {
-                                        $project_query = "INSERT INTO project (project_name, file_type, project_details, cost, file, deadline)
-                                                        VALUES ('$project_name', '$file_type', '$project_details', '$cost', '$folder', '$deadline')";
+                                        $project_query = "INSERT INTO project (project_name, project_details, cost, file, deadline)
+                                                        VALUES ('$project_name', '$project_details', '$cost', '$folder', '$deadline')";
                                         $result = mysqli_query($conn, $project_query);
                                         if($result) {
                                             echo "<script>
